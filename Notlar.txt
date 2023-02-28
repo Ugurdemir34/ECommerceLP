@@ -1,0 +1,12 @@
+﻿Her katman, repodan faydalanacağı için Core katmanında IRepository interface i oluşturuldu
+Repositoryde işlem gören metodlar belirli bir standart ile geleceği için core katmanına wrappers oluşturuldu.(SuccessResult,SuccessDataResult,ErrorResult,ErrorDataResult)
+
+
+Core katmanınındaki Domainin içindeki BaseEntity orada mı bulunmalı bilmiyorum başta mantıklı geldi akıbeti ne olur biraz düşünmek lazım
+
+BuildingBlocks içerisinde EventBus ???
+
+Services içerisinde microservisler mevcut.
+Servislerin içerisinde API, Domain, Infrastructure olarak 3 katman açıldı. Bunlar zaten BaseRepo ve UnitOfWork gibi işlemleri Coredan alması planlandı.
+
+CQRS için gerekli Command, Query ve Handlers dosyaları her servisin kendi içerisinde bulunacak
