@@ -1,6 +1,4 @@
-﻿using ECommerceLP.Application.Wrappers.Abstract;
-using ECommerceLP.Application.Wrappers.Concrete;
-using ECommerceLP.Domain.Entities;
+﻿using ECommerceLP.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

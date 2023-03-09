@@ -1,5 +1,4 @@
-﻿using ECommerceLP.Application.Wrappers.Abstract;
-using ECommerceLP.Domain.Entities;
+﻿using ECommerceLP.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

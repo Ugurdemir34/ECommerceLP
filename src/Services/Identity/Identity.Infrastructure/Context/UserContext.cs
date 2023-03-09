@@ -1,4 +1,4 @@
-﻿using Identity.Domain.Entities;
+﻿using Identity.Domain.Aggregate.UserAggregate.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -18,16 +18,16 @@ namespace Identity.Infrastructure.Context
         public DbSet<UserType> UserType { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().HasData(new User
-            {
-                Id = Guid.NewGuid(),
-                FirstName = "Uğur",
-                LastName = "Demir",
-                PasswordHash = "pmWkWSBCL51Bfkhn79xPuKBKHz//H6B+mY6G9/eieuM=",
-                EMail = "ugurdemir551@gmail.com",
-                PhoneNumber = "5340682415",
-                UserName = "Ugur",
-            });
+            //modelBuilder.Entity<User>().HasData(new User
+            //{
+            //    Id = Guid.NewGuid(),
+            //    FirstName = "Uğur",
+            //    LastName = "Demir",
+            //    PasswordHash = "pmWkWSBCL51Bfkhn79xPuKBKHz//H6B+mY6G9/eieuM=",
+            //    EMail = "ugurdemir551@gmail.com",
+            //    PhoneNumber = "5340682415",
+            //    UserName = "Ugur",
+            //});
         }
     }
 }

@@ -10,4 +10,8 @@
     <ProjectReference Include="..\..\..\Core\ECommerceLP.Domain\ECommerceLP.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Aggregate\UserAggregate\DomainEvents\" />
+  </ItemGroup>
+
 </Project>

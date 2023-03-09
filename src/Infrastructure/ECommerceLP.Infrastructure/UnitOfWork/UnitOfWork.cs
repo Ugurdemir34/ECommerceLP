@@ -88,13 +88,32 @@ namespace ECommerceLP.Infrastructure.UnitOfWork
             var repo = new QueryRepository<TEntity>(_context);
             repositories.Add(typeof(TEntity), repo);
             return repo;
-        } 
+        }
+        #endregion
+        #region Commits
+        public async Task<bool> CommitAsync(CancellationToken cancellationToken = default)
+        {
+            await _context.SaveChangesAsync(cancellationToken);
+            return true;
+        }
+
+        public void Commit()
+        {
+            _context.SaveChanges();
+        }
         #endregion
         #region Save Changes
         public int SaveChanges()
         {
             return _context.SaveChanges();
         }
+
+
         #endregion
+        public void Dispose()
+        {
+            _context.Dispose();
+            GC.SuppressFinalize(this);
+        }
     }
 }

@@ -22,7 +22,7 @@ namespace Identity.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Identity.Domain.Entities.User", b =>
+            modelBuilder.Entity("Identity.Domain.Aggregate.UserAggregate.Entities.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -52,6 +52,12 @@ namespace Identity.Infrastructure.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("RefreshToken")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("RefreshTokenExpiry")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("UserName")
                         .HasColumnType("nvarchar(max)");
 
@@ -63,24 +69,9 @@ namespace Identity.Infrastructure.Migrations
                     b.HasIndex("UserTypeId");
 
                     b.ToTable("Users");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("1071ba6d-c98d-413f-aac6-e654ac657b93"),
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EMail = "ugurdemir551@gmail.com",
-                            FirstName = "Uğur",
-                            IsDeleted = false,
-                            LastName = "Demir",
-                            ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            PasswordHash = "pmWkWSBCL51Bfkhn79xPuKBKHz//H6B+mY6G9/eieuM=",
-                            PhoneNumber = "5340682415",
-                            UserName = "Ugur"
-                        });
                 });
 
-            modelBuilder.Entity("Identity.Domain.Entities.UserType", b =>
+            modelBuilder.Entity("Identity.Domain.Aggregate.UserAggregate.Entities.UserType", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -103,9 +94,9 @@ namespace Identity.Infrastructure.Migrations
                     b.ToTable("UserType");
                 });
 
-            modelBuilder.Entity("Identity.Domain.Entities.User", b =>
+            modelBuilder.Entity("Identity.Domain.Aggregate.UserAggregate.Entities.User", b =>
                 {
-                    b.HasOne("Identity.Domain.Entities.UserType", "UserType")
+                    b.HasOne("Identity.Domain.Aggregate.UserAggregate.Entities.UserType", "UserType")
                         .WithMany()
                         .HasForeignKey("UserTypeId");
 

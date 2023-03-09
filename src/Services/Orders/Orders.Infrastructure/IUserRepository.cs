@@ -1,6 +1,5 @@
 ﻿using ECommerceLP.Application.Repositories;
-using ECommerceLP.Application.Wrappers.Abstract;
-using Identity.Domain.Entities;
+using Identity.Domain.Aggregate.UserAggregate.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

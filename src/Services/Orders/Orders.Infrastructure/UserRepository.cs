@@ -1,5 +1,4 @@
-﻿using ECommerceLP.Application.Wrappers.Abstract;
-using Identity.Domain.Entities;
+﻿using Identity.Domain.Aggregate.UserAggregate.Entities;
 using Identity.Infrastructure;
 using System.Linq.Expressions;
 

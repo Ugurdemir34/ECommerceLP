@@ -6,11 +6,17 @@ using System.Threading.Tasks;
 
 namespace ECommerceLP.Domain.Entities
 {
-    public class BaseEntity
+    public abstract class BaseEntity
     {
-        public Guid Id { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public DateTime ModifiedDate { get; set; }
-        public bool IsDeleted { get; set; }
+        public BaseEntity()
+        {
+            CreatedDate = DateTime.Now;
+            ModifiedDate = DateTime.Now;
+            Id = Guid.NewGuid();
+        }
+        public Guid Id { get; private set; }
+        public DateTime CreatedDate { get; private set; }
+        public DateTime ModifiedDate { get; private set; }
+        public bool IsDeleted { get; private set; }
     }
 }
