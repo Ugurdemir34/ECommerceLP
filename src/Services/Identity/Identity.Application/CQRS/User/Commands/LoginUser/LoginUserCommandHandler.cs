@@ -1,5 +1,4 @@
 ﻿using ECommerceLP.Application.Messaging.Abstract;
-using ECommerceLP.Common.Results;
 using ECommerceLP.Infrastructure.UnitOfWork;
 using Identity.Application.Common.Abstracts;
 using Identity.Common.Dtos;
@@ -30,7 +29,7 @@ namespace Identity.Application.CQRS.User.Commands.LoginUser
             var user = await repo.GetAsync(u => u.UserName == request.UserName && u.PasswordHash == hashedPass);
             if (user != null)
             {
-                return await _authentication.GenerateTokenAsync(user.UserName, user.Id);
+                return _authentication.GenerateToken(user.UserName, user.Id);
             }
             return new LoginDto();
         }

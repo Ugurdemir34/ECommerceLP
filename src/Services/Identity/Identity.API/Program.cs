@@ -18,6 +18,8 @@ using ECommerceLP.Application.Pipelines;
 using Microsoft.Extensions.DependencyInjection;
 using FluentValidation;
 using Identity.Application.CQRS.User.Commands.LoginUser;
+using ECommerceLP.Application.CQRS.Abstract;
+using ECommerceLP.Application.CQRS.Concrete;
 
 var builder = WebApplication.CreateBuilder(args);
 var conf = builder.Configuration;
@@ -41,6 +43,10 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddIdentityApplication();
 builder.Services.AddIdentityInfrastructre(builder.Configuration);
 builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+foreach (var serviceType in typeof(Processor).GetInterfaces())
+{
+    builder.Services.AddScoped(serviceType, typeof(Processor));
+}
 builder.Services.AddTransient<IUnitOfWork,UnitOfWork<UserContext>>();
 builder.Services.AddJwtSettings(conf);
 //builder.Services.AddScoped<IRequestHandler<CreateUserCommand,CreateUserDTO>,CreateUserCommandHandler>();

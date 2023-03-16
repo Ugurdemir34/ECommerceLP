@@ -13,6 +13,7 @@ namespace Identity.Infrastructure
             {              
                 //opt.UseSqlServer(@"Server=DESKTOP-5D8FOCF\UGUR;Database=ECommerceDB;Trusted_Connection=True;Encrypt=False");
                 opt.UseSqlServer(configuration.GetConnectionString("UserDB"));
+               // opt.UseInMemoryDatabase("UserDB");
             });
 
         }

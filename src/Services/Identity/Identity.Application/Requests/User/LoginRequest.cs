@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Identity.Application.Contracts.User
+namespace Identity.Application.Requests.User
 {
     public class LoginRequest
     {

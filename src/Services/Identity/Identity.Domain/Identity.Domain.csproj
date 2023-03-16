@@ -7,11 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Core\ECommerceLP.Domain\ECommerceLP.Domain.csproj" />
+    <Compile Remove="Aggregate\UserAggregate\DomainEvents\**" />
+    <EmbeddedResource Remove="Aggregate\UserAggregate\DomainEvents\**" />
+    <None Remove="Aggregate\UserAggregate\DomainEvents\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Aggregate\UserAggregate\DomainEvents\" />
+    <ProjectReference Include="..\..\..\Core\ECommerceLP.Domain\ECommerceLP.Domain.csproj" />
   </ItemGroup>
 
 </Project>

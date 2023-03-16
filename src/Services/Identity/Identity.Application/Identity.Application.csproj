@@ -22,7 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\ECommerceLP.Common\ECommerceLP.Common.csproj" />
     <ProjectReference Include="..\..\..\Infrastructure\ECommerceLP.Infrastructure\ECommerceLP.Infrastructure.csproj" />
     <ProjectReference Include="..\Identity.Common\Identity.Common.csproj" />
     <ProjectReference Include="..\Identity.Domain\Identity.Domain.csproj" />

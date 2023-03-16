@@ -1,5 +1,4 @@
 ﻿using BCrypt.Net;
-using ECommerceLP.Common.Results;
 using Identity.Application.Common.Abstracts;
 using Identity.Application.Options;
 using Identity.Common.Dtos;
@@ -23,7 +22,7 @@ namespace Identity.Application.Common.Concretes
         {
             _jwtSettings = jwtSettings;
         }
-        public Task<LoginDto> GenerateTokenAsync(string userName, Guid userId)
+        public LoginDto GenerateToken(string userName, Guid userId)
         {
             var jwtHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_jwtSettings.Secret);
@@ -49,7 +48,17 @@ namespace Identity.Application.Common.Concretes
 
             //  return Task.FromResult(Result<LoginDto>.Success(200,new LoginDto { Token=jwtHandler.WriteToken(token)}
             //));
-            return Task.FromResult(new LoginDto { Token = jwtHandler.WriteToken(token) });
+            return new LoginDto{ Token = jwtHandler.WriteToken(token),RefreshToken = GenerateRefreshToken() };
+        }
+
+        private string GenerateRefreshToken()
+        {
+            byte[] number = new byte[32];
+            using (RandomNumberGenerator rnd = RandomNumberGenerator.Create())
+            {
+                rnd.GetBytes(number);
+                return Convert.ToBase64String(number);
+            }
         }
 
         public string HashPassword(string password)

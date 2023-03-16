@@ -8,6 +8,10 @@ namespace ECommerceLP.Common.Results.Concrete
 {
     public class SuccessDataResult<T>:DataResult<T>
     {
+        public SuccessDataResult(T data):base(data,true)
+        {
+            
+        }
         public SuccessDataResult(int statusCode,T data, string message):base(statusCode,data,true,message)
         {
 
@@ -20,7 +24,6 @@ namespace ECommerceLP.Common.Results.Concrete
         {
 
         }
-
         public SuccessDataResult() : base(default, true)
         {
 

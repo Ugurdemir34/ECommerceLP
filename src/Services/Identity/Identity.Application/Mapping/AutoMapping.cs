@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
-using Identity.Application.Contracts.User;
+using Identity.Application.Requests.User;
+using Identity.Application.CQRS.User.Commands.CreateUser;
 using Identity.Common.Dtos;
+using Identity.Domain.Aggregate.UserAggregate.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +15,7 @@ namespace Identity.Application.Mapping
     {
         public AutoMapping()
         {
-            CreateMap<RegisterRequest, CreateUserDTO>();
+            CreateMap<CreateUserCommand, User>().ReverseMap();
         }
     }
 }

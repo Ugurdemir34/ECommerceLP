@@ -25,13 +25,14 @@ namespace Identity.Application.CQRS.User.Commands.CreateUser
         {
             var repo = _unitOfWork.GetCommandRepository<ModelUser>();
             //await repo.AddAsync(new User { FirstName = "aaa" });//CreateUser requestten User için extension yaz=> request.CreateUser()
+            var added = _mapper.Map<ModelUser>(request);
+            await repo.AddAsync(added);
             _unitOfWork.SaveChanges();
-            var added = _mapper.Map<CreateUserDTO>(request);
             //var aaa = new CreateUserDTO()
             //{
             //    FirstName = request._reqisterRequest.FirstName
             //};
-            return added;
+            return default;
         }
     }
 }

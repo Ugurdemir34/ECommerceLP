@@ -1,4 +1,4 @@
-﻿namespace Identity.Application.Contracts.User
+﻿namespace Identity.Application.Requests.User
 {
     public class RegisterRequest
     {

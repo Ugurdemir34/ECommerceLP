@@ -8,6 +8,10 @@ namespace ECommerceLP.Common.Results.Concrete
 {
     public class ErrorDataResult<T> : DataResult<T>
     {
+        public ErrorDataResult(T data):base(data,false)
+        {
+            
+        }
         public ErrorDataResult(int statusCode,T data, string message) : base(statusCode,data, false, message)
         {
         }
