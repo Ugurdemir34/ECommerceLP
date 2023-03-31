@@ -1,5 +1,5 @@
-﻿using ECommerceLP.Domain.Entities;
-using Identity.Domain.Common.Interfaces;
+﻿using ECommerceLP.Domain.Common.Interfaces;
+using ECommerceLP.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

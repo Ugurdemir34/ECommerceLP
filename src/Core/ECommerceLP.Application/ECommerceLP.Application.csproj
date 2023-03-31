@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Services\Identity\Identity.Domain\Identity.Domain.csproj" />
+    <ProjectReference Include="..\ECommerceLP.Common\ECommerceLP.Common.csproj" />
     <ProjectReference Include="..\ECommerceLP.Domain\ECommerceLP.Domain.csproj" />
   </ItemGroup>
 

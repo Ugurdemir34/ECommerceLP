@@ -1,6 +1,6 @@
 ﻿using BCrypt.Net;
+using ECommerceLP.Application.Settings;
 using Identity.Application.Common.Abstracts;
-using Identity.Application.Options;
 using Identity.Common.Dtos;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -16,9 +16,9 @@ namespace Identity.Application.Common.Concretes
 {
     public class AuthenticationService : IAuthentication
     {
-        private readonly JwtSettings _jwtSettings;
+        private readonly JwtTokenSettings _jwtSettings;
 
-        public AuthenticationService(JwtSettings jwtSettings)
+        public AuthenticationService(JwtTokenSettings jwtSettings)
         {
             _jwtSettings = jwtSettings;
         }

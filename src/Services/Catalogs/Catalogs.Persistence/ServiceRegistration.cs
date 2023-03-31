@@ -1,17 +1,30 @@
-﻿using ECommerceLP.Application.Settings;
+﻿using Catalogs.Persistence.Context;
+using ECommerceLP.Application.Settings;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace Identity.API.Extensions
+namespace Catalogs.Persistence
 {
-    public static class JwtExtensions
+    public static class ServiceRegistration
     {
-        public static void AddJwtSettings(this IServiceCollection services,IConfiguration configuration)
+        public static void AddCatalogPersistence(this IServiceCollection serviceCollection, IConfiguration configuration)
         {
+            serviceCollection.AddDbContext<CatalogContext>(opt =>
+            {
+                opt.UseSqlServer(configuration.GetConnectionString("UserDB"));
+            });
+            // Token
             var jwtSettings = new JwtTokenSettings();
             configuration.Bind(nameof(jwtSettings), jwtSettings);
-            services.AddSingleton(jwtSettings);
+            serviceCollection.AddSingleton(jwtSettings);
 
             var tokenValidationParameters = new TokenValidationParameters
             {
@@ -23,9 +36,9 @@ namespace Identity.API.Extensions
                 ValidateLifetime = true
             };
 
-            services.AddSingleton(tokenValidationParameters);
+            serviceCollection.AddSingleton(tokenValidationParameters);
 
-            services.AddAuthentication(x =>
+            serviceCollection.AddAuthentication(x =>
             {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 x.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -36,7 +49,6 @@ namespace Identity.API.Extensions
                     x.SaveToken = true;
                     x.TokenValidationParameters = tokenValidationParameters;
                 });
-
         }
     }
 }

@@ -14,8 +14,6 @@ using ECommerceLP.Common.Messaging.Response;
 
 namespace Identity.API.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
     public class AuthController : BaseApi
     {
         private readonly IProcessor _processor;
@@ -35,13 +33,13 @@ namespace Identity.API.Controllers
             //var result = new SuccessDataResult<LoginDto>((int)HttpStatusCode.OK, await Sender.Send(command, cancellationToken), Messages.LoginSuccess);
             //return result;
         }
-        //[HttpPost("Test")]
-        //[ProducesResponseType(StatusCodes.Status200OK)]
-        //public async Task<DataResult<CreateUserDTO>> Test(RegisterRequest login, CancellationToken cancellationToken)
-        //{
-        //    var command = new CreateUserCommand(login);
-        //    var result = new SuccessDataResult<CreateUserDTO>((int)HttpStatusCode.OK, await Sender.Send(command, cancellationToken), Messages.LoginSuccess);
-        //    return result;
-        //}
+        [HttpPost("Test")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<Response<CreateUserDTO>> Test(RegisterRequest login, CancellationToken cancellationToken)
+        {
+            var command = new CreateUserCommand(login);
+            var result = await _processor.ProcessAsync(command, cancellationToken);
+            return this.ProduceResponse(result);
+        }
     }
 }
