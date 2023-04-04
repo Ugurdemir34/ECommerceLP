@@ -60,15 +60,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerceLP.Common", "src\C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Catalogs", "Catalogs", "{20F35552-E7E2-4F22-9CD4-78FDD8A8AE4C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalogs.Domain", "src\Services\Catalogs\Catalogs.Domain\Catalogs.Domain.csproj", "{871DA2AE-695D-4933-9BDD-5A494F224C21}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalogs.Domain", "src\Services\Catalogs\Catalogs.Domain\Catalogs.Domain.csproj", "{871DA2AE-695D-4933-9BDD-5A494F224C21}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalogs.Application", "src\Services\Catalogs\Catalogs.Application\Catalogs.Application.csproj", "{347C6AFF-8CA7-436D-9579-92B42029AB43}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalogs.Application", "src\Services\Catalogs\Catalogs.Application\Catalogs.Application.csproj", "{347C6AFF-8CA7-436D-9579-92B42029AB43}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalogs.Persistence", "src\Services\Catalogs\Catalogs.Persistence\Catalogs.Persistence.csproj", "{6C2991E0-6FB2-4C4B-AE0F-297A034C5B2F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalogs.Persistence", "src\Services\Catalogs\Catalogs.Persistence\Catalogs.Persistence.csproj", "{6C2991E0-6FB2-4C4B-AE0F-297A034C5B2F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalogs.API", "src\Services\Catalogs\Catalogs.API\Catalogs.API.csproj", "{C27AB1B5-6FC3-4F3D-B692-3AAEFA6C2142}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalogs.API", "src\Services\Catalogs\Catalogs.API\Catalogs.API.csproj", "{C27AB1B5-6FC3-4F3D-B692-3AAEFA6C2142}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerceLP.Persistence", "src\Infrastructure\ECommerceLP.Persistence\ECommerceLP.Persistence.csproj", "{52BDAF00-2C26-4D36-B276-146479EC9BE5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerceLP.Persistence", "src\Infrastructure\ECommerceLP.Persistence\ECommerceLP.Persistence.csproj", "{52BDAF00-2C26-4D36-B276-146479EC9BE5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalogs.Common", "src\Services\Catalogs\Catalogs.Common\Catalogs.Common.csproj", "{21FACDAE-6ABF-4B7C-A583-D426D2E60B54}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -160,6 +162,10 @@ Global
 		{52BDAF00-2C26-4D36-B276-146479EC9BE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52BDAF00-2C26-4D36-B276-146479EC9BE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{52BDAF00-2C26-4D36-B276-146479EC9BE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21FACDAE-6ABF-4B7C-A583-D426D2E60B54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21FACDAE-6ABF-4B7C-A583-D426D2E60B54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21FACDAE-6ABF-4B7C-A583-D426D2E60B54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21FACDAE-6ABF-4B7C-A583-D426D2E60B54}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -196,6 +202,7 @@ Global
 		{6C2991E0-6FB2-4C4B-AE0F-297A034C5B2F} = {20F35552-E7E2-4F22-9CD4-78FDD8A8AE4C}
 		{C27AB1B5-6FC3-4F3D-B692-3AAEFA6C2142} = {20F35552-E7E2-4F22-9CD4-78FDD8A8AE4C}
 		{52BDAF00-2C26-4D36-B276-146479EC9BE5} = {C3EFEEAE-3669-4D34-B495-03C868A56347}
+		{21FACDAE-6ABF-4B7C-A583-D426D2E60B54} = {20F35552-E7E2-4F22-9CD4-78FDD8A8AE4C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4213A503-31D0-466C-BFF9-CF5045231DC5}

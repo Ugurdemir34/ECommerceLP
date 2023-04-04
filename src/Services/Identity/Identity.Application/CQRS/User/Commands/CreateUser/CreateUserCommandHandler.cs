@@ -24,14 +24,9 @@ namespace Identity.Application.CQRS.User.Commands.CreateUser
         public async Task<CreateUserDTO> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
             var repo = _unitOfWork.GetCommandRepository<ModelUser>();
-            //await repo.AddAsync(new User { FirstName = "aaa" });//CreateUser requestten User için extension yaz=> request.CreateUser()
             var added = _mapper.Map<ModelUser>(request);
             await repo.AddAsync(added);
             _unitOfWork.SaveChanges();
-            //var aaa = new CreateUserDTO()
-            //{
-            //    FirstName = request._reqisterRequest.FirstName
-            //};
             return default;
         }
     }
