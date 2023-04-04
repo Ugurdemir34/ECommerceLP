@@ -1,7 +1,9 @@
 ﻿using Catalogs.Application.CQRS.Category.Queries.GetCategories;
+using Catalogs.Application.CQRS.Category.Queries.GetCategoryById;
 using Catalogs.Common.Dtos;
 using ECommerceLP.Application.Repositories;
 using ECommerceLP.Common.Collections.Abstract;
+using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,6 +27,8 @@ namespace Catalogs.Application
             serviceCollection.AddScoped(typeof(ICommandRepository<>), typeof(CommandRepository<>));
             serviceCollection.AddScoped(typeof(IQueryRepository<>), typeof(QueryRepository<>));
             serviceCollection.AddScoped<IRequestHandler<GetCategoriesQuery, IPagedList<CategoryDto>>, GetCategoriesQueryHandler>();
+            serviceCollection.AddScoped<IRequestHandler<GetCategoryByIdQuery, CategoryDto>, GetCategoryByIdHandler>();
+            serviceCollection.AddValidatorsFromAssemblyContaining<GetCategoryByIdValidator>();
 
         }
     }

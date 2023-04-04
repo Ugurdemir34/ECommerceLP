@@ -1,4 +1,5 @@
 ﻿using Catalogs.Application.CQRS.Category.Queries.GetCategories;
+using Catalogs.Application.CQRS.Category.Queries.GetCategoryById;
 using Catalogs.Application.Requests.Category;
 using Catalogs.Common.Dtos;
 using ECommerceLP.Api.Controllers;
@@ -19,10 +20,19 @@ namespace Catalogs.API.Controllers
         }
         [Authorize]
         [HttpGet("GetCategories")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(IPagedList<CategoryDto>), StatusCodes.Status200OK)]
         public async Task<Response<IPagedList<CategoryDto>>> GetCategoriesAsync([FromBody] CategoryRequest request, CancellationToken cancellationToken)
         {
             var query = new GetCategoriesQuery(request);
+            var result = await _processor.ProcessAsync(query, cancellationToken);
+            return this.ProduceResponse(result);
+        }
+        [Authorize]
+        [HttpGet("GetCategoryById")]
+        [ProducesResponseType(typeof(CategoryDto), StatusCodes.Status200OK)]
+        public async Task<Response<CategoryDto>> GetCategoryById([FromBody] CategoryByIdRequest request, CancellationToken cancellationToken)
+        {
+            var query = new GetCategoryByIdQuery(request);
             var result = await _processor.ProcessAsync(query, cancellationToken);
             return this.ProduceResponse(result);
         }
