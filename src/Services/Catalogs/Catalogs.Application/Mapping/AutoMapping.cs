@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Catalogs.Application.CQRS.Category.Command.CreateCategory;
 using Catalogs.Common.Dtos;
 using Catalogs.Domain.Aggregate.CategoryAggregate;
 using ECommerceLP.Common.Collections.Abstract;
@@ -16,6 +17,7 @@ namespace Catalogs.Application.Mapping
         public AutoMapping()
         {
             CreateMap<CategoryDto, Category>().ReverseMap();
+            CreateMap<CreateCategoryCommand, Category>().ReverseMap();
             CreateMap<PagedList<CategoryDto>, PagedList<Category>>().ReverseMap();
         }
     }

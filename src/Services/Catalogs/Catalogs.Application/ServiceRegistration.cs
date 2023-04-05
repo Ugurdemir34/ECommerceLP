@@ -1,4 +1,5 @@
-﻿using Catalogs.Application.CQRS.Category.Queries.GetCategories;
+﻿using Catalogs.Application.CQRS.Category.Command.CreateCategory;
+using Catalogs.Application.CQRS.Category.Queries.GetCategories;
 using Catalogs.Application.CQRS.Category.Queries.GetCategoryById;
 using Catalogs.Common.Dtos;
 using ECommerceLP.Application.Repositories;
@@ -28,8 +29,9 @@ namespace Catalogs.Application
             serviceCollection.AddScoped(typeof(IQueryRepository<>), typeof(QueryRepository<>));
             serviceCollection.AddScoped<IRequestHandler<GetCategoriesQuery, IPagedList<CategoryDto>>, GetCategoriesQueryHandler>();
             serviceCollection.AddScoped<IRequestHandler<GetCategoryByIdQuery, CategoryDto>, GetCategoryByIdHandler>();
+            serviceCollection.AddScoped<IRequestHandler<CreateCategoryCommand, CategoryDto>, CreateCategoryHandler>();
             serviceCollection.AddValidatorsFromAssemblyContaining<GetCategoryByIdValidator>();
-
+            serviceCollection.AddValidatorsFromAssemblyContaining<CreateCategoryValidator>();
         }
     }
 }

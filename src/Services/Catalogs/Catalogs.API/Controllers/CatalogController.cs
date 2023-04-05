@@ -1,4 +1,5 @@
-﻿using Catalogs.Application.CQRS.Category.Queries.GetCategories;
+﻿using Catalogs.Application.CQRS.Category.Command.CreateCategory;
+using Catalogs.Application.CQRS.Category.Queries.GetCategories;
 using Catalogs.Application.CQRS.Category.Queries.GetCategoryById;
 using Catalogs.Application.Requests.Category;
 using Catalogs.Common.Dtos;
@@ -13,11 +14,16 @@ namespace Catalogs.API.Controllers
 {
     public class CatalogController : BaseApi
     {
+        #region Variables
         private readonly IProcessor _processor;
+        #endregion
+        #region Constructor
         public CatalogController(IProcessor processor)
         {
             _processor = processor;
         }
+        #endregion
+        #region GetCategoriesAsync
         [Authorize]
         [HttpGet("GetCategories")]
         [ProducesResponseType(typeof(IPagedList<CategoryDto>), StatusCodes.Status200OK)]
@@ -27,6 +33,8 @@ namespace Catalogs.API.Controllers
             var result = await _processor.ProcessAsync(query, cancellationToken);
             return this.ProduceResponse(result);
         }
+        #endregion
+        #region GetCategoryById
         [Authorize]
         [HttpGet("GetCategoryById")]
         [ProducesResponseType(typeof(CategoryDto), StatusCodes.Status200OK)]
@@ -36,5 +44,17 @@ namespace Catalogs.API.Controllers
             var result = await _processor.ProcessAsync(query, cancellationToken);
             return this.ProduceResponse(result);
         }
+        #endregion
+        #region CreateCategory
+        [Authorize]
+        [HttpPost("CreateCategory")]
+        [ProducesResponseType(typeof(CategoryDto), StatusCodes.Status200OK)]
+        public async Task<Response<CategoryDto>> CreateCategory([FromBody] CreateCategoryRequest request, CancellationToken cancellationToken)
+        {
+            var command = new CreateCategoryCommand(request);
+            var result = await _processor.ProcessAsync(command, cancellationToken);
+            return this.ProduceResponse(result);
+        }
+        #endregion
     }
 }
