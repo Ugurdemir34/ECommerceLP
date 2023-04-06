@@ -1,4 +1,5 @@
 ﻿using Catalogs.Application.CQRS.Category.Command.CreateCategory;
+using Catalogs.Application.CQRS.Category.Command.DeleteCategory;
 using Catalogs.Application.CQRS.Category.Queries.GetCategories;
 using Catalogs.Application.CQRS.Category.Queries.GetCategoryById;
 using Catalogs.Common.Dtos;
@@ -30,8 +31,10 @@ namespace Catalogs.Application
             serviceCollection.AddScoped<IRequestHandler<GetCategoriesQuery, IPagedList<CategoryDto>>, GetCategoriesQueryHandler>();
             serviceCollection.AddScoped<IRequestHandler<GetCategoryByIdQuery, CategoryDto>, GetCategoryByIdHandler>();
             serviceCollection.AddScoped<IRequestHandler<CreateCategoryCommand, CategoryDto>, CreateCategoryHandler>();
+            serviceCollection.AddScoped<IRequestHandler<DeleteCategoryCommand, bool>, DeleteCategoryHandler>();
             serviceCollection.AddValidatorsFromAssemblyContaining<GetCategoryByIdValidator>();
             serviceCollection.AddValidatorsFromAssemblyContaining<CreateCategoryValidator>();
+            serviceCollection.AddValidatorsFromAssemblyContaining<DeleteCategoryValidator>();
         }
     }
 }

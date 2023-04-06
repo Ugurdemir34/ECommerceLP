@@ -1,4 +1,5 @@
 ﻿using Catalogs.Application.CQRS.Category.Command.CreateCategory;
+using Catalogs.Application.CQRS.Category.Command.DeleteCategory;
 using Catalogs.Application.CQRS.Category.Queries.GetCategories;
 using Catalogs.Application.CQRS.Category.Queries.GetCategoryById;
 using Catalogs.Application.Requests.Category;
@@ -54,6 +55,16 @@ namespace Catalogs.API.Controllers
             var command = new CreateCategoryCommand(request);
             var result = await _processor.ProcessAsync(command, cancellationToken);
             return this.ProduceResponse(result);
+        }
+        #endregion
+        #region DeleteCategory
+        [HttpDelete("DeleteCategory")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<bool> DeleteCategory(DeleteCategoryRequest request,CancellationToken cancellationToken)
+        {
+            var command = new DeleteCategoryCommand(request);
+            var result = await _processor.ProcessAsync(command,cancellationToken);
+            return result;
         }
         #endregion
     }

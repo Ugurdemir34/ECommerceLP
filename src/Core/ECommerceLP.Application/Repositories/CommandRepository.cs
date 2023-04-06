@@ -20,11 +20,12 @@ namespace ECommerceLP.Application.Repositories
         {
             var addedEntity = await _context.AddAsync(entity);
         }
-        public Task DeleteAsync(Guid id)
+        public async Task DeleteAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var entity = _context.Set<T>();
+            var deleted = await entity.FindAsync(id);
+            _context.Remove(deleted);
         }
-
         public Task<T> UpdateAsync(T entity)
         {
             throw new NotImplementedException();
