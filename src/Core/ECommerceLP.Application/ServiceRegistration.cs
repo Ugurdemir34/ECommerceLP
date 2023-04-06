@@ -1,5 +1,7 @@
 ﻿using ECommerceLP.Application.CQRS.Concrete;
 using ECommerceLP.Application.Pipelines;
+using ECommerceLP.Common.Collections.Abstract;
+using ECommerceLP.Common.Collections.Concrete;
 using ECommerceLP.Infrastructure.UnitOfWork;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,6 +22,7 @@ namespace ECommerceLP.Application
             {
                 serviceCollection.AddScoped(serviceType, typeof(Processor));
             }
+            serviceCollection.AddScoped(typeof(IPagedList<>),typeof(PagedList<>));
         }
     }
 }
