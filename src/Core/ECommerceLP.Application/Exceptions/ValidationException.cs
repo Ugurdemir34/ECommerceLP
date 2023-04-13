@@ -12,7 +12,10 @@ namespace ECommerceLP.Application.Exceptions
     {
         public IEnumerable<ValidationFailure> Errors { get; private set; }
 
-        public ValidationException(string message, IEnumerable<ValidationFailure> errors, bool appendDefaultMessage) : base(appendDefaultMessage ? $"{message} {BuildErrorMessage(errors)}" : message)
+        public ValidationException(string message, 
+                                    IEnumerable<ValidationFailure> errors,
+                                    bool appendDefaultMessage) 
+            : base(appendDefaultMessage ? $"{message} {BuildErrorMessage(errors)}" : message)
         {
             Errors = errors;
         }

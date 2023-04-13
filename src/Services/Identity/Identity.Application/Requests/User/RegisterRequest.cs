@@ -9,8 +9,5 @@
         public string Password { get; set; }
         public string PhoneNumber { get; set; }
         public Guid UserTypeId { get; set; }
-        //public DateTime CreatedDate { get; set; } = DateTime.Now;
-        //public DateTime ModifiedDate { get; set; } = DateTime.Now;
-        //public bool IsDeleted { get; set; } = false;
     }
 }

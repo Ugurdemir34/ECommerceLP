@@ -13,5 +13,6 @@ namespace ECommerceLP.Application.Repositories
         Task DeleteAsync(Guid id);
         Task<T> UpdateAsync(T entity);
         Task AddAsync(T entity);
+        Task AddRangeAsync(List<T> entities);
     }
 }

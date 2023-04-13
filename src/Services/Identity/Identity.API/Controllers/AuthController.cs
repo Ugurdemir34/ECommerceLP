@@ -30,8 +30,6 @@ namespace Identity.API.Controllers
             var command = new LoginUserCommand(login);
             var result = await _processor.ProcessAsync(command, cancellationToken);
             return this.ProduceResponse(result);
-            //var result = new SuccessDataResult<LoginDto>((int)HttpStatusCode.OK, await Sender.Send(command, cancellationToken), Messages.LoginSuccess);
-            //return result;
         }
         [HttpPost("Test")]
         [ProducesResponseType(StatusCodes.Status200OK)]

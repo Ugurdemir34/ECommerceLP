@@ -16,18 +16,5 @@ namespace Identity.Persistence.Context
         }
         public DbSet<User> Users { get; set; }
         public DbSet<UserType> UserType { get; set; }
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            //modelBuilder.Entity<User>().HasData(new User
-            //{
-            //    Id = Guid.NewGuid(),
-            //    FirstName = "Uğur",
-            //    LastName = "Demir",
-            //    PasswordHash = "pmWkWSBCL51Bfkhn79xPuKBKHz//H6B+mY6G9/eieuM=",
-            //    EMail = "ugurdemir551@gmail.com",
-            //    PhoneNumber = "5340682415",
-            //    UserName = "Ugur",
-            //});
-        }
     }
 }

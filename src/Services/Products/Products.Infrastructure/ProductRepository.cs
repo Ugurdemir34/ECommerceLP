@@ -1,4 +1,4 @@
-﻿using Products.Domain;
+﻿using Products.Domain.Aggregate.ProductAggregate;
 using System.Linq.Expressions;
 
 namespace Products.Infrastructure
@@ -7,6 +7,11 @@ namespace Products.Infrastructure
     {
         public Task AddAsync(Product entity)
         {        
+            throw new NotImplementedException();
+        }
+
+        public Task AddRangeAsync(List<Product> entities)
+        {
             throw new NotImplementedException();
         }
 

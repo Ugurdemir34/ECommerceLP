@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 
 namespace ECommerceLP.Common.Json.Extensions
 {
-    public class NexusJSONSerializationOptions
+    public class JSONSerializationOptions
     {
     }
 
     public static class BuilderExtensions
     {
         public static IServiceCollection AddJSONSerialization(this IServiceCollection services,
-            Action<NexusJSONSerializationOptions> setupAction = null)
+            Action<JSONSerializationOptions> setupAction = null)
         {
             if (services == null)
             {

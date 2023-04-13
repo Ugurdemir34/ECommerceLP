@@ -20,6 +20,12 @@ namespace ECommerceLP.Application.Repositories
         {
             var addedEntity = await _context.AddAsync(entity);
         }
+
+        public async Task AddRangeAsync(List<T> entities)
+        {
+            await _context.AddRangeAsync(entities);
+        }
+
         public async Task DeleteAsync(Guid id)
         {
             var entity = _context.Set<T>();
