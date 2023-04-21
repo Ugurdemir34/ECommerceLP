@@ -1,22 +1,22 @@
 ﻿using ECommerceLP.Domain.Common.Interfaces;
 using ECommerceLP.Domain.Entities;
+using Orders.Domain.Aggregate.OrderAggregates.ValueObjects;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Orders.Domain.Aggregate.OrderAggregates
 {
-    public class Order : BaseEntity, IAggregateRoot
+    public class Order : BaseDefinitionEntity, IAggregateRoot
     {
         public Order()
         {
             
         }
         public Order(Guid userId,
-                     float totalprice,
-                     int totalAmount,
                      DateTime orderDate,
                      OrderStatus status,
                      long number,
@@ -25,13 +25,14 @@ namespace Orders.Domain.Aggregate.OrderAggregates
                      Guid modifiedBy,
                      DateTime confirmDate,
                      DateTime canceledDate,
-                     List<OrderItem> orderItems
+                     List<OrderItem> orderItems,
+                     Address address
                      )
         {
             UserId = userId;
+            OrderDate = orderDate;
             TotalPrice = orderItems.Sum(p=>p.Price);
             TotalAmount = orderItems.Sum(a=>a.Amount);
-            OrderDate = orderDate;
             Status = status;
             Number = number;
             Expiry = expiry;
@@ -39,7 +40,8 @@ namespace Orders.Domain.Aggregate.OrderAggregates
             ModifiedBy = modifiedBy;
             ConfirmDate = confirmDate;
             CanceledDate = canceledDate;
-            OrderItems = orderItems;          
+            OrderItems = orderItems;  
+            Address = address;
         }
         public Guid UserId { get;private set; }
         public float TotalPrice { get; private set; }
@@ -48,10 +50,9 @@ namespace Orders.Domain.Aggregate.OrderAggregates
         public OrderStatus Status { get; private set; }
         public long Number { get; private set; }
         public DateTime Expiry { get; private set; }
-        public Guid CreatedBy { get; private set; }
-        public Guid ModifiedBy { get; private set; }
         public DateTime ConfirmDate { get; private set; }
         public DateTime CanceledDate { get; private set; }
+        public Address Address { get; set; }
         public List<OrderItem> OrderItems { get; private set; }
     }
     

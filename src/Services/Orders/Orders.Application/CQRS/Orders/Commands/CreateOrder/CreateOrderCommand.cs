@@ -13,8 +13,6 @@ namespace Orders.Application.CQRS.Orders.Commands.CreateOrder
     public class CreateOrderCommand : ICommand<OrderDto>
     {
         public Guid UserId { get; set; }
-        public float TotalPrice { get; set; }
-        public int TotalAmount { get; set; }
         public DateTime OrderDate { get; set; }
         public OrderStatus Status { get; set; }
         public long Number { get; set; }
@@ -24,6 +22,7 @@ namespace Orders.Application.CQRS.Orders.Commands.CreateOrder
         public Guid CreatedBy { get; set; }
         public Guid ModifiedBy { get; set; }
         public List<OrderItemDto> OrderItems { get; set; }
+        public AddressDto Address { get; set; }
         public CreateOrderCommand(CreateOrderRequest request)
         {
             UserId = request.UserId;
@@ -32,6 +31,7 @@ namespace Orders.Application.CQRS.Orders.Commands.CreateOrder
             Number = request.Number;
             OrderItems = request.OrderItems;
             Expiry = DateTime.Now.AddDays(10);
+            Address = request.Address;
         }
     }
 }

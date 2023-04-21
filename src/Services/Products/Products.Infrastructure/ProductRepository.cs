@@ -20,6 +20,11 @@ namespace Products.Infrastructure
             throw new NotImplementedException();
         }
 
+        public Task HardDeleteAsync(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<Product> UpdateAsync(Product entity)
         {
             throw new NotImplementedException();

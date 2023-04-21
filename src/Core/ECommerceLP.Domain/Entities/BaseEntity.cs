@@ -18,5 +18,9 @@ namespace ECommerceLP.Domain.Entities
         public DateTime CreatedDate { get; private set; }
         public DateTime ModifiedDate { get; private set; }
         public bool IsDeleted { get; private set; }
+        public void Delete()
+        {
+            IsDeleted = !IsDeleted;
+        }
     }
 }

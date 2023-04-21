@@ -21,6 +21,11 @@ namespace Users.Infrastructure
             throw new NotImplementedException();
         }
 
+        public Task HardDeleteAsync(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<User> UpdateAsync(User entity)
         {
             throw new NotImplementedException();

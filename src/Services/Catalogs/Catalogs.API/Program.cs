@@ -14,10 +14,9 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddCatalogPersistence(builder.Configuration);
 builder.Services.AddIdentityApplication(builder.Configuration);
-builder.Services.AddTransient<IUnitOfWork,UnitOfWork<CatalogContext>>();
+builder.Services.AddTransient<IUnitOfWork, UnitOfWork<CatalogContext>>();
 
 builder.Services.AddCoreApplication();
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

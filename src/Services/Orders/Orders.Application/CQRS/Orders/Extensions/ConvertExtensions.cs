@@ -7,6 +7,7 @@ using Orders.Application.CQRS.Orders.Commands.CreateOrder;
 using Orders.Common.Dtos;
 using Orders.Domain.Aggregate.OrderAggregates;
 using Orders.Application.CQRS.OrderItems.Extensions;
+using Orders.Application.CQRS.Addresses.Extensions;
 namespace Orders.Application.CQRS.Orders.Extensions
 {
     public static class ConvertExtensions
@@ -14,11 +15,10 @@ namespace Orders.Application.CQRS.Orders.Extensions
         public static Order CreateOrder(this CreateOrderCommand command)
         {
             var mappedOrderItem = command.OrderItems.MapList();
-
-            var order = new Order(command.UserId, command.TotalPrice,
-                command.TotalAmount, command.OrderDate, command.Status,
+            var address = command.Address.MapDto();
+            var order = new Order(command.UserId, command.OrderDate, command.Status,
                 command.Number, command.Expiry, command.CreatedBy, command.ModifiedBy,
-                command.ConfirmDate, command.CanceledDate, mappedOrderItem);
+                command.ConfirmDate, command.CanceledDate, mappedOrderItem,address);
             return order;
         }
         public static OrderDto Map(this Order order)

@@ -12,6 +12,7 @@ namespace Orders.Application.Requests.Order
     {
         public Guid UserId { get; set; }
         public List<OrderItemDto> OrderItems { get; set; }
+        public AddressDto Address { get; set; }
         public OrderStatus Status { get; set; }
         public long Number { get; set; }
     }

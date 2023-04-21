@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Orders.Domain.Aggregate.OrderAggregates;
+using Orders.Domain.Aggregate.OrderAggregates.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,10 @@ namespace Orders.Persistence.Context
             modelBuilder.Entity<OrderItem>()
                         .HasOne<Order>(oi => oi.Order)
                         .WithMany(o => o.OrderItems)
-                        .HasForeignKey(oi => oi.OrderId);
+                        .HasForeignKey(oi => oi.OrderId)
+                        .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Order>().OwnsOne(o => o.Address).WithOwner();          
         }
     }
 }

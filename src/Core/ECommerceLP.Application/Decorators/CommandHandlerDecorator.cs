@@ -2,6 +2,7 @@
 using ECommerceLP.Application.Messaging.Abstract;
 using ECommerceLP.Infrastructure.UnitOfWork;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Configuration;
 using StackExchange.Redis;
@@ -19,7 +20,6 @@ namespace ECommerceLP.Application.Decorators
         private readonly IUnitOfWork _unitOfWork;
         private readonly IDistributedCache _distributedCache;
         private readonly IConfiguration _configuration;
-
         private bool isCacheRemoveble = false;
         public CommandHandlerDecorator(IRequestHandler<TCommand, TResult> decorated, IUnitOfWork unitOfWork, IDistributedCache distributedCache, IConfiguration configuration)
         {

@@ -22,5 +22,6 @@ namespace Orders.Common.Dtos
         public DateTime CreatedDate { get; set; } = DateTime.Now;
         public DateTime ModifiedDate { get; set; } = DateTime.Now;
         public List<OrderItemDto> OrderItems { get; set; }
+        public AddressDto Address { get; set; }
     }
 }
