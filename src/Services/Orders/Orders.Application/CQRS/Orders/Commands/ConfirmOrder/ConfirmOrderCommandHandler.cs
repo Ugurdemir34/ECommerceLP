@@ -1,6 +1,7 @@
 ﻿using ECommerceLP.Application.Messaging.Abstract;
 using ECommerceLP.Infrastructure.UnitOfWork;
 using MediatR;
+using Orders.Domain.Aggregate.OrderAggregates;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,9 +18,18 @@ namespace Orders.Application.CQRS.Orders.Commands.ConfirmOrder
             _unitOfWork = unitOfWork;
         }
 
-        Task<bool> IRequestHandler<ConfirmOrderCommand, bool>.Handle(ConfirmOrderCommand request, CancellationToken cancellationToken)
+        public async Task<bool> Handle(ConfirmOrderCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var Qrepo = _unitOfWork.GetQueryRepository<Order>();
+            var confirmedOrder = await Qrepo.GetAsync(o => o.Id == request.OrderId);
+            confirmedOrder.ApproveOrder();
+
+            var Crepo = _unitOfWork.GetCommandRepository<Order>();
+            await Crepo.UpdateAsync(confirmedOrder);
+            _unitOfWork.SaveChanges();
+
+            return true;
+
         }
     }
 }

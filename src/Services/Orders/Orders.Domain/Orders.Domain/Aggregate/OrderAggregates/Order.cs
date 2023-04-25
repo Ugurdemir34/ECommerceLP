@@ -14,7 +14,7 @@ namespace Orders.Domain.Aggregate.OrderAggregates
     {
         public Order()
         {
-            
+
         }
         public Order(Guid userId,
                      DateTime orderDate,
@@ -31,8 +31,8 @@ namespace Orders.Domain.Aggregate.OrderAggregates
         {
             UserId = userId;
             OrderDate = orderDate;
-            TotalPrice = orderItems.Sum(p=>p.Price);
-            TotalAmount = orderItems.Sum(a=>a.Amount);
+            TotalPrice = orderItems.Sum(p => p.Price);
+            TotalAmount = orderItems.Sum(a => a.Amount);
             Status = status;
             Number = number;
             Expiry = expiry;
@@ -40,10 +40,10 @@ namespace Orders.Domain.Aggregate.OrderAggregates
             ModifiedBy = modifiedBy;
             ConfirmDate = confirmDate;
             CanceledDate = canceledDate;
-            OrderItems = orderItems;  
+            OrderItems = orderItems;
             Address = address;
         }
-        public Guid UserId { get;private set; }
+        public Guid UserId { get; private set; }
         public float TotalPrice { get; private set; }
         public int TotalAmount { get; private set; }
         public DateTime OrderDate { get; private set; }
@@ -54,6 +54,11 @@ namespace Orders.Domain.Aggregate.OrderAggregates
         public DateTime CanceledDate { get; private set; }
         public Address Address { get; set; }
         public List<OrderItem> OrderItems { get; private set; }
+
+        public void ApproveOrder()
+        {
+            this.Status = OrderStatus.Approved;
+        }
     }
-    
+
 }

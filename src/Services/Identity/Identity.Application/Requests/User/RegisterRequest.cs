@@ -1,4 +1,6 @@
-﻿namespace Identity.Application.Requests.User
+﻿using Identity.Common.Enums;
+
+namespace Identity.Application.Requests.User
 {
     public class RegisterRequest
     {
@@ -8,6 +10,6 @@
         public string UserName { get; set; }
         public string Password { get; set; }
         public string PhoneNumber { get; set; }
-        public Guid UserTypeId { get; set; }
+        public UserType UserType { get; set; }
     }
 }

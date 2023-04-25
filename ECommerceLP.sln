@@ -78,9 +78,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Orders.Application", "src\S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Orders.Common", "src\Services\Orders\Orders.Common\Orders.Common.csproj", "{BF8BF091-E496-4E6D-AA28-5BE3A2D12C8B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Products.Persistence", "src\Services\Products\Products.Persistence\Products.Persistence.csproj", "{3B610306-B985-46E2-9A4F-9F454C73FE0B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Products.Persistence", "src\Services\Products\Products.Persistence\Products.Persistence.csproj", "{3B610306-B985-46E2-9A4F-9F454C73FE0B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orders.Persistence", "src\Services\Orders\Orders.Persistence\Orders.Persistence.csproj", "{3C85880E-80DE-44EA-ABBC-A0F605922A5B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Orders.Persistence", "src\Services\Orders\Orders.Persistence\Orders.Persistence.csproj", "{3C85880E-80DE-44EA-ABBC-A0F605922A5B}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{21F981F7-5629-40B0-BA9A-EE9F049EE572}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -196,6 +198,10 @@ Global
 		{3C85880E-80DE-44EA-ABBC-A0F605922A5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C85880E-80DE-44EA-ABBC-A0F605922A5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C85880E-80DE-44EA-ABBC-A0F605922A5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21F981F7-5629-40B0-BA9A-EE9F049EE572}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21F981F7-5629-40B0-BA9A-EE9F049EE572}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21F981F7-5629-40B0-BA9A-EE9F049EE572}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21F981F7-5629-40B0-BA9A-EE9F049EE572}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

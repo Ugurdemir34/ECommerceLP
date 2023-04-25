@@ -1,8 +1,8 @@
 ﻿using ECommerceLP.Application.Repositories;
 using FluentValidation;
 using Identity.Application.Common.Abstracts;
-using Identity.Application.CQRS.User.Commands.CreateUser;
-using Identity.Application.CQRS.User.Commands.LoginUser;
+using Identity.Application.CQRS.Users.Commands.CreateUser;
+using Identity.Application.CQRS.Users.Commands.LoginUser;
 using Identity.Common.Dtos;
 using MediatR;
 using Microsoft.Extensions.Configuration;

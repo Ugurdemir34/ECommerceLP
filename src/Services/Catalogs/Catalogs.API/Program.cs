@@ -3,6 +3,8 @@ using Catalogs.Persistence;
 using Catalogs.Persistence.Context;
 using ECommerceLP.Application;
 using ECommerceLP.Infrastructure.UnitOfWork;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -18,7 +20,11 @@ builder.Services.AddTransient<IUnitOfWork, UnitOfWork<CatalogContext>>();
 
 builder.Services.AddCoreApplication();
 var app = builder.Build();
-
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<CatalogContext>();
+    dbContext.Database.Migrate();
+}
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

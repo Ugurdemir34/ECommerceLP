@@ -7,6 +7,7 @@ using ECommerceLP.Infrastructure.UnitOfWork;
 using ECommerceLP.Application.Settings;
 using Swashbuckle.AspNetCore.Filters;
 using Microsoft.OpenApi.Models;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -82,7 +83,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<OrderContext>();
+    dbContext.Database.Migrate();
+}
 app.UseHttpsRedirection();
 
 

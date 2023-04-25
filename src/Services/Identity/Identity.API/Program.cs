@@ -6,6 +6,8 @@ using Identity.Persistence;
 using ECommerceLP.Application;
 using ECommerceLP.Common.Json.Extensions;
 using Identity.Infrastructure;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 var conf = builder.Configuration;
 // Add services to the container.
@@ -20,16 +22,15 @@ builder.Services.AddIdentityPersistence(builder.Configuration);
 builder.Services.AddIdentityInfrastructure();
 
 builder.Services.AddCoreApplication();
-//builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
-//foreach (var serviceType in typeof(Processor).GetInterfaces())
-//{
-//    builder.Services.AddScoped(serviceType, typeof(Processor));
-//}
 builder.Services.AddTransient<IUnitOfWork, UnitOfWork<UserContext>>();
 builder.Services.AddJwtSettings(conf);
 builder.Services.AddJSONSerialization();
 var app = builder.Build();
-
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<UserContext>();
+    dbContext.Database.Migrate();
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

@@ -7,9 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="CQRS\User\Queries\**" />
-    <EmbeddedResource Remove="CQRS\User\Queries\**" />
-    <None Remove="CQRS\User\Queries\**" />
+    <Compile Remove="CQRS\Users\Queries\**" />
+    <EmbeddedResource Remove="CQRS\Users\Queries\**" />
+    <None Remove="CQRS\Users\Queries\**" />
   </ItemGroup>
 
   <ItemGroup>

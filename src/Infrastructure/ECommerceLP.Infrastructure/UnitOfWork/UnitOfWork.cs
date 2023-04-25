@@ -13,52 +13,10 @@ using System.Threading.Tasks;
 
 namespace ECommerceLP.Infrastructure.UnitOfWork
 {
-    #region OLD
-    //public class UnitOfWork : IUnitOfWork
-    //{
-    //    private readonly EFContext _context;
-    //    private bool _disposed;
-    //    private IDbContextTransaction _transaction;
-    //    public IProductRepository ProductRepository { get; }
-
-    //    public UnitOfWork(EFContext context, IProductRepository productRepository)
-    //    {
-    //        _context = context;
-    //        ProductRepository = productRepository;
-    //    }
-    //    public async ValueTask Dispose() { }
-    //    public int SaveChanges() => _context.SaveChanges();
-
-    //    public void CreateTransaction()
-    //    {
-    //        _transaction = _context.Database.BeginTransaction();
-    //    }
-
-    //    public void RollBack()
-    //    {
-    //        _transaction.Rollback();
-    //    }
-
-    //    public void Save()
-    //    {
-    //        _context.SaveChanges();
-    //    }
-
-    //    public void Commit()
-    //    {
-    //        _transaction.Commit();
-    //    }
-
-    //    public ValueTask DisposeAsync()
-    //    {
-    //        return Dispose();
-    //    }
-    //} 
-    #endregion
     public class UnitOfWork<TContext> : IUnitOfWork where TContext:DbContext
     {
         #region Variables
-        public Dictionary<Type, object> repositories = new Dictionary<Type, object>();
+        public Dictionary<object, Type> repositories = new Dictionary<object, Type>();
         private readonly DbContext _context;
         #endregion
         #region Constructor
@@ -75,7 +33,7 @@ namespace ECommerceLP.Infrastructure.UnitOfWork
                 return repositories[typeof(TEntity)] as ICommandRepository<TEntity>;
             }
             var repo = new CommandRepository<TEntity>(_context);
-            repositories.Add(typeof(TEntity), repo);
+            repositories.Add(repo, typeof(TEntity));
             return repo;
         }
         #endregion
@@ -87,7 +45,7 @@ namespace ECommerceLP.Infrastructure.UnitOfWork
                 return repositories[typeof(TEntity)] as IQueryRepository<TEntity>;
             }
             var repo = new QueryRepository<TEntity>(_context);
-            repositories.Add(typeof(TEntity), repo);
+            repositories.Add(repo, typeof(TEntity));
             return repo;
         }
         #endregion

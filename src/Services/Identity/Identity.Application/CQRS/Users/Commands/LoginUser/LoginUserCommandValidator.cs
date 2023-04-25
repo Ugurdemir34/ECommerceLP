@@ -1,12 +1,12 @@
 ﻿using FluentValidation;
-using Identity.Application.CQRS.User.Commands;
+using Identity.Application.CQRS.Users.Commands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Identity.Application.CQRS.User.Commands.LoginUser
+namespace Identity.Application.CQRS.Users.Commands.LoginUser
 {
     public class LoginUserCommandValidator : AbstractValidator<LoginUserCommand>
     {

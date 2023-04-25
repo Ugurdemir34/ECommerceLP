@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Products.Domain.Aggregate.ProductAggregate;
+using System.Reflection;
 
 namespace Products.Persistence.Context
 {
@@ -16,5 +17,10 @@ namespace Products.Persistence.Context
 
         }
         public DbSet<Product> Products { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

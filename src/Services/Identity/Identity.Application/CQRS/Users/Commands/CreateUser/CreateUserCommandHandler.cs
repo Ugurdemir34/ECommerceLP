@@ -1,15 +1,16 @@
 ﻿using AutoMapper;
 using ECommerceLP.Application.Messaging.Abstract;
 using ECommerceLP.Infrastructure.UnitOfWork;
+using Identity.Application.CQRS.Users.Extensions;
 using Identity.Common.Dtos;
+using Identity.Domain.Aggregate.UserAggregate.Entities;
 using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ModelUser = Identity.Domain.Aggregate.UserAggregate.Entities.User;
-namespace Identity.Application.CQRS.User.Commands.CreateUser
+namespace Identity.Application.CQRS.Users.Commands.CreateUser
 {
     public class CreateUserCommandHandler : ICommandHandler<CreateUserCommand, CreateUserDTO>
     {
@@ -23,11 +24,11 @@ namespace Identity.Application.CQRS.User.Commands.CreateUser
 
         public async Task<CreateUserDTO> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
-            var repo = _unitOfWork.GetCommandRepository<ModelUser>();
-            var added = _mapper.Map<ModelUser>(request);
+            var repo = _unitOfWork.GetCommandRepository<User>();
+            var added = request.CreateUser();
             await repo.AddAsync(added);
             _unitOfWork.SaveChanges();
-            return default;
+            return added.Map();
         }
     }
 }
