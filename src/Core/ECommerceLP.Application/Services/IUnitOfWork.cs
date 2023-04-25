@@ -16,11 +16,5 @@ namespace ECommerceLP.Infrastructure.UnitOfWork
         int SaveChanges();
         Task<bool> CommitAsync(CancellationToken cancellationToken = default);
         void Commit();
-        //void CreateTransaction();
-        //void RollBack();
-        //void Save();
-        //void Commit();
-        //public IProductRepository ProductRepository { get; }
-
     }
 }

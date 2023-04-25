@@ -1,0 +1,21 @@
+# Base image
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+
+WORKDIR /app
+
+# Copy published files to container
+COPY /Services/Orders/Orders.API/Orders.API.csproj .
+COPY /Services/Orders/Orders.Application/Orders.Application.csproj .
+COPY /Services/Orders/Orders.Persistence/Orders.Persistence.csproj .
+COPY /Services/Orders/Orders.Common/Orders.Common.csproj .
+
+RUN dotnet restore
+#
+COPY /Services/Orders/Orders.API .
+
+RUN dotnet publish -c Release -o /app/publish
+#
+# Expose port
+EXPOSE 80
+
+ENTRYPOINT ["dotnet", "/app/publish/Orders.API.dll"]

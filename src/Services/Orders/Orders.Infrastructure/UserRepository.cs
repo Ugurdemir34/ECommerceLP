@@ -11,7 +11,17 @@ namespace Users.Infrastructure
             throw new NotImplementedException();
         }
 
+        public Task AddRangeAsync(List<User> entities)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task DeleteAsync(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task HardDeleteAsync(Guid id)
         {
             throw new NotImplementedException();
         }

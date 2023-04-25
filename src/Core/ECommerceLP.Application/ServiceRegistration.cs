@@ -1,4 +1,5 @@
 ﻿using ECommerceLP.Application.CQRS.Concrete;
+using ECommerceLP.Application.Decorators;
 using ECommerceLP.Application.Pipelines;
 using ECommerceLP.Common.Collections.Abstract;
 using ECommerceLP.Common.Collections.Concrete;
@@ -22,7 +23,8 @@ namespace ECommerceLP.Application
             {
                 serviceCollection.AddScoped(serviceType, typeof(Processor));
             }
-            serviceCollection.AddScoped(typeof(IPagedList<>),typeof(PagedList<>));
+            serviceCollection.AddScoped(typeof(IPagedList<>), typeof(PagedList<>));
+            //serviceCollection.AddScoped(typeof(CommandHandlerDecorator<,>));
         }
     }
 }

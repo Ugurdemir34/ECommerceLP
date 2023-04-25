@@ -61,46 +61,12 @@ namespace Identity.Persistence.Migrations
                     b.Property<string>("UserName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("UserTypeId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("UserType")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("UserTypeId");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("Identity.Domain.Aggregate.UserAggregate.Entities.UserType", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("ModifiedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("UserType");
-                });
-
-            modelBuilder.Entity("Identity.Domain.Aggregate.UserAggregate.Entities.User", b =>
-                {
-                    b.HasOne("Identity.Domain.Aggregate.UserAggregate.Entities.UserType", "UserType")
-                        .WithMany()
-                        .HasForeignKey("UserTypeId");
-
-                    b.Navigation("UserType");
                 });
 #pragma warning restore 612, 618
         }

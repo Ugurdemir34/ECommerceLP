@@ -1,5 +1,5 @@
 ﻿using ECommerceLP.Application.Repositories;
-using Products.Domain;
+using Products.Domain.Aggregate.ProductAggregate;
 using System;
 using System.Collections.Generic;
 using System.Linq;

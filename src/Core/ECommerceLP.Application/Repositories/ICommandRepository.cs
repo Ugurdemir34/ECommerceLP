@@ -11,7 +11,9 @@ namespace ECommerceLP.Application.Repositories
     public interface ICommandRepository<T> where T : BaseEntity
     {
         Task DeleteAsync(Guid id);
+        Task HardDeleteAsync(Guid id);
         Task<T> UpdateAsync(T entity);
         Task AddAsync(T entity);
+        Task AddRangeAsync(List<T> entities);
     }
 }
