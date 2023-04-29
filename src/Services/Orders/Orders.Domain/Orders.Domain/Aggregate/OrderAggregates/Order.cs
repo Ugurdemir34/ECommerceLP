@@ -59,6 +59,10 @@ namespace Orders.Domain.Aggregate.OrderAggregates
         {
             this.Status = OrderStatus.Approved;
         }
+        public void SetOrderList(List<OrderItem> orderItems)
+        {
+            this.OrderItems = orderItems;
+        }
     }
 
 }

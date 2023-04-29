@@ -33,7 +33,7 @@ namespace Identity.Application.CQRS.Users.Commands.LoginUser
             {
                 throw new Exception(Messages.UserNameOrPasswordInCorrect);
             }
-            return _authentication.GenerateToken(user.UserName, user.Id);
+            return _authentication.GenerateToken(user.UserName, user.Id,user.UserType);
 
         }
     }

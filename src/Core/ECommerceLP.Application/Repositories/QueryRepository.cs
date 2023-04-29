@@ -24,9 +24,9 @@ namespace ECommerceLP.Application.Repositories
             return await _context.Set<T>().Where(predicate).FirstOrDefaultAsync();
         }
 
-        public async Task<List<T>> ListAsync()
+        public async Task<List<T>> ListAsync(Expression<Func<T, bool>> predicate)
         {
-            return await _context.Set<T>().ToListAsync();
+            return await _context.Set<T>().Where(predicate).ToListAsync();
         }
 
         public async Task<IPagedList<T>> QueryPagedListAsync(Expression<Func<T, bool>> predicate,

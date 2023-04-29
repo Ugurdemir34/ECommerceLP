@@ -10,5 +10,6 @@ namespace Identity.Common.Constants
     {
         public static string LoginSuccess = "Login was successful";
         public static string UserNameOrPasswordInCorrect = "Incorrect User Name or Password";
+        public static string YouDontHavePermission = "You Dont Have Permission";
     }
 }
