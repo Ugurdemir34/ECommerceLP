@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Orders.Domain.Aggregate.OrderAggregates
+namespace Orders.Application.Requests.Order
 {
-    public enum OrderStatus
+    public class ShippedOrderRequest
     {
-        Approved,
-        Canceled,
-        Shipped
+        public Guid OrderId { get; set; }
+
     }
 }

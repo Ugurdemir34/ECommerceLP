@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ECommerceLP.Application.Messaging.Abstract
+namespace ECommerceLP.Application.Interfaces.Abstract
 {
     public interface ICommandHandler<in TCommand, TResponse>: IRequestHandler<TCommand,TResponse>
         where TCommand:ICommand<TResponse>

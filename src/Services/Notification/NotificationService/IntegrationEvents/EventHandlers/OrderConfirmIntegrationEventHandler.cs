@@ -21,7 +21,7 @@ namespace NotificationService.IntegrationEvents.EventHandlers
 
         public Task Handle(OrderConfirmIntegrationEvent @event)
         {
-            Console.WriteLine($"{@event.OrderDate} Tarihli Siparişiniz Onaylandı!");
+            Console.WriteLine($"{@event.Message}");
             //_mailService.SendMailAsync(message);
             return Task.CompletedTask;
         }

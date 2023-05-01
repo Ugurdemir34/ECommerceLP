@@ -24,6 +24,7 @@ namespace NotificationService
             serviceCollection.AddOptions();
             serviceCollection.AddScoped<IMailService, MailService>();
             serviceCollection.AddTransient<OrderConfirmIntegrationEventHandler>();
+            serviceCollection.AddTransient<OrderShippedIntegrationEventHandler>();
             serviceCollection.AddSingleton<IEventBus>(sp =>
             {
                 EventBusConfig config = new()

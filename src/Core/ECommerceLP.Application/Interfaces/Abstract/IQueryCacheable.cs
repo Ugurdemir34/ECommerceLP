@@ -4,12 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Orders.Domain.Aggregate.OrderAggregates
+namespace ECommerceLP.Application.Interfaces.Abstract
 {
-    public enum OrderStatus
+    public interface IQueryCacheable
     {
-        Approved,
-        Canceled,
-        Shipped
     }
 }

@@ -21,7 +21,7 @@ builder.Services.AddIdentityApplication();
 builder.Services.AddIdentityPersistence(builder.Configuration);
 builder.Services.AddIdentityInfrastructure();
 
-builder.Services.AddCoreApplication();
+builder.Services.AddCoreApplication(builder.Configuration);
 builder.Services.AddTransient<IUnitOfWork, UnitOfWork<UserContext>>();
 builder.Services.AddJwtSettings(conf);
 builder.Services.AddJSONSerialization();

@@ -23,5 +23,9 @@ namespace ECommerceLP.Domain.Entities
         {
             IsDeleted = !IsDeleted;
         }
+        public void Modified()
+        {
+            ModifiedDate = DateTime.Now;
+        }
     }
 }

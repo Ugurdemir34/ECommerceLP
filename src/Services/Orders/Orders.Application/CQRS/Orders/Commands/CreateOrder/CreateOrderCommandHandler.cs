@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using DotNetCore.CAP;
-using ECommerceLP.Application.Messaging.Abstract;
+using ECommerceLP.Application.Interfaces.Abstract;
 using ECommerceLP.Infrastructure.UnitOfWork;
 using Microsoft.AspNetCore.Http;
 using Orders.Application.CQRS.Orders.Extensions;
@@ -17,15 +17,13 @@ namespace Orders.Application.CQRS.Orders.Commands.CreateOrder
     public class CreateOrderCommandHandler : ICommandHandler<CreateOrderCommand, OrderDto>
     {
         private readonly IHttpContextAccessor _accessor;
-        private readonly ICapPublisher _publisher;
         private readonly IUnitOfWork _unitOfWork;
         private IMapper _mapper;
-        public CreateOrderCommandHandler(IUnitOfWork unitOfWork, IMapper mapper, IHttpContextAccessor accessor, ICapPublisher publisher)
+        public CreateOrderCommandHandler(IUnitOfWork unitOfWork, IMapper mapper, IHttpContextAccessor accessor)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _accessor = accessor;
-            _publisher = publisher;
         }
         public async Task<OrderDto> Handle(CreateOrderCommand command, CancellationToken cancellationToken)
         {
@@ -36,7 +34,6 @@ namespace Orders.Application.CQRS.Orders.Commands.CreateOrder
             var mapped = command.CreateOrder();
             await orderRepo.AddAsync(mapped);
             _unitOfWork.SaveChanges();
-            await _publisher.PublishAsync<string>("createOrder.transaction", mapped.Id.ToString());
             return mapped.Map();
         }
     }

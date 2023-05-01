@@ -1,7 +1,5 @@
 ﻿using EventBus.Base.Events;
 using Orders.Common.Dtos;
-using Orders.Common.Interfaces;
-using Orders.Domain.Aggregate.OrderAggregates.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Orders.Domain.Aggregate.OrderAggregates.DomainEvents.Events
 {
-    public class OrderConfirmIntegrationEvent : IntegrationEvent
+    public class OrderShippedIntegrationEvent : IntegrationEvent
     {
         public DateTime OrderDate { get; set; }
         public float TotalPrice { get; set; }
@@ -19,7 +17,7 @@ namespace Orders.Domain.Aggregate.OrderAggregates.DomainEvents.Events
 
         public string Message { get; set; }
 
-        public OrderConfirmIntegrationEvent(DateTime orderDate, float totalPrice, string fullAddress, Guid userId,  string message)
+        public OrderShippedIntegrationEvent(DateTime orderDate, float totalPrice, string fullAddress, Guid userId, string message)
         {
             OrderDate = orderDate;
             TotalPrice = totalPrice;
@@ -27,9 +25,9 @@ namespace Orders.Domain.Aggregate.OrderAggregates.DomainEvents.Events
             UserId = userId;
             Message = message;
         }
-        public OrderConfirmIntegrationEvent()
+        public OrderShippedIntegrationEvent()
         {
-            
+
         }
     }
 }

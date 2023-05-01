@@ -1,9 +1,7 @@
 ﻿using ECommerceLP.Application.Extensions;
 using ECommerceLP.Application.Interfaces.Abstract;
-using ECommerceLP.Application.Services;
 using ECommerceLP.Infrastructure.UnitOfWork;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Configuration;
 using StackExchange.Redis;
@@ -15,23 +13,23 @@ using System.Threading.Tasks;
 
 namespace ECommerceLP.Application.Decorators
 {
-    public sealed class CommandHandlerDecorator<TCommand, TResult> : ICommandHandler<TCommand, TResult> where TCommand : ICommand<TResult>
+    public class CacheQueryHandlerDecorator<TQuery, TResult> : IQueryHandler<TQuery, TResult> where TQuery : IQuery<TResult>
     {
-        private readonly IRequestHandler<TCommand, TResult> _decorated;
+        private readonly IRequestHandler<TQuery, TResult> _decorated;
         private readonly IUnitOfWork _unitOfWork;
-        private readonly ICacheService _cache;
+        private readonly IDistributedCache _distributedCache;
         private readonly IConfiguration _configuration;
         private bool isCacheRemoveble = false;
-        public CommandHandlerDecorator(IRequestHandler<TCommand, TResult> decorated, IUnitOfWork unitOfWork, IDistributedCache distributedCache, IConfiguration configuration, ICacheService cache)
+        public CacheQueryHandlerDecorator(IRequestHandler<TQuery, TResult> decorated, IUnitOfWork unitOfWork, IDistributedCache distributedCache, IConfiguration configuration)
         {
             _decorated = decorated;
             _unitOfWork = unitOfWork;
+            _distributedCache = distributedCache;
             _configuration = configuration;
-            _cache = cache;
             //isCacheRemoveble = this._decorated.GetType().GetInterfaces().Any(x => x.Name == nameof(ICommandRemoveCache));
         }
 
-        public async Task<TResult> Handle(TCommand command, CancellationToken cancellationToken)
+        public async Task<TResult> Handle(TQuery command, CancellationToken cancellationToken)
         {
             var result = await _decorated.Handle(command, cancellationToken);
 
@@ -52,8 +50,9 @@ namespace ECommerceLP.Application.Decorators
         {
             foreach (var key in keys)
             {
-                _cache.RemoveValue(key);
+                _distributedCache.Remove(key);
             }
+            throw new NotImplementedException();
         }
     }
 }

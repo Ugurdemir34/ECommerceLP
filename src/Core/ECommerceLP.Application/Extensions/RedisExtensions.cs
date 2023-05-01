@@ -1,4 +1,6 @@
-﻿using ECommerceLP.Application.Settings;
+﻿using ECommerceLP.Application.Services;
+using ECommerceLP.Application.Settings;
+using ECommerceLP.Infrastructure.UnitOfWork;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using StackExchange.Redis;
@@ -15,8 +17,18 @@ namespace ECommerceLP.Application.Extensions
     {
         public static void AddRedis(this IServiceCollection serviceCollection,IConfiguration configuration)
         {
-            var redisConfig = configuration.GetSection(nameof(RedisConfiguration)) as RedisConfiguration;
+            var redisConfig = configuration.GetSection("RedisConfiguration").Get<RedisConfiguration>();
             serviceCollection.AddStackExchangeRedisCache(opt=> opt.Configuration = redisConfig.Url);
+            var aaa = configuration.GetValue<string>("RedisConfiguration:Host");
+            var url = configuration.GetValue<string>("RedisConfiguration:Url");
+            //serviceCollection.AddSingleton<IConnectionMultiplexer>(sp => ConnectionMultiplexer.Connect(new ConfigurationOptions
+            //{
+            //    EndPoints = { $"{configuration.GetValue<string>("RedisConfiguration:Host")}:{configuration.GetValue<string>("RedisConfiguration:Port")}" },
+            //    Ssl = true,
+            //    AbortOnConnectFail = false,
+            //}));
+            serviceCollection.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect("127.0.0.1:6379"));
+
         }
         public static List<RedisKey> GetRedisKeysByModelName(this IConfiguration configuration,string value)
         {

@@ -1,4 +1,4 @@
-﻿using ECommerceLP.Application.Messaging.Abstract;
+﻿using ECommerceLP.Application.Interfaces.Abstract;
 using Identity.Application.Requests.User;
 using Identity.Common.Dtos;
 using MediatR;

@@ -1,4 +1,4 @@
-﻿using ECommerceLP.Application.Messaging.Abstract;
+﻿using ECommerceLP.Application.Interfaces.Abstract;
 using ECommerceLP.Common.Security;
 using ECommerceLP.Infrastructure.UnitOfWork;
 using Identity.Application.Common.Abstracts;

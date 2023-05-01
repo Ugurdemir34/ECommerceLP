@@ -10,5 +10,6 @@ namespace Products.Infrastructure
 {
     public interface IProductRepository:ICommandRepository<Product>
     {
+
     }
 }

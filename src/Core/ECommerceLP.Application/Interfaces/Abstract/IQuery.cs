@@ -2,13 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ECommerceLP.Application.Messaging.Abstract
+namespace ECommerceLP.Application.Interfaces.Abstract
 {
-    public interface ICommand<out TResponse> : IRequest<TResponse>
+    public interface IQuery<out TResponse>: IRequest<TResponse>
     {
+
     }
 }

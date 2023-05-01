@@ -25,10 +25,9 @@ namespace Catalogs.API.Controllers
         }
         #endregion
         #region GetCategoriesAsync
-        [Authorize]
         [HttpGet("GetCategories")]
-        [ProducesResponseType(typeof(IPagedList<CategoryDto>), StatusCodes.Status200OK)]
-        public async Task<Response<IPagedList<CategoryDto>>> GetCategoriesAsync([FromBody] CategoryRequest request, CancellationToken cancellationToken)
+        [ProducesResponseType(typeof(List<CategoryDto>), StatusCodes.Status200OK)]
+        public async Task<Response<List<CategoryDto>>> GetCategories([FromBody] CategoryRequest request, CancellationToken cancellationToken)
         {
             var query = new GetCategoriesQuery(request);
             var result = await _processor.ProcessAsync(query, cancellationToken);

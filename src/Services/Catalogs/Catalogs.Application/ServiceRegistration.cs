@@ -28,7 +28,7 @@ namespace Catalogs.Application
             serviceCollection.AddAutoMapper(AppDomain.CurrentDomain.Load("Catalogs.Application"));
             serviceCollection.AddScoped(typeof(ICommandRepository<>), typeof(CommandRepository<>));
             serviceCollection.AddScoped(typeof(IQueryRepository<>), typeof(QueryRepository<>));
-            serviceCollection.AddScoped<IRequestHandler<GetCategoriesQuery, IPagedList<CategoryDto>>, GetCategoriesQueryHandler>();
+            serviceCollection.AddScoped<IRequestHandler<GetCategoriesQuery, List<CategoryDto>>, GetCategoriesQueryHandler>();
             serviceCollection.AddScoped<IRequestHandler<GetCategoryByIdQuery, CategoryDto>, GetCategoryByIdHandler>();
             serviceCollection.AddScoped<IRequestHandler<CreateCategoryCommand, CategoryDto>, CreateCategoryHandler>();
             serviceCollection.AddScoped<IRequestHandler<DeleteCategoryCommand, bool>, DeleteCategoryHandler>();

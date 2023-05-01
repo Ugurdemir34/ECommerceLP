@@ -39,6 +39,7 @@ namespace Orders.Application.CQRS.Orders.Extensions
                 OrderStatus = (int)order.Status,
                 TotalPrice = order.TotalPrice,
                 UserId = order.UserId,
+                Address = order.Address.Map()
             };
         }
     }

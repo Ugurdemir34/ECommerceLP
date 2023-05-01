@@ -6,12 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Orders.Application.CQRS.Orders.Commands.DeleteOrder
+namespace Orders.Application.CQRS.Orders.Commands.ShippedOrder
 {
-    public class DeleteOrderCommand : ICommand<bool>
+    public class ShippedOrderCommand : ICommand<bool>
     {
         public Guid OrderId { get; set; }
-        public DeleteOrderCommand(DeleteOrderRequest request)
+        public ShippedOrderCommand(ShippedOrderRequest request)
         {
             OrderId = request.OrderId;
         }
