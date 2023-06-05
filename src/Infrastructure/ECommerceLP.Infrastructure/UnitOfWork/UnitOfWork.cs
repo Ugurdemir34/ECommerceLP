@@ -1,10 +1,8 @@
 ﻿using ECommerceLP.Application.Repositories;
 using ECommerceLP.Domain.Entities;
-using ECommerceLP.Infrastructure.Contexts;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
-using Products.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;

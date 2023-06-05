@@ -1,4 +1,4 @@
-﻿using ECommerceLP.Application.Messaging.Abstract;
+﻿using ECommerceLP.Application.Interfaces.Abstract;
 using Orders.Application.Requests.Order;
 using System;
 using System.Collections.Generic;

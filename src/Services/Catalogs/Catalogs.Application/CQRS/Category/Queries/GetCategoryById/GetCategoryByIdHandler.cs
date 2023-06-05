@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Catalogs.Common.Dtos;
-using ECommerceLP.Application.Messaging.Abstract;
+using ECommerceLP.Application.Interfaces.Abstract;
 using ECommerceLP.Infrastructure.UnitOfWork;
 using System;
 using System.Collections.Generic;

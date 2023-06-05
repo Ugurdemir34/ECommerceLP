@@ -11,6 +11,5 @@ namespace ECommerceLP.Application.Settings
         public string Url { get; set; }
         public string Port { get; set; }
         public string Host { get; set; }
-        public int Expiration { get; set; }
     }
 }

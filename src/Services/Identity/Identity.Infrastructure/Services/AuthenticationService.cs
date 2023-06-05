@@ -2,6 +2,7 @@
 using ECommerceLP.Application.Settings;
 using Identity.Application.Common.Abstracts;
 using Identity.Common.Dtos;
+using Identity.Common.Enums;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,7 @@ namespace Identity.Application.Common.Concretes
         {
             _jwtSettings = jwtSettings;
         }
-        public LoginDto GenerateToken(string userName, Guid userId)
+        public LoginDto GenerateToken(string userName, Guid userId, UserType userType)
         {
             var jwtHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_jwtSettings.Secret);
@@ -31,7 +32,8 @@ namespace Identity.Application.Common.Concretes
             {
                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                new Claim("username", userName),
-               new Claim("userId", userId.ToString())
+               new Claim("userId", userId.ToString()),
+               new Claim("userType", userType.ToString())
             };
 
             var tokenDescriptor = new SecurityTokenDescriptor
@@ -48,7 +50,7 @@ namespace Identity.Application.Common.Concretes
 
             //  return Task.FromResult(Result<LoginDto>.Success(200,new LoginDto { Token=jwtHandler.WriteToken(token)}
             //));
-            return new LoginDto{ Token = jwtHandler.WriteToken(token),RefreshToken = GenerateRefreshToken() };
+            return new LoginDto { Token = jwtHandler.WriteToken(token), RefreshToken = GenerateRefreshToken() };
         }
 
         private string GenerateRefreshToken()

@@ -1,5 +1,5 @@
 ﻿using ECommerceLP.Application.CQRS.Abstract;
-using ECommerceLP.Application.Messaging.Abstract;
+using ECommerceLP.Application.Interfaces.Abstract;
 using MediatR;
 using System;
 using System.Collections.Generic;

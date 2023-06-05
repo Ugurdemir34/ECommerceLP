@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EventBus.Base.Events;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,6 +22,10 @@ namespace ECommerceLP.Domain.Entities
         public void Delete()
         {
             IsDeleted = !IsDeleted;
+        }
+        public void Modified()
+        {
+            ModifiedDate = DateTime.Now;
         }
     }
 }

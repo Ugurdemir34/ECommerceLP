@@ -58,6 +58,16 @@ namespace Orders.Domain.Aggregate.OrderAggregates
         public void ApproveOrder()
         {
             this.Status = OrderStatus.Approved;
+            this.Modified();
+        }
+        public void ShipStatus()
+        {
+            this.Status = OrderStatus.Shipped;
+            this.Modified();
+        }
+        public void SetOrderList(List<OrderItem> orderItems)
+        {
+            this.OrderItems = orderItems;
         }
     }
 

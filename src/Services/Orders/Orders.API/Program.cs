@@ -8,6 +8,10 @@ using ECommerceLP.Application.Settings;
 using Swashbuckle.AspNetCore.Filters;
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
+using EventBus.Base.Abstraction;
+using EventBus.Base;
+using EventBus.Factory;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,44 +42,30 @@ builder.Services.AddSwaggerGen(opt =>
                      Id = "Bearer"
                  }
              },
-             new string[] {}
-     }
+            new string[] {}
+        }
  });
 });
-//builder.Services.AddSwaggerGen(s =>
-//{
-//    s.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme()
-//    {
-//        Name = "Authorization",
-//        Type = Microsoft.OpenApi.Models.SecuritySchemeType.ApiKey,
-//        Scheme = "Bearer",
-//        BearerFormat = "JWT",
-//        Description = "JWT Authorization header using the Bearer scheme",
-//        In = ParameterLocation.Header
-//    });
-//    s.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement
-//    {
-//        {
-//            new OpenApiSecurityScheme
-//            {
-//                Reference = new OpenApiReference
-//                {
-//                    Type=ReferenceType.SecurityScheme,
-//                    Id="Bearer"
-//                },
-//            },
-//            new string[]{ }
-//        }
-//    });
-//});
-
+//builder.Services.AddTransient<OrderConfirmIntegrationEventHandler>();
+builder.Services.AddSingleton<IEventBus>(sp =>
+{
+    EventBusConfig config = new()
+    {
+        ConnectionRetryCount = 5,
+        EventNameSuffix = "IntegrationEvent",
+        SubscriberClientAppName = "OrderService",
+        EventBusType = EventBusType.RabbitMQ
+    };
+    return EventBusFactory.Create(config, sp);
+});
+var serviceProvider = builder.Services.BuildServiceProvider();
 builder.Services.AddOrderPersistence(builder.Configuration);
-builder.Services.AddOrderApplication();
+builder.Services.AddOrderApplication(serviceProvider);
 builder.Services.AddTransient<IUnitOfWork, UnitOfWork<OrderContext>>();
 
-builder.Services.AddCoreApplication();
+builder.Services.AddCoreApplication(builder.Configuration);
 builder.Services.AddHttpContextAccessor();
-builder.Services.AddRabbitMQ(builder.Configuration);
+
 var app = builder.Build();
 //Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -88,6 +78,8 @@ using (var scope = app.Services.CreateScope())
     var dbContext = scope.ServiceProvider.GetRequiredService<OrderContext>();
     dbContext.Database.Migrate();
 }
+
+
 app.UseHttpsRedirection();
 
 

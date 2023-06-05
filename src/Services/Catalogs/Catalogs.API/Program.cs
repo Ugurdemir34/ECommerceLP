@@ -2,8 +2,13 @@ using Catalogs.Application;
 using Catalogs.Persistence;
 using Catalogs.Persistence.Context;
 using ECommerceLP.Application;
+using ECommerceLP.Application.Decorators;
+using ECommerceLP.Application.Services;
+using ECommerceLP.Infrastructure.Cache;
 using ECommerceLP.Infrastructure.UnitOfWork;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,8 +22,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddCatalogPersistence(builder.Configuration);
 builder.Services.AddIdentityApplication(builder.Configuration);
 builder.Services.AddTransient<IUnitOfWork, UnitOfWork<CatalogContext>>();
-
-builder.Services.AddCoreApplication();
+builder.Services.AddScoped<ICacheService, RedisService>();
+builder.Services.AddCoreApplication(builder.Configuration);
+//builder.Services.Decorate(typeof(IRequestHandler<,>), typeof(QueryHandlerDecorator<,>));
 var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {

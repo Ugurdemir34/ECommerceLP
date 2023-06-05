@@ -9,6 +9,7 @@ namespace Orders.Domain.Aggregate.OrderAggregates
     public enum OrderStatus
     {
         Approved,
-        Canceled
+        Canceled,
+        Shipped
     }
 }

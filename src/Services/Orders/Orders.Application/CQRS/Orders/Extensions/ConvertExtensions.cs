@@ -18,7 +18,7 @@ namespace Orders.Application.CQRS.Orders.Extensions
             var address = command.Address.MapDto();
             var order = new Order(command.UserId, command.OrderDate, command.Status,
                 command.Number, command.Expiry, command.CreatedBy, command.ModifiedBy,
-                command.ConfirmDate, command.CanceledDate, mappedOrderItem,address);
+                command.ConfirmDate, command.CanceledDate, mappedOrderItem, address);
             return order;
         }
         public static OrderDto Map(this Order order)
@@ -39,6 +39,7 @@ namespace Orders.Application.CQRS.Orders.Extensions
                 OrderStatus = (int)order.Status,
                 TotalPrice = order.TotalPrice,
                 UserId = order.UserId,
+                Address = order.Address.Map()
             };
         }
     }

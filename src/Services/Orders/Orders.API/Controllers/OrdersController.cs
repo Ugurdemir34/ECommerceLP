@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Orders.Application.CQRS.Orders.Commands.ConfirmOrder;
 using Orders.Application.CQRS.Orders.Commands.CreateOrder;
 using Orders.Application.CQRS.Orders.Commands.DeleteOrder;
+using Orders.Application.CQRS.Orders.Commands.ShippedOrder;
 using Orders.Application.Requests.Order;
 using Orders.Common.Dtos;
 
@@ -51,6 +52,14 @@ namespace Orders.API.Controllers
         public async Task<Response<bool>> Confirm(ConfirmOrderRequest request, CancellationToken cancellationToken)
         {
             var command = new ConfirmOrderCommand(request);
+            var result = await _processor.ProcessAsync(command, cancellationToken);
+            return this.ProduceResponse(result);
+        }
+        [HttpPost("Shipped")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<Response<bool>> Shipped(ShippedOrderRequest request, CancellationToken cancellationToken)
+        {
+            var command = new ShippedOrderCommand(request);
             var result = await _processor.ProcessAsync(command, cancellationToken);
             return this.ProduceResponse(result);
         }

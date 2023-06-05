@@ -10,6 +10,7 @@ namespace ECommerceLP.Application.Repositories
 {
     public interface ICommandRepository<T> where T : BaseEntity
     {
+        Task<T> GetAsync(Expression<Func<T, bool>> predicate,CancellationToken cancellationToken);
         Task DeleteAsync(Guid id);
         Task HardDeleteAsync(Guid id);
         Task<T> UpdateAsync(T entity);

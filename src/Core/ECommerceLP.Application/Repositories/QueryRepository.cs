@@ -24,9 +24,22 @@ namespace ECommerceLP.Application.Repositories
             return await _context.Set<T>().Where(predicate).FirstOrDefaultAsync();
         }
 
-        public async Task<List<T>> ListAsync()
+        public async Task<T> GetAsync(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includeProperties)
         {
-            return await _context.Set<T>().ToListAsync();
+            IQueryable<T> query = _context.Set<T>();
+            if (includeProperties!=null)
+            {
+                foreach (var includeProperty in includeProperties)
+                {
+                    query = query.Include(includeProperty);
+                }
+            }
+            return await query.FirstOrDefaultAsync(predicate);
+        }
+
+        public async Task<List<T>> ListAsync(Expression<Func<T, bool>> predicate)
+        {
+            return await _context.Set<T>().Where(predicate).ToListAsync();
         }
 
         public async Task<IPagedList<T>> QueryPagedListAsync(Expression<Func<T, bool>> predicate,
