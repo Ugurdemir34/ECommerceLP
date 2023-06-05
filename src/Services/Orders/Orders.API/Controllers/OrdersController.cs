@@ -12,6 +12,7 @@ using Orders.Common.Dtos;
 
 namespace Orders.API.Controllers
 {
+    [Authorize]
     public class OrdersController : BaseApi
     {
         private readonly IProcessor _processor;

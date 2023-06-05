@@ -23,9 +23,8 @@ builder.Services.AddCatalogPersistence(builder.Configuration);
 builder.Services.AddIdentityApplication(builder.Configuration);
 builder.Services.AddTransient<IUnitOfWork, UnitOfWork<CatalogContext>>();
 builder.Services.AddScoped<ICacheService, RedisService>();
-
 builder.Services.AddCoreApplication(builder.Configuration);
-builder.Services.Decorate(typeof(IRequestHandler<,>), typeof(QueryHandlerDecorator<,>));
+//builder.Services.Decorate(typeof(IRequestHandler<,>), typeof(QueryHandlerDecorator<,>));
 var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {

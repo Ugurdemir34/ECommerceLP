@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Orders.Application.CQRS.Orders.Commands.CreateOrder;
 using Orders.Application.CQRS.Orders.Commands.DeleteOrder;
 using Orders.Common.Dtos;
-using Orders.Domain.Aggregate.OrderAggregates.DomainEvents.Events;
+using Orders.Domain.Aggregate.OrderAggregates.IntegrationEvents.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;

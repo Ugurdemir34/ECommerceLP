@@ -19,7 +19,7 @@ namespace Catalogs.Persistence
         {
             serviceCollection.AddDbContext<CatalogContext>(opt =>
             {
-                opt.UseSqlServer(configuration.GetConnectionString("UserDB"));
+                opt.UseSqlServer(configuration.GetConnectionString("CatalogDB"));
             });
             // Token
             var jwtSettings = new JwtTokenSettings();

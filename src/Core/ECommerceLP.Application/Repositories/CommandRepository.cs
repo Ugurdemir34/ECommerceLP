@@ -36,6 +36,12 @@ namespace ECommerceLP.Application.Repositories
             _context.Update(deleted);
         }
 
+        public async Task<T> GetAsync(Expression<Func<T, bool>> predicate,CancellationToken cancellationToken)
+        {
+            var entity = await _context.Set<T>().FirstOrDefaultAsync(predicate,cancellationToken);
+            return entity;
+        }
+
         public async Task HardDeleteAsync(Guid id)
         {
             var entity = _context.Set<T>();

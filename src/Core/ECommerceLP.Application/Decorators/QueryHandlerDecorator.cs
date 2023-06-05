@@ -39,6 +39,7 @@ namespace ECommerceLP.Application.Decorators
         {
             if (this.isCacheable)
             {
+                //var modelName = query.GetType().FullName?.GetModelName();
                 var cacheKey = this.GetCacheKey(query);
                 var value = _distributedCache.GetValue(cacheKey);
                 if (value == null)
@@ -62,19 +63,48 @@ namespace ECommerceLP.Application.Decorators
 
         private string GetCacheKey(TQuery request)
         {
+            var sb = new StringBuilder();
             var modelName = request.GetType().FullName?.GetModelName();
-
-            var cacheKey = CreateCacheKey(modelName);
-
-            var cacheKeyWithQueryName = string.IsNullOrWhiteSpace(cacheKey)
-                ? $"{this._decorated.GetType().Name}"
-                : $"{this._decorated.GetType().Name}:{cacheKey}";
-
-            return string.IsNullOrWhiteSpace(modelName)
-                ? $"{cacheKeyWithQueryName}"
-                : $"{modelName}:{cacheKeyWithQueryName}";
+            sb.Append(modelName);
+            //var cacheKey = CreateCacheKey(modelName);
+            var requestProperties = request.GetType().GetProperties().ToArray();
+            foreach ( var property in requestProperties)
+            {
+                sb.Append(property.GetValue(request)+"|");
+            }
+            return sb.ToString();
         }
+        public static string CreateKey(object obj)
+        {
+            var sb = new StringBuilder();
 
+            var modelName =  obj.GetType().FullName?.GetModelName();
+            var properties = obj.GetType().GetProperties().ToArray();
+            sb.Append(modelName);
+            if (!properties.Any())
+            {
+                return default;
+            }
+            foreach ( var property in properties) 
+            {
+                if (typeof(IEnumerable).IsAssignableFrom(property.PropertyType))
+                {
+                    var get = property.GetGetMethod();
+                    if (!get.IsStatic && get.GetParameters().Length == 0)
+                    {
+                        var collection = (IEnumerable)get.Invoke(obj, null);
+                        if (collection != null)
+                        {
+                            foreach (var o in collection)
+                            {
+                                _ = sb.Append(CreateCacheKey(o, property.Name));
+                            }
+                        }
+                    }
+                }
+            }
+            return default;
+        }
         public static string CreateCacheKey(object obj, string propName = null)
         {
             var sb = new StringBuilder();

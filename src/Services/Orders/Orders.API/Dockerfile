@@ -2,7 +2,7 @@
 
 FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
 WORKDIR /app
-
+EXPOSE 81
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
@@ -20,5 +20,5 @@ RUN dotnet publish "src/Services/Orders/Orders.API/Orders.API.csproj" -c Release
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENV ASPNETCORE_URLS http://*.PORT_NUMBER
+#ENV ASPNETCORE_URLS http://*.PORT_NUMBER
 ENTRYPOINT ["dotnet", "Orders.API.dll"]

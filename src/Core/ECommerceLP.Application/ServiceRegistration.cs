@@ -18,7 +18,7 @@ namespace ECommerceLP.Application
 {
     public static class ServiceRegistration
     {
-        public static void AddCoreApplication(this IServiceCollection serviceCollection,IConfiguration configuration)
+        public static void AddCoreApplication(this IServiceCollection serviceCollection, IConfiguration configuration)
         {
             serviceCollection.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
             foreach (var serviceType in typeof(Processor).GetInterfaces())
@@ -27,7 +27,6 @@ namespace ECommerceLP.Application
             }
             serviceCollection.AddScoped(typeof(IPagedList<>), typeof(PagedList<>));
             serviceCollection.AddRedis(configuration);
-            //serviceCollection.AddScoped(typeof(CommandHandlerDecorator<,>));
         }
     }
 }

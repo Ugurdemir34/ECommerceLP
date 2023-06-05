@@ -6,7 +6,7 @@ using Orders.Application.CQRS.Orders.Commands.ConfirmOrder;
 using Orders.Application.CQRS.Orders.Extensions;
 using Orders.Common.Constants;
 using Orders.Domain.Aggregate.OrderAggregates;
-using Orders.Domain.Aggregate.OrderAggregates.DomainEvents.Events;
+using Orders.Domain.Aggregate.OrderAggregates.IntegrationEvents.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
