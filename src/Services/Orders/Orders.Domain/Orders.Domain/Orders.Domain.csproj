@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\BuildingBlocks\EventBus.Base\EventBus.Base.csproj" />
+    <ProjectReference Include="..\..\..\..\Core\DDD\src\ECommerceLP.Core.DDD.Abstraction\ECommerceLP.Core.DDD.Abstraction.csproj" />
     <ProjectReference Include="..\..\..\..\Core\ECommerceLP.Domain\ECommerceLP.Domain.csproj" />
     <ProjectReference Include="..\..\Orders.Common\Orders.Common.csproj" />
   </ItemGroup>

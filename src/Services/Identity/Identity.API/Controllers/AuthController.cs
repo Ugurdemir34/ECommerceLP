@@ -1,16 +1,11 @@
-﻿using Identity.API.Infrastructure;
-using Identity.Application.Requests.User;
-using Identity.Common.Constants;
+﻿using Identity.Application.Requests.User;
 using Identity.Common.Dtos;
-using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using System.Net;
-using ECommerceLP.Common.Results.Concrete;
-using ECommerceLP.Api.Controllers;
-using ECommerceLP.Application.CQRS.Abstract;
-using ECommerceLP.Common.Messaging.Response;
 using Identity.Application.CQRS.Users.Commands.LoginUser;
 using Identity.Application.CQRS.Users.Commands.CreateUser;
+using ECommerceLP.Core.Api.Controllers;
+using ECommerceLP.Core.CQRS.Abstraction;
+using ECommerceLP.Core.Abstraction.Messaging.Response;
 
 namespace Identity.API.Controllers
 {

@@ -4,11 +4,10 @@ using Catalogs.Application.CQRS.Category.Queries.GetCategories;
 using Catalogs.Application.CQRS.Category.Queries.GetCategoryById;
 using Catalogs.Application.Requests.Category;
 using Catalogs.Common.Dtos;
-using ECommerceLP.Api.Controllers;
-using ECommerceLP.Application.CQRS.Abstract;
-using ECommerceLP.Common.Collections.Abstract;
-using ECommerceLP.Common.Collections.Concrete;
-using ECommerceLP.Common.Messaging.Response;
+using ECommerceLP.Core.Abstraction.Collections;
+using ECommerceLP.Core.Abstraction.Messaging.Response;
+using ECommerceLP.Core.Api.Controllers;
+using ECommerceLP.Core.CQRS.Abstraction;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

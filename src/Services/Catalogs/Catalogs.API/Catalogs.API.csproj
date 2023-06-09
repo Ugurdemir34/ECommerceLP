@@ -24,6 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Core\Api\src\ECommerceLP.Core.Api\ECommerceLP.Core.Api.csproj" />
     <ProjectReference Include="..\..\..\Core\ECommerceLP.Api\ECommerceLP.Api.csproj" />
     <ProjectReference Include="..\..\..\Infrastructure\ECommerceLP.Infrastructure\ECommerceLP.Infrastructure.csproj" />
     <ProjectReference Include="..\Catalogs.Application\Catalogs.Application.csproj" />

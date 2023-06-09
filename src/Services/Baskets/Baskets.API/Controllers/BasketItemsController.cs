@@ -1,8 +1,8 @@
 ﻿using Baskets.Application.CQRS.Baskets.Commands.CreateBasket;
 using Baskets.Application.Requests.Basket;
-using ECommerceLP.Api.Controllers;
-using ECommerceLP.Application.CQRS.Abstract;
-using ECommerceLP.Common.Messaging.Response;
+using ECommerceLP.Core.Abstraction.Messaging.Response;
+using ECommerceLP.Core.Api.Controllers;
+using ECommerceLP.Core.CQRS.Abstraction;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Baskets.API.Controllers

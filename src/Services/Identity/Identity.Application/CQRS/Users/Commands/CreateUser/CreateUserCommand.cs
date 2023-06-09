@@ -1,4 +1,4 @@
-﻿using ECommerceLP.Application.Interfaces.Abstract;
+﻿using ECommerceLP.Core.CQRS.Abstraction.Command;
 using Identity.Application.Requests.User;
 using Identity.Common.Dtos;
 using Identity.Common.Enums;

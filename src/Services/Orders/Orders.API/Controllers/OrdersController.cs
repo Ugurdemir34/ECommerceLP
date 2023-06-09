@@ -1,6 +1,6 @@
-﻿using ECommerceLP.Api.Controllers;
-using ECommerceLP.Application.CQRS.Abstract;
-using ECommerceLP.Common.Messaging.Response;
+﻿using ECommerceLP.Core.Abstraction.Messaging.Response;
+using ECommerceLP.Core.Api.Controllers;
+using ECommerceLP.Core.CQRS.Abstraction;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Orders.Application.CQRS.Orders.Commands.ConfirmOrder;

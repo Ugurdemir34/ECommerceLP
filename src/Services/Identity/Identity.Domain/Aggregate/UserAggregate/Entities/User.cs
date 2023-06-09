@@ -1,6 +1,5 @@
-﻿using ECommerceLP.Common.Security;
-using ECommerceLP.Domain.Common.Interfaces;
-using ECommerceLP.Domain.Entities;
+﻿using ECommerceLP.Core.DDD.Abstraction;
+using ECommerceLP.Core.Security;
 using Identity.Common.Enums;
 using System;
 using System.Collections.Generic;

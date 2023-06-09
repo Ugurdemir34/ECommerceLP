@@ -1,6 +1,6 @@
-﻿using ECommerceLP.Application.Interfaces.Abstract;
-using ECommerceLP.Common.Security;
-using ECommerceLP.Infrastructure.UnitOfWork;
+﻿using ECommerceLP.Core.CQRS.Abstraction.Command;
+using ECommerceLP.Core.Security;
+using ECommerceLP.Core.UnitOfWork.Abstraction;
 using Identity.Application.Common.Abstracts;
 using Identity.Common.Constants;
 using Identity.Common.Dtos;

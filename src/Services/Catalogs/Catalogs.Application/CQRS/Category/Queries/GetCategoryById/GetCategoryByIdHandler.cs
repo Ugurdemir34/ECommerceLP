@@ -1,12 +1,7 @@
 ﻿using AutoMapper;
 using Catalogs.Common.Dtos;
-using ECommerceLP.Application.Interfaces.Abstract;
-using ECommerceLP.Infrastructure.UnitOfWork;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ECommerceLP.Core.CQRS.Abstraction.Query;
+using ECommerceLP.Core.UnitOfWork.Abstraction;
 using CategoryEntity = Catalogs.Domain.Aggregate.CategoryAggregate.Category;
 namespace Catalogs.Application.CQRS.Category.Queries.GetCategoryById
 {

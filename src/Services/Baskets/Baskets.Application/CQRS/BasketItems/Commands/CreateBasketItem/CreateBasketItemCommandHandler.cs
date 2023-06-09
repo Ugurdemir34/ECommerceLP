@@ -1,5 +1,5 @@
-﻿using ECommerceLP.Application.Interfaces.Abstract;
-using ECommerceLP.Infrastructure.UnitOfWork;
+﻿using ECommerceLP.Core.CQRS.Abstraction.Command;
+using ECommerceLP.Core.UnitOfWork.Abstraction;
 using System;
 using System.Collections.Generic;
 using System.Linq;

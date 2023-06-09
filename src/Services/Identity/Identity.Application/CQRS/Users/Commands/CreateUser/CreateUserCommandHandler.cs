@@ -1,15 +1,9 @@
 ﻿using AutoMapper;
-using ECommerceLP.Application.Interfaces.Abstract;
-using ECommerceLP.Infrastructure.UnitOfWork;
+using ECommerceLP.Core.CQRS.Abstraction.Command;
+using ECommerceLP.Core.UnitOfWork.Abstraction;
 using Identity.Application.CQRS.Users.Extensions;
 using Identity.Common.Dtos;
 using Identity.Domain.Aggregate.UserAggregate.Entities;
-using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 namespace Identity.Application.CQRS.Users.Commands.CreateUser
 {
     public class CreateUserCommandHandler : ICommandHandler<CreateUserCommand, CreateUserDTO>

@@ -1,5 +1,5 @@
 ﻿using Baskets.Application.Requests.Basket;
-using ECommerceLP.Application.Interfaces.Abstract;
+using ECommerceLP.Core.CQRS.Abstraction.Command;
 using System;
 using System.Collections.Generic;
 using System.Linq;

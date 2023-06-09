@@ -1,6 +1,6 @@
 ﻿using Catalogs.Application.Requests.Category;
 using Catalogs.Common.Dtos;
-using ECommerceLP.Application.Interfaces.Abstract;
+using ECommerceLP.Core.CQRS.Abstraction.Command;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,7 +1,5 @@
 ﻿using Baskets.Common.Constants;
 using Baskets.Domain.Aggregate.BasketAggregate;
-using ECommerceLP.Application.Interfaces.Abstract;
-using ECommerceLP.Infrastructure.UnitOfWork;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Baskets.Application.CQRS.Baskets.Extensions;
 using Baskets.Domain.Repositories;
+using ECommerceLP.Core.CQRS.Abstraction.Command;
 
 namespace Baskets.Application.CQRS.Baskets.Commands.CreateBasket
 {

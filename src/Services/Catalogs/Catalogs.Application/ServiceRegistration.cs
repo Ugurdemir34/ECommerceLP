@@ -16,7 +16,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using ECommerceLP.Common.Collections.Concrete;
+using ECommerceLP.Core.Abstraction.Collections;
 
 namespace Catalogs.Application
 {

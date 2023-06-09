@@ -1,5 +1,4 @@
-﻿using ECommerceLP.Domain.Common.Interfaces;
-using ECommerceLP.Domain.Entities;
+﻿using ECommerceLP.Core.DDD.Abstraction;
 using Orders.Domain.Aggregate.OrderAggregates.ValueObjects;
 using System;
 using System.Collections.Generic;
