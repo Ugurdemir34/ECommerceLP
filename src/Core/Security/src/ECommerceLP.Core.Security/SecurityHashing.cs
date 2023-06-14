@@ -9,7 +9,7 @@ namespace ECommerceLP.Core.Security
         {
             if (string.IsNullOrEmpty(input))
             {
-                throw new Exception($"Input cannot be null or empty.");
+                throw new ApplicationException($"Input cannot be null or empty.");
             }
 
             var hashProvider = HashProvider.CreateHash(hashType);
@@ -20,7 +20,7 @@ namespace ECommerceLP.Core.Security
         {
             if (string.IsNullOrEmpty(hashedValue))
             {
-                throw new Exception($"Input cannot be null or empty.");
+                throw new ApplicationException($"Input cannot be null or empty.");
             }
 
             return Equals(ComputeHash(hashType, dataToValidate), hashedValue);

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Catalogs.Common.Dtos;
+using Catalogs.Persistence.Context;
 using ECommerceLP.Core.Abstraction.Collections;
 using ECommerceLP.Core.CQRS.Abstraction;
 using ECommerceLP.Core.CQRS.Abstraction.Query;
@@ -9,9 +10,9 @@ namespace Catalogs.Application.CQRS.Category.Queries.GetCategories
 {
     public class GetCategoriesQueryHandler : IQueryHandler<GetCategoriesQuery, PagedList<CategoryDto>>,IQueryCacheable
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IUnitOfWork<CatalogContext> _unitOfWork;
         private IMapper _mapper;
-        public GetCategoriesQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
+        public GetCategoriesQueryHandler(IUnitOfWork<CatalogContext> unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;

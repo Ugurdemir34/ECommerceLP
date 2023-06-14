@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ECommerceLP.Core.Abstraction.Exception;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -72,7 +73,7 @@ namespace ECommerceLP.Core.Abstraction.Collections
         {
             if (indexFrom > pageIndex)
             {
-                throw new Exception(
+                throw new CustomException(
                     $"indexFrom: {indexFrom} > pageIndex: {pageIndex}, must indexFrom <= pageIndex");
             }
 

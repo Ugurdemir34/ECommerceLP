@@ -1,4 +1,5 @@
 ﻿using ECommerceLP.Core.Abstraction.Cache;
+using ECommerceLP.Core.Abstraction.Exception;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Caching.StackExchangeRedis;
 using Newtonsoft.Json.Linq;
@@ -34,7 +35,7 @@ namespace ECommerceLP.Core.Cache
 
                 if (string.IsNullOrEmpty(data))
                 {
-                    throw new Exception(key);
+                    throw new ApplicationException(key);
                 }
 
                 return JObject.Parse(data).ToObject<ECommerceCacheItem<T>>().Value;
@@ -42,7 +43,7 @@ namespace ECommerceLP.Core.Cache
             catch (Exception ex)
             {
 
-                throw new Exception(key);
+                throw new ApplicationException(key);
             }
         }
 
@@ -64,7 +65,7 @@ namespace ECommerceLP.Core.Cache
             catch (Exception ex)
             {
 
-                throw new Exception(key);
+                throw new ApplicationException(key);
             }
         }
 
@@ -146,27 +147,27 @@ namespace ECommerceLP.Core.Cache
 
         public Task<T> GetAsync<T>(CancellationToken token = default)
         {
-            throw new NotImplementedException();
+            throw new ApplicationException();
         }
 
         public Task<(bool keyExists, T cacheItem)> TryGetAsync<T>(CancellationToken token = default)
         {
-            throw new NotImplementedException();
+            throw new ApplicationException();
         }
 
         public Task SetAsync<T>(T cacheItem, CancellationToken token = default)
         {
-            throw new NotImplementedException();
+            throw new ApplicationException();
         }
 
         public Task<bool> ExistsAsync<T>(CancellationToken token = default)
         {
-            throw new NotImplementedException();
+            throw new ApplicationException();
         }
 
         public Task RemoveAsync<T>(CancellationToken token = default)
         {
-            throw new NotImplementedException();
+            throw new ApplicationException();
         }
 
         #endregion IDistributedCache implementation

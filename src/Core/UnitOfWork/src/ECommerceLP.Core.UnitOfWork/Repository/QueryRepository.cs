@@ -1,4 +1,5 @@
 ﻿using ECommerceLP.Core.Abstraction.Collections;
+using ECommerceLP.Core.Api.Exceptions.Base;
 using ECommerceLP.Core.DDD.Abstraction;
 using ECommerceLP.Core.UnitOfWork.Abstraction;
 using Microsoft.EntityFrameworkCore;
@@ -16,7 +17,12 @@ namespace ECommerceLP.Core.UnitOfWork.Repository
         }
         public async Task<T> GetAsync(Expression<Func<T, bool>> predicate)
         {
-            return await _context.Set<T>().Where(predicate).FirstOrDefaultAsync();
+            var value = await _context.Set<T>().Where(predicate).FirstOrDefaultAsync();
+            if (value == null)
+            {
+                throw new ApplicationException();
+            }
+            return value; 
         }
 
         public async Task<T> GetAsync(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includeProperties)

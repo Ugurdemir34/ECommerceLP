@@ -1,10 +1,11 @@
-﻿using ECommerceLP.Core.CQRS.Abstraction.Command;
+﻿using ECommerceLP.Core.Abstraction.Exception;
+using ECommerceLP.Core.CQRS.Abstraction.Command;
 using FluentValidation;
 using MediatR;
 
 namespace ECommerceLP.Core.CQRS.Validation
 {
-    public class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : class,ICommand<TResponse>
+    public class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : class, ICommand<TResponse>
     {
         private readonly IEnumerable<IValidator<TRequest>> _validators;
 
@@ -26,12 +27,12 @@ namespace ECommerceLP.Core.CQRS.Validation
                            .Where(f => f != null)
                            .ToList();
 
-            if (errors.Count !=0)
+            if (errors.Count != 0)
             {
-                throw new ValidationException("", errors, true);
+                throw new CustomBusinessException("", errors, true);
             }
             return await next();
-                    
+
         }
     }
 }

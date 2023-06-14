@@ -17,6 +17,7 @@
     <ProjectReference Include="..\..\..\Core\UnitOfWork\src\ECommerceLP.Core.UnitOfWork.Abstraction\ECommerceLP.Core.UnitOfWork.Abstraction.csproj" />
     <ProjectReference Include="..\Baskets.Common\Baskets.Common.csproj" />
     <ProjectReference Include="..\Baskets.Domain\Baskets.Domain.csproj" />
+    <ProjectReference Include="..\Baskets.Persistence\Baskets.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

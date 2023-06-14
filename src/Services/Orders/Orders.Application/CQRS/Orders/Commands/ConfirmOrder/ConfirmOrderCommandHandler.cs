@@ -7,6 +7,7 @@ using Orders.Application.CQRS.Orders.Extensions;
 using Orders.Common.Constants;
 using Orders.Domain.Aggregate.OrderAggregates;
 using Orders.Domain.Aggregate.OrderAggregates.IntegrationEvents.Events;
+using Orders.Persistence.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,14 +18,14 @@ namespace Orders.Application.CQRS.Orders.Commands.ConfirmOrder
 {
     public class ConfirmOrderCommandHandler : ICommandHandler<ConfirmOrderCommand, bool>
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IUnitOfWork<OrderContext> _unitOfWork;
         private readonly IEventBus _eventBus;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        public ConfirmOrderCommandHandler(IUnitOfWork unitOfWork, IEventBus eventBus, IHttpContextAccessor httpContextAccessor)
+        public ConfirmOrderCommandHandler(IEventBus eventBus, IHttpContextAccessor httpContextAccessor, IUnitOfWork<OrderContext> unitOfWork)
         {
-            _unitOfWork = unitOfWork;
             _eventBus = eventBus;
             _httpContextAccessor = httpContextAccessor;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<bool> Handle(ConfirmOrderCommand request, CancellationToken cancellationToken)

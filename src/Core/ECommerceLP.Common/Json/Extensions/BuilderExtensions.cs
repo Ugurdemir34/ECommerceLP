@@ -20,7 +20,7 @@ namespace ECommerceLP.Common.Json.Extensions
         {
             if (services == null)
             {
-                throw new Exception($"ServiceCollection: {nameof(services)} not found.");
+                throw new ApplicationException($"ServiceCollection: {nameof(services)} not found.");
             }
 
             JsonConvert.DefaultSettings = () => new SerializerSettings();

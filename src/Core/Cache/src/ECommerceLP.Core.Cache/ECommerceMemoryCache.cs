@@ -27,7 +27,7 @@ namespace ECommerceLP.Core.Cache
 
                 if (cacheItem == null)
                 {
-                    throw new Exception(key);
+                    throw new ApplicationException(key);
                 }
 
                 return cacheItem.Value;
@@ -109,27 +109,27 @@ namespace ECommerceLP.Core.Cache
 
         public Task<T> GetAsync<T>(CancellationToken token = default)
         {
-            throw new NotImplementedException();
+            throw new ApplicationException();
         }
 
         public Task<(bool keyExists, T cacheItem)> TryGetAsync<T>(CancellationToken token = default)
         {
-            throw new NotImplementedException();
+            throw new ApplicationException();
         }
 
         public Task SetAsync<T>(T cacheItem, CancellationToken token = default)
         {
-            throw new NotImplementedException();
+            throw new ApplicationException();
         }
 
         public Task<bool> ExistsAsync<T>(CancellationToken token = default)
         {
-            throw new NotImplementedException();
+            throw new ApplicationException();
         }
 
         public Task RemoveAsync<T>(CancellationToken token = default)
         {
-            throw new NotImplementedException();
+            throw new ApplicationException();
         }
 
         #endregion  IMemoryCache implementation

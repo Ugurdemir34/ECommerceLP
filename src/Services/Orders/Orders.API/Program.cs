@@ -12,6 +12,8 @@ using EventBus.Base.Abstraction;
 using EventBus.Base;
 using EventBus.Factory;
 using Microsoft.Extensions.DependencyInjection;
+using ECommerceLP.Core.UnitOfWork.Extensions;
+using ECommerceLP.Core.CQRS.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -59,11 +61,13 @@ builder.Services.AddSingleton<IEventBus>(sp =>
     return EventBusFactory.Create(config, sp);
 });
 var serviceProvider = builder.Services.BuildServiceProvider();
+builder.Services.AddUnitOfWork();
+builder.Services.AddCQRS();
 builder.Services.AddOrderPersistence(builder.Configuration);
 builder.Services.AddOrderApplication(serviceProvider);
-builder.Services.AddTransient<IUnitOfWork, UnitOfWork<OrderContext>>();
+//builder.Services.AddTransient<IUnitOfWork, UnitOfWork<OrderContext>>();
 
-builder.Services.AddCoreApplication(builder.Configuration);
+//builder.Services.AddCoreApplication(builder.Configuration);
 builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
@@ -81,7 +85,7 @@ using (var scope = app.Services.CreateScope())
 
 
 app.UseHttpsRedirection();
-
+app.UseExceptionHandler();
 
 app.UseAuthentication();
 

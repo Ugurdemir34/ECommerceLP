@@ -18,7 +18,7 @@ namespace ECommerceLP.Core.Cache.Extensions
         {
             if (services == null)
             {
-                throw new Exception($"ServiceCollection: {nameof(services)} not found.");
+                throw new ApplicationException($"ServiceCollection: {nameof(services)} not found.");
             }
             services.AddSingleton(typeof(IOptions<MemoryCacheOptions>), x =>
             {

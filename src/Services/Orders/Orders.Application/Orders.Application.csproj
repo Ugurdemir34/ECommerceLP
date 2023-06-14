@@ -25,6 +25,7 @@
     <ProjectReference Include="..\..\..\Core\UnitOfWork\src\ECommerceLP.Core.UnitOfWork.Abstraction\ECommerceLP.Core.UnitOfWork.Abstraction.csproj" />
     <ProjectReference Include="..\Orders.Common\Orders.Common.csproj" />
     <ProjectReference Include="..\Orders.Domain\Orders.Domain\Orders.Domain.csproj" />
+    <ProjectReference Include="..\Orders.Persistence\Orders.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

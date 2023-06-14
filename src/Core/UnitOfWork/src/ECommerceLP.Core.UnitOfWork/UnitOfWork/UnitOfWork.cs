@@ -10,16 +10,16 @@ using System.Threading.Tasks;
 
 namespace ECommerceLP.Core.UnitOfWork.UnitOfWork
 {
-    public class UnitOfWork<TContext> : IUnitOfWork where TContext : DbContext
+    public class UnitOfWork<TContext> : IUnitOfWork<TContext> where TContext : DbContext
     {
         #region Variables
         public Dictionary<object, Type> repositories = new Dictionary<object, Type>();
-        private readonly DbContext _context;
+        public TContext Context { get; }
         #endregion
         #region Constructor
         public UnitOfWork(TContext context)
         {
-            _context = context;
+            Context = context;
         }
         #endregion
         #region Get Command Method
@@ -29,7 +29,7 @@ namespace ECommerceLP.Core.UnitOfWork.UnitOfWork
             {
                 return repositories[typeof(TEntity)] as ICommandRepository<TEntity>;
             }
-            var repo = new CommandRepository<TEntity>(_context);
+            var repo = new CommandRepository<TEntity>(Context);
             repositories.Add(repo, typeof(TEntity));
             return repo;
         }
@@ -41,7 +41,7 @@ namespace ECommerceLP.Core.UnitOfWork.UnitOfWork
             {
                 return repositories[typeof(TEntity)] as IQueryRepository<TEntity>;
             }
-            var repo = new QueryRepository<TEntity>(_context);
+            var repo = new QueryRepository<TEntity>(Context);
             repositories.Add(repo, typeof(TEntity));
             return repo;
         }
@@ -49,26 +49,26 @@ namespace ECommerceLP.Core.UnitOfWork.UnitOfWork
         #region Commits
         public async Task<bool> CommitAsync(CancellationToken cancellationToken = default)
         {
-            await _context.SaveChangesAsync(cancellationToken);
+            await Context.SaveChangesAsync(cancellationToken);
             return true;
         }
 
         public void Commit()
         {
-            _context.SaveChanges();
+            Context.SaveChanges();
         }
         #endregion
         #region Save Changes
         public int SaveChanges()
         {
-            return _context.SaveChanges();
+            return Context.SaveChanges();
         }
 
 
         #endregion
         public void Dispose()
         {
-            _context.Dispose();
+            Context.Dispose();
             GC.SuppressFinalize(this);
         }
     }

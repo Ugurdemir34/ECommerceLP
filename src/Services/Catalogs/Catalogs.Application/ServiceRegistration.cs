@@ -22,7 +22,7 @@ namespace Catalogs.Application
 {
     public static class ServiceRegistration
     {
-        public static void AddIdentityApplication(this IServiceCollection serviceCollection, IConfiguration configuration = null)
+        public static void AddCatalogApplication(this IServiceCollection serviceCollection, IConfiguration configuration = null)
         {
             serviceCollection.AddMediatR(cfg =>
             {
@@ -38,7 +38,7 @@ namespace Catalogs.Application
             serviceCollection.AddValidatorsFromAssemblyContaining<GetCategoryByIdValidator>();
             serviceCollection.AddValidatorsFromAssemblyContaining<CreateCategoryValidator>();
             serviceCollection.AddValidatorsFromAssemblyContaining<DeleteCategoryValidator>();
-            serviceCollection.Decorate(typeof(IRequestHandler<,>), typeof(QueryHandlerDecorator<,>));
+            //serviceCollection.Decorate(typeof(IRequestHandler<,>), typeof(QueryHandlerDecorator<,>));
         }
     }
 }

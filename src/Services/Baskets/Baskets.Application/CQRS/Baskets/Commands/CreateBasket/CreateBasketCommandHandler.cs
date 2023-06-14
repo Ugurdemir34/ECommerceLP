@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Baskets.Application.CQRS.Baskets.Extensions;
 using Baskets.Domain.Repositories;
 using ECommerceLP.Core.CQRS.Abstraction.Command;
+using ECommerceLP.Core.Abstraction.Exception;
 
 namespace Baskets.Application.CQRS.Baskets.Commands.CreateBasket
 {
@@ -25,7 +26,7 @@ namespace Baskets.Application.CQRS.Baskets.Commands.CreateBasket
             var basket = _repository.GetAsync(b => b.UserId == request.UserId, cancellationToken);
             if (basket != null)
             {
-                throw new Exception(Messages.BasketAlreadyExists);
+                throw new CustomBusinessException(Messages.BasketAlreadyExists);
             }
             await _repository.AddAsync(request.CreateBasket(), cancellationToken);
             return true;

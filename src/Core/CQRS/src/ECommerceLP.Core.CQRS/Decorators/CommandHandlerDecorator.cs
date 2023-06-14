@@ -2,6 +2,7 @@
 using ECommerceLP.Core.CQRS.Abstraction.Command;
 using ECommerceLP.Core.UnitOfWork.Abstraction;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Configuration;
 using StackExchange.Redis;
@@ -13,14 +14,14 @@ using System.Threading.Tasks;
 
 namespace ECommerceLP.Core.CQRS.Decorators
 {
-    public sealed class CommandHandlerDecorator<TCommand, TResult> : ICommandHandler<TCommand, TResult> where TCommand : ICommand<TResult>
+    public sealed class CommandHandlerDecorator<TCommand, TResult, TContext> : ICommandHandler<TCommand, TResult> where TCommand : ICommand<TResult> where TContext : DbContext
     {
         private readonly IRequestHandler<TCommand, TResult> _decorated;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IUnitOfWork<TContext> _unitOfWork;
         private readonly IECommerceCache _cache;
         private readonly IConfiguration _configuration;
         private bool isCacheRemoveble = false;
-        public CommandHandlerDecorator(IRequestHandler<TCommand, TResult> decorated, IUnitOfWork unitOfWork, IDistributedCache distributedCache, IConfiguration configuration, IECommerceCache cache)
+        public CommandHandlerDecorator(IRequestHandler<TCommand, TResult> decorated, IUnitOfWork<TContext> unitOfWork, IDistributedCache distributedCache, IConfiguration configuration, IECommerceCache cache)
         {
             _decorated = decorated;
             _unitOfWork = unitOfWork;

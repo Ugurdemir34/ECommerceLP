@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ECommerceLP.Common.Json.Extensions
+namespace ECommerceLP.Core.Serialization.JSON.Extensions
 {
     public class JSONSerializationOptions
     {
@@ -22,7 +22,7 @@ namespace ECommerceLP.Common.Json.Extensions
         {
             if (services == null)
             {
-                throw new Exception($"ServiceCollection: {nameof(services)} not found.");
+                throw new ApplicationException($"ServiceCollection: {nameof(services)} not found.");
             }
 
             JsonConvert.DefaultSettings = () => new SerializerSettings();

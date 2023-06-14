@@ -169,15 +169,29 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Serialization", "Serializat
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{FF7B5179-DD57-4639-B0FF-C7763E21EB46}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerceLP.Core.Serialization.Abstraction", "src\Core\Serialization\src\ECommerceLP.Core.Serialization.Abstraction\ECommerceLP.Core.Serialization.Abstraction.csproj", "{8A0ECA7F-E183-471F-8AE8-4DCB36F83985}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerceLP.Core.Serialization.Abstraction", "src\Core\Serialization\src\ECommerceLP.Core.Serialization.Abstraction\ECommerceLP.Core.Serialization.Abstraction.csproj", "{8A0ECA7F-E183-471F-8AE8-4DCB36F83985}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerceLP.Core.Serialization.JSON", "src\Core\Serialization\src\ECommerceLP.Core.Serialization.JSON\ECommerceLP.Core.Serialization.JSON.csproj", "{199494DE-BE10-4340-9ECF-C12948786C57}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerceLP.Core.Serialization.JSON", "src\Core\Serialization\src\ECommerceLP.Core.Serialization.JSON\ECommerceLP.Core.Serialization.JSON.csproj", "{199494DE-BE10-4340-9ECF-C12948786C57}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Security", "Security", "{219B87C2-403F-44DF-8DC6-D538BAF74F54}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{FC70A3B9-0E58-4338-BE0A-945334703CBD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerceLP.Core.Security", "src\Core\Security\src\ECommerceLP.Core.Security\ECommerceLP.Core.Security.csproj", "{0143BE55-2A14-48DD-BA2B-4BFE95765367}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerceLP.Core.Security", "src\Core\Security\src\ECommerceLP.Core.Security\ECommerceLP.Core.Security.csproj", "{0143BE55-2A14-48DD-BA2B-4BFE95765367}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IOC", "IOC", "{685BD276-1A10-4510-B44B-D879B66AFFA5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{700158EA-E3AA-434C-A582-16F9F16F7869}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerceLP.Core.IOC.Abstraction", "src\Core\IOC\src\ECommerceLP.Core.IOC.Abstraction\ECommerceLP.Core.IOC.Abstraction.csproj", "{FD6873AC-3CD3-43EA-86FB-54CB38D7CDEF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerceLP.Core.IOC", "src\Core\IOC\src\ECommerceLP.Core.IOC\ECommerceLP.Core.IOC.csproj", "{DAE94B3D-969E-42C6-BBD8-556E72AC694B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logging", "Logging", "{04E08921-3DA2-40CD-BE08-01AB8FA65220}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1FC9F3DB-F320-49C9-85F0-D01C6297D112}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerceLP.Core.Logging.Abstraction", "src\Core\Logging\src\ECommerceLP.Core.Logging.Abstraction\ECommerceLP.Core.Logging.Abstraction.csproj", "{D5287075-7894-428A-BDAB-C080941730AE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -409,6 +423,18 @@ Global
 		{0143BE55-2A14-48DD-BA2B-4BFE95765367}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0143BE55-2A14-48DD-BA2B-4BFE95765367}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0143BE55-2A14-48DD-BA2B-4BFE95765367}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD6873AC-3CD3-43EA-86FB-54CB38D7CDEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD6873AC-3CD3-43EA-86FB-54CB38D7CDEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD6873AC-3CD3-43EA-86FB-54CB38D7CDEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD6873AC-3CD3-43EA-86FB-54CB38D7CDEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DAE94B3D-969E-42C6-BBD8-556E72AC694B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAE94B3D-969E-42C6-BBD8-556E72AC694B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAE94B3D-969E-42C6-BBD8-556E72AC694B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAE94B3D-969E-42C6-BBD8-556E72AC694B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5287075-7894-428A-BDAB-C080941730AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5287075-7894-428A-BDAB-C080941730AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5287075-7894-428A-BDAB-C080941730AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5287075-7894-428A-BDAB-C080941730AE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -500,6 +526,13 @@ Global
 		{219B87C2-403F-44DF-8DC6-D538BAF74F54} = {40851FED-58C9-4C0C-8079-4113AC24324C}
 		{FC70A3B9-0E58-4338-BE0A-945334703CBD} = {219B87C2-403F-44DF-8DC6-D538BAF74F54}
 		{0143BE55-2A14-48DD-BA2B-4BFE95765367} = {FC70A3B9-0E58-4338-BE0A-945334703CBD}
+		{685BD276-1A10-4510-B44B-D879B66AFFA5} = {40851FED-58C9-4C0C-8079-4113AC24324C}
+		{700158EA-E3AA-434C-A582-16F9F16F7869} = {685BD276-1A10-4510-B44B-D879B66AFFA5}
+		{FD6873AC-3CD3-43EA-86FB-54CB38D7CDEF} = {700158EA-E3AA-434C-A582-16F9F16F7869}
+		{DAE94B3D-969E-42C6-BBD8-556E72AC694B} = {700158EA-E3AA-434C-A582-16F9F16F7869}
+		{04E08921-3DA2-40CD-BE08-01AB8FA65220} = {40851FED-58C9-4C0C-8079-4113AC24324C}
+		{1FC9F3DB-F320-49C9-85F0-D01C6297D112} = {04E08921-3DA2-40CD-BE08-01AB8FA65220}
+		{D5287075-7894-428A-BDAB-C080941730AE} = {1FC9F3DB-F320-49C9-85F0-D01C6297D112}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4213A503-31D0-466C-BFF9-CF5045231DC5}

@@ -2,8 +2,7 @@
 using Catalogs.Application.CQRS.Category.Command.CreateCategory;
 using Catalogs.Common.Dtos;
 using Catalogs.Domain.Aggregate.CategoryAggregate;
-using ECommerceLP.Common.Collections.Abstract;
-using ECommerceLP.Common.Collections.Concrete;
+using ECommerceLP.Core.Abstraction.Collections;
 using System;
 using System.Collections.Generic;
 using System.Linq;

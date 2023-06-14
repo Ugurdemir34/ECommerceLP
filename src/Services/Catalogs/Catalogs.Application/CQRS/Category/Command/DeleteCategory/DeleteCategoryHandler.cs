@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Catalogs.Persistence.Context;
 using ECommerceLP.Core.CQRS.Abstraction.Command;
 using ECommerceLP.Core.UnitOfWork.Abstraction;
 using System;
@@ -11,9 +12,9 @@ namespace Catalogs.Application.CQRS.Category.Command.DeleteCategory
 {
     public class DeleteCategoryHandler : ICommandHandler<DeleteCategoryCommand, bool>
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IUnitOfWork<CatalogContext> _unitOfWork;
         private IMapper _mapper;
-        public DeleteCategoryHandler(IUnitOfWork unitOfWork, IMapper mapper)
+        public DeleteCategoryHandler(IUnitOfWork<CatalogContext> unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;

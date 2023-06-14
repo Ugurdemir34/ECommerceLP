@@ -74,7 +74,7 @@ namespace ECommerceLP.Common.Collections.Extensions
         {
             if (indexFrom > pageIndex)
             {
-                throw new Exception(
+                throw new ApplicationException(
                     $"indexFrom: {indexFrom} > pageIndex: {pageIndex}, must indexFrom <= pageIndex");
             }
 

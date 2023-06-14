@@ -13,7 +13,7 @@ namespace ECommerceLP.Common.Collections.Concrete
         {
             if (indexFrom > pageIndex)
             {
-                throw new Exception(
+                throw new ApplicationException(
                     $"IndexFrom: {indexFrom} > PageIndex: {pageIndex}, must indexFrom <= pageIndex");
             }
 

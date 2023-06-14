@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ECommerceLP.Core.Abstraction.Exception;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,7 @@ namespace ECommerceLP.Core.Abstraction.Collections
         {
             if (indexFrom > pageIndex)
             {
-                throw new Exception(
+                throw new CustomException(
                     $"IndexFrom: {indexFrom} > PageIndex: {pageIndex}, must indexFrom <= pageIndex");
             }
 

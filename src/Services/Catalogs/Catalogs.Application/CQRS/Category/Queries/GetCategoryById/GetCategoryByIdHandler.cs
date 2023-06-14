@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Catalogs.Common.Dtos;
+using Catalogs.Persistence.Context;
 using ECommerceLP.Core.CQRS.Abstraction.Query;
 using ECommerceLP.Core.UnitOfWork.Abstraction;
 using CategoryEntity = Catalogs.Domain.Aggregate.CategoryAggregate.Category;
@@ -7,9 +8,9 @@ namespace Catalogs.Application.CQRS.Category.Queries.GetCategoryById
 {
     public class GetCategoryByIdHandler : IQueryHandler<GetCategoryByIdQuery, CategoryDto>
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IUnitOfWork<CatalogContext> _unitOfWork;
         private IMapper _mapper;
-        public GetCategoryByIdHandler(IUnitOfWork unitOfWork, IMapper mapper)
+        public GetCategoryByIdHandler(IUnitOfWork<CatalogContext> unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;

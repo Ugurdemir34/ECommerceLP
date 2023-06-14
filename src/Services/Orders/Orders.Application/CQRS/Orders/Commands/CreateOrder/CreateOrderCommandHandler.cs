@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Orders.Application.CQRS.Orders.Extensions;
 using Orders.Common.Dtos;
 using Orders.Domain.Aggregate.OrderAggregates;
+using Orders.Persistence.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,9 +18,9 @@ namespace Orders.Application.CQRS.Orders.Commands.CreateOrder
     public class CreateOrderCommandHandler : ICommandHandler<CreateOrderCommand, OrderDto>
     {
         private readonly IHttpContextAccessor _accessor;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IUnitOfWork<OrderContext> _unitOfWork;
         private IMapper _mapper;
-        public CreateOrderCommandHandler(IUnitOfWork unitOfWork, IMapper mapper, IHttpContextAccessor accessor)
+        public CreateOrderCommandHandler(IUnitOfWork<OrderContext> unitOfWork, IMapper mapper, IHttpContextAccessor accessor)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;

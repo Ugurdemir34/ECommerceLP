@@ -7,6 +7,7 @@ using Orders.Application.CQRS.Orders.Extensions;
 using Orders.Common.Constants;
 using Orders.Domain.Aggregate.OrderAggregates;
 using Orders.Domain.Aggregate.OrderAggregates.IntegrationEvents.Events;
+using Orders.Persistence.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,10 +18,10 @@ namespace Orders.Application.CQRS.Orders.Commands.ShippedOrder
 {
     public class ShippedOrderCommandHandler : ICommandHandler<ShippedOrderCommand, bool>
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IUnitOfWork<OrderContext> _unitOfWork;
         private readonly IEventBus _eventBus;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        public ShippedOrderCommandHandler(IUnitOfWork unitOfWork, IEventBus eventBus, IHttpContextAccessor httpContextAccessor)
+        public ShippedOrderCommandHandler(IUnitOfWork<OrderContext> unitOfWork, IEventBus eventBus, IHttpContextAccessor httpContextAccessor)
         {
             _unitOfWork = unitOfWork;
             _eventBus = eventBus;

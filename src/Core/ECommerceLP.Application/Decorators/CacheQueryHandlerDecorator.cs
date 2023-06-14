@@ -52,7 +52,7 @@ namespace ECommerceLP.Application.Decorators
             {
                 _distributedCache.Remove(key);
             }
-            throw new NotImplementedException();
+            throw new ApplicationException();
         }
     }
 }

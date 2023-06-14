@@ -4,13 +4,15 @@ using ECommerceLP.Core.UnitOfWork.Abstraction;
 using Identity.Application.CQRS.Users.Extensions;
 using Identity.Common.Dtos;
 using Identity.Domain.Aggregate.UserAggregate.Entities;
+using Identity.Persistence.Context;
+
 namespace Identity.Application.CQRS.Users.Commands.CreateUser
 {
     public class CreateUserCommandHandler : ICommandHandler<CreateUserCommand, CreateUserDTO>
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IUnitOfWork<UserContext> _unitOfWork;
         private IMapper _mapper;
-        public CreateUserCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
+        public CreateUserCommandHandler(IUnitOfWork<UserContext> unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;

@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Api\src\ECommerceLP.Core.Api\ECommerceLP.Core.Api.csproj" />
+    <ProjectReference Include="..\..\..\IOC\src\ECommerceLP.Core.IOC\ECommerceLP.Core.IOC.csproj" />
     <ProjectReference Include="..\ECommerceLP.Core.UnitOfWork.Abstraction\ECommerceLP.Core.UnitOfWork.Abstraction.csproj" />
   </ItemGroup>
 

@@ -12,8 +12,20 @@ namespace ECommerceLP.Core.Abstraction.Messaging.Response
         {
             this.Body = body;
         }
+        public Response(T body, bool isSuccess,string error)
+        {
+            this.Body = body;
+            this.Errors = error;
+        }
+        public Response(T body, bool isSuccess, string error,string exceptionType)
+        {
+            this.Body = body;
+            this.Errors = error;
+            this.ExceptionType = exceptionType;
+        }
         public T Body { get; set; }
-
+        public string Errors { get; set; }
+        public string ExceptionType { get; set; }
         public static Response<TBody> Success<TBody>(TBody body)
         {
             return new Response<TBody>(body, true);
@@ -22,6 +34,14 @@ namespace ECommerceLP.Core.Abstraction.Messaging.Response
         public static Response<TBody> Fail<TBody>(TBody body, int responseCode)
         {
             return new Response<TBody>(body, false, responseCode);
+        }
+        public static Response<TBody> Fail<TBody>(TBody body, string error)
+        {
+            return new Response<TBody>(body, false, error);
+        }
+        public static Response<TBody> Fail<TBody>(TBody body, string error, string exceptionType)
+        {
+            return new Response<TBody>(body, false, error,exceptionType);
         }
     }
 }
