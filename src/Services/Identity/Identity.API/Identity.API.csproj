@@ -37,6 +37,7 @@
     <ProjectReference Include="..\..\..\Core\ECommerceLP.Api\ECommerceLP.Api.csproj" />
     <ProjectReference Include="..\..\..\Core\ECommerceLP.Application\ECommerceLP.Application.csproj" />
     <ProjectReference Include="..\..\..\Core\ECommerceLP.Common\ECommerceLP.Common.csproj" />
+    <ProjectReference Include="..\..\..\Core\Logging\src\ECommerceLP.Core.Logging\ECommerceLP.Core.FileLogging.csproj" />
     <ProjectReference Include="..\..\..\Core\Serialization\src\ECommerceLP.Core.Serialization.JSON\ECommerceLP.Core.Serialization.JSON.csproj" />
     <ProjectReference Include="..\..\..\Core\UnitOfWork\src\ECommerceLP.Core.UnitOfWork\ECommerceLP.Core.UnitOfWork.csproj" />
     <ProjectReference Include="..\..\..\Infrastructure\ECommerceLP.Infrastructure\ECommerceLP.Infrastructure.csproj" />

@@ -9,6 +9,8 @@ using ECommerceLP.Core.UnitOfWork.Extensions;
 using ECommerceLP.Core.CQRS.Extensions;
 using ECommerceLP.Core.Serialization.JSON.Extensions;
 using ECommerceLP.Core.Api.Middlewares;
+using ECommerceLP.Core.FileLogging;
+using ECommerceLP.Core.FileLogging.Extensions;
 var builder = WebApplication.CreateBuilder(args);
 var conf = builder.Configuration;
 // Add services to the container.
@@ -22,6 +24,51 @@ builder.Services.AddCQRS();
 builder.Services.AddIdentityApplication();
 builder.Services.AddIdentityPersistence(builder.Configuration);
 builder.Services.AddIdentityInfrastructure();
+
+string contentRoot = builder.Services.BuildServiceProvider()
+                             .GetService<Microsoft.AspNetCore.Hosting.IHostingEnvironment>()
+                             .ContentRootPath;
+
+
+builder.Services.AddLogging(loggingBuilder =>
+{
+    var loggingSection = builder.Configuration.GetSection("Logging");
+    loggingBuilder.AddConfiguration(loggingSection);
+    loggingBuilder.AddConsole();
+
+    Action<FileLoggerOptions> resolveRelativeLoggingFilePath = (fileOpts) =>
+    {
+        fileOpts.FormatLogFileName = fName =>
+        {
+            return Path.IsPathRooted(fName) ? fName : Path.Combine(contentRoot, fName);
+        };
+    };
+
+    loggingBuilder.AddFile(loggingSection.GetSection("FileOne"), resolveRelativeLoggingFilePath);
+
+    // alternatively, you can configure 2nd file logger (or both) in the code:
+    /*loggingBuilder.AddFile("logs/app_debug.log", (fileOpts) => {
+        fileOpts.MinLevel = LogLevel.Debug;
+        resolveRelativeLoggingFilePath(fileOpts);
+    });*/
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //builder.Services.AddCoreApplication(builder.Configuration);
 builder.Services.AddJwtSettings(conf);

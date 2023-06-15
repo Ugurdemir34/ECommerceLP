@@ -6,13 +6,13 @@ using Identity.Application.CQRS.Users.Commands.CreateUser;
 using ECommerceLP.Core.Api.Controllers;
 using ECommerceLP.Core.CQRS.Abstraction;
 using ECommerceLP.Core.Abstraction.Messaging.Response;
+using Microsoft.Extensions.Logging;
 
 namespace Identity.API.Controllers
 {
     public class AuthController : BaseApi
     {
         private readonly IProcessor _processor;
-
         public AuthController(IProcessor processor)
         {
             _processor = processor;
@@ -25,6 +25,8 @@ namespace Identity.API.Controllers
             var command = new LoginUserCommand(login);
             var result = await _processor.ProcessAsync(command, cancellationToken);
             return this.ProduceResponse(result);
+            //_logger.Log(LogLevel.Warning, ex.Message, true, "hey");
+
         }
         [HttpPost("Register")]
         [ProducesResponseType(StatusCodes.Status200OK)]

@@ -17,10 +17,14 @@ namespace ECommerceLP.Core.UnitOfWork.Repository
         }
         public async Task<T> GetAsync(Expression<Func<T, bool>> predicate)
         {
+            if (predicate == null)
+            {
+                return null;
+            }
             var value = await _context.Set<T>().Where(predicate).FirstOrDefaultAsync();
             if (value == null)
             {
-                throw new ApplicationException();
+                return null;
             }
             return value; 
         }

@@ -191,7 +191,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logging", "Logging", "{04E0
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1FC9F3DB-F320-49C9-85F0-D01C6297D112}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerceLP.Core.Logging.Abstraction", "src\Core\Logging\src\ECommerceLP.Core.Logging.Abstraction\ECommerceLP.Core.Logging.Abstraction.csproj", "{D5287075-7894-428A-BDAB-C080941730AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerceLP.Core.Logging.Abstraction", "src\Core\Logging\src\ECommerceLP.Core.Logging.Abstraction\ECommerceLP.Core.Logging.Abstraction.csproj", "{D5287075-7894-428A-BDAB-C080941730AE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerceLP.Core.FileLogging", "src\Core\Logging\src\ECommerceLP.Core.Logging\ECommerceLP.Core.FileLogging.csproj", "{19A8EA57-58D2-4B66-AAD4-1BCA05E12982}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -435,6 +437,10 @@ Global
 		{D5287075-7894-428A-BDAB-C080941730AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5287075-7894-428A-BDAB-C080941730AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5287075-7894-428A-BDAB-C080941730AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19A8EA57-58D2-4B66-AAD4-1BCA05E12982}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19A8EA57-58D2-4B66-AAD4-1BCA05E12982}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19A8EA57-58D2-4B66-AAD4-1BCA05E12982}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19A8EA57-58D2-4B66-AAD4-1BCA05E12982}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -533,6 +539,7 @@ Global
 		{04E08921-3DA2-40CD-BE08-01AB8FA65220} = {40851FED-58C9-4C0C-8079-4113AC24324C}
 		{1FC9F3DB-F320-49C9-85F0-D01C6297D112} = {04E08921-3DA2-40CD-BE08-01AB8FA65220}
 		{D5287075-7894-428A-BDAB-C080941730AE} = {1FC9F3DB-F320-49C9-85F0-D01C6297D112}
+		{19A8EA57-58D2-4B66-AAD4-1BCA05E12982} = {1FC9F3DB-F320-49C9-85F0-D01C6297D112}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4213A503-31D0-466C-BFF9-CF5045231DC5}
