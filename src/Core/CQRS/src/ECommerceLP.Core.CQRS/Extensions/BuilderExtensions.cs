@@ -1,6 +1,7 @@
 ﻿using ECommerceLP.Core.Abstraction.Exception;
 using ECommerceLP.Core.Abstraction.Extensions;
 using ECommerceLP.Core.CQRS.Abstraction;
+using ECommerceLP.Core.CQRS.Decorators;
 using ECommerceLP.Core.CQRS.Validation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,7 +24,6 @@ namespace ECommerceLP.Core.CQRS.Extensions
             }
             services.AddScoped(typeof(IProcessor), typeof(Processor));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
-
             return services;
         }
     }

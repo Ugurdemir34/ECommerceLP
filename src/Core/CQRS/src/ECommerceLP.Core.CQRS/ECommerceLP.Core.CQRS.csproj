@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Abstraction\src\ECommerceLP.Core.Abstraction\ECommerceLP.Core.Abstraction.csproj" />
+    <ProjectReference Include="..\..\..\Cache\src\ECommerceLP.Core.Cache.Abstraction\ECommerceLP.Core.Cache.Abstraction.csproj" />
     <ProjectReference Include="..\..\..\Security\src\ECommerceLP.Core.Security\ECommerceLP.Core.Security.csproj" />
     <ProjectReference Include="..\..\..\UnitOfWork\src\ECommerceLP.Core.UnitOfWork.Abstraction\ECommerceLP.Core.UnitOfWork.Abstraction.csproj" />
     <ProjectReference Include="..\ECommerceLP.Core.CQRS.Abstraction\ECommerceLP.Core.CQRS.Abstraction.csproj" />

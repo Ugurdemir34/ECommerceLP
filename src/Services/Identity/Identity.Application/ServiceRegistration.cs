@@ -16,7 +16,7 @@ namespace Identity.Application
 {
     public static class ServiceRegistration
     {
-        public static void AddIdentityApplication(this IServiceCollection serviceCollection, IConfiguration configuration=null)
+        public static void AddIdentityApplication(this IServiceCollection serviceCollection, IConfiguration configuration = null)
         {
             serviceCollection.AddMediatR(cfg =>
             {
@@ -28,7 +28,6 @@ namespace Identity.Application
             serviceCollection.AddScoped<IRequestHandler<CreateUserCommand, CreateUserDTO>, CreateUserCommandHandler>();
             serviceCollection.AddScoped<IRequestHandler<LoginUserCommand, LoginDto>, LoginUserCommandHandler>();
             serviceCollection.AddValidatorsFromAssemblyContaining<LoginUserCommandValidator>();
-
         }
     }
 }

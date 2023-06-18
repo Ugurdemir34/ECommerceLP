@@ -18,8 +18,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Core\CQRS\src\ECommerceLP.Core.CQRS.Abstraction\ECommerceLP.Core.CQRS.Abstraction.csproj" />
-    <ProjectReference Include="..\..\..\Core\ECommerceLP.Application\ECommerceLP.Application.csproj" />
-    <ProjectReference Include="..\..\..\Core\ECommerceLP.Common\ECommerceLP.Common.csproj" />
     <ProjectReference Include="..\..\..\Core\UnitOfWork\src\ECommerceLP.Core.UnitOfWork.Abstraction\ECommerceLP.Core.UnitOfWork.Abstraction.csproj" />
     <ProjectReference Include="..\Catalogs.Common\Catalogs.Common.csproj" />
     <ProjectReference Include="..\Catalogs.Domain\Catalogs.Domain.csproj" />
