@@ -1,8 +1,7 @@
 ﻿using Baskets.Domain.Aggregate.BasketAggregate;
 using Baskets.Domain.Repositories;
 using Baskets.Persistence.Contexts;
-using ECommerceLP.Application.Repositories;
-using ECommerceLP.Infrastructure.Repository;
+using ECommerceLP.Core.UnitOfWork.Abstraction;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -13,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Baskets.Persistence.Repositories
 {
-    public class BasketRepository:CustomRepository,IBasketRepository
+    public class BasketRepository:ICustomRepository,IBasketRepository
     {
         private readonly BasketContext _context;
         public BasketRepository(BasketContext context)

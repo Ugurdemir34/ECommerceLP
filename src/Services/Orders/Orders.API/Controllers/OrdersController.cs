@@ -12,7 +12,7 @@ using Orders.Common.Dtos;
 
 namespace Orders.API.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class OrdersController : BaseApi
     {
         private readonly IProcessor _processor;
@@ -22,7 +22,8 @@ namespace Orders.API.Controllers
             _processor = processor;
         }
 
-        [HttpPost("")]
+        [HttpPost]
+        [Route("Create")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<Response<OrderDto>> Create(CreateOrderRequest request, CancellationToken cancellationToken)
         {
@@ -38,7 +39,8 @@ namespace Orders.API.Controllers
         //    var result = await _processor.ProcessAsync(command, cancellationToken);
         //    return this.ProduceResponse(result);
         //}
-        [HttpDelete("")]
+        [HttpDelete]
+        [Route("Delete")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<Response<bool>> Delete(DeleteOrderRequest request, CancellationToken cancellationToken)
         {
@@ -47,7 +49,8 @@ namespace Orders.API.Controllers
             return this.ProduceResponse(result);
         }
 
-        [HttpPost("Confirm")]
+        [HttpPost]
+        [Route("Confirm")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<Response<bool>> Confirm(ConfirmOrderRequest request, CancellationToken cancellationToken)
         {
@@ -55,7 +58,8 @@ namespace Orders.API.Controllers
             var result = await _processor.ProcessAsync(command, cancellationToken);
             return this.ProduceResponse(result);
         }
-        [HttpPost("Shipped")]
+        [HttpPost]
+        [Route("Shipped")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<Response<bool>> Shipped(ShippedOrderRequest request, CancellationToken cancellationToken)
         {

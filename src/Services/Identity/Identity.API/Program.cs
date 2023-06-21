@@ -2,7 +2,6 @@ using Identity.API.Extensions;
 using Identity.Application;
 using Identity.Persistence.Context;
 using Identity.Persistence;
-using ECommerceLP.Application;
 using Identity.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using ECommerceLP.Core.UnitOfWork.Extensions;
@@ -45,32 +44,8 @@ builder.Services.AddLogging(loggingBuilder =>
     };
 
     loggingBuilder.AddFile(loggingSection.GetSection("FileOne"), resolveRelativeLoggingFilePath);
-
-    // alternatively, you can configure 2nd file logger (or both) in the code:
-    /*loggingBuilder.AddFile("logs/app_debug.log", (fileOpts) => {
-        fileOpts.MinLevel = LogLevel.Debug;
-        resolveRelativeLoggingFilePath(fileOpts);
-    });*/
-
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//builder.Services.AddCoreApplication(builder.Configuration);
 builder.Services.AddJwtSettings(conf);
 builder.Services.AddJSONSerialization();
 var app = builder.Build();

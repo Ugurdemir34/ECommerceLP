@@ -25,9 +25,10 @@ namespace Catalogs.API.Controllers
         }
         #endregion
         #region GetCategoriesAsync
-        [HttpGet("GetCategories")]
+        [HttpGet]
+        [Route("GetCategories")]
         [ProducesResponseType(typeof(PagedList<CategoryDto>), StatusCodes.Status200OK)]
-        public async Task<Response<PagedList<CategoryDto>>> GetCategories([FromBody] CategoryRequest request, CancellationToken cancellationToken)
+        public async Task<Response<PagedList<CategoryDto>>> GetCategories(CategoryRequest request, CancellationToken cancellationToken)
         {
             var query = new GetCategoriesQuery(request);
             var result = await _processor.ProcessAsync(query, cancellationToken);
@@ -36,7 +37,8 @@ namespace Catalogs.API.Controllers
         #endregion
         #region GetCategoryById
         [Authorize]
-        [HttpGet("GetCategoryById")]
+        [HttpGet]
+        [Route("GetCategoryById")]
         [ProducesResponseType(typeof(CategoryDto), StatusCodes.Status200OK)]
         public async Task<Response<CategoryDto>> GetCategoryById([FromBody] CategoryByIdRequest request, CancellationToken cancellationToken)
         {
@@ -46,8 +48,9 @@ namespace Catalogs.API.Controllers
         }
         #endregion
         #region CreateCategory
-        [Authorize]
-        [HttpPost("CreateCategory")]
+        //[Authorize]
+        [HttpPost]
+        [Route("Create")]
         [ProducesResponseType(typeof(CategoryDto), StatusCodes.Status200OK)]
         public async Task<Response<CategoryDto>> CreateCategory([FromBody] CreateCategoryRequest request, CancellationToken cancellationToken)
         {
@@ -57,7 +60,8 @@ namespace Catalogs.API.Controllers
         }
         #endregion
         #region DeleteCategory
-        [HttpDelete("DeleteCategory")]
+        [HttpDelete]
+        [Route("Delete")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<bool> DeleteCategory(DeleteCategoryRequest request,CancellationToken cancellationToken)
         {

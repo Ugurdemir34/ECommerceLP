@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Core\ECommerceLP.Application\ECommerceLP.Application.csproj" />
+    <ProjectReference Include="..\..\..\Core\Abstraction\src\ECommerceLP.Core.Abstraction\ECommerceLP.Core.Abstraction.csproj" />
     <ProjectReference Include="..\Orders.Domain\Orders.Domain\Orders.Domain.csproj" />
   </ItemGroup>
 

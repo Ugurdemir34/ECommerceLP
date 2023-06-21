@@ -27,9 +27,7 @@
     <ProjectReference Include="..\..\..\Core\Api\src\ECommerceLP.Core.Api\ECommerceLP.Core.Api.csproj" />
     <ProjectReference Include="..\..\..\Core\Cache\src\ECommerceLP.Core.Cache.Redis\ECommerceLP.Core.Cache.Redis.csproj" />
     <ProjectReference Include="..\..\..\Core\CQRS\src\ECommerceLP.Core.CQRS\ECommerceLP.Core.CQRS.csproj" />
-    <ProjectReference Include="..\..\..\Core\ECommerceLP.Api\ECommerceLP.Api.csproj" />
     <ProjectReference Include="..\..\..\Core\UnitOfWork\src\ECommerceLP.Core.UnitOfWork\ECommerceLP.Core.UnitOfWork.csproj" />
-    <ProjectReference Include="..\..\..\Infrastructure\ECommerceLP.Infrastructure\ECommerceLP.Infrastructure.csproj" />
     <ProjectReference Include="..\Catalogs.Application\Catalogs.Application.csproj" />
     <ProjectReference Include="..\Catalogs.Persistence\Catalogs.Persistence.csproj" />
   </ItemGroup>

@@ -1,8 +1,4 @@
-﻿using ECommerceLP.Application.Services;
-using ECommerceLP.Application.Settings;
-using ECommerceLP.Common.Mail.Models;
-using ECommerceLP.Infrastructure.Mail;
-using EventBus.Base;
+﻿using EventBus.Base;
 using EventBus.Base.Abstraction;
 using EventBus.Factory;
 using Microsoft.Extensions.Configuration;
@@ -21,8 +17,6 @@ namespace NotificationService
         private const string SettingsFileName = "appsettings.json";
         public static void ConfigureServices(ServiceCollection serviceCollection)
         {
-            serviceCollection.AddOptions();
-            serviceCollection.AddScoped<IMailService, MailService>();
             serviceCollection.AddTransient<OrderConfirmIntegrationEventHandler>();
             serviceCollection.AddTransient<OrderShippedIntegrationEventHandler>();
             serviceCollection.AddSingleton<IEventBus>(sp =>
@@ -39,14 +33,14 @@ namespace NotificationService
         }
         public static void ConfigureSettings(ServiceCollection serviceCollection)
         {
-            var builder = new ConfigurationBuilder()
-                          .SetBasePath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "../../.."))
-                          .AddJsonFile(SettingsFileName, optional: false);
+            //var builder = new ConfigurationBuilder()
+            //              .SetBasePath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "../../.."))
+            //              .AddJsonFile(SettingsFileName, optional: false);
 
-            IConfiguration config = builder.Build();
-            serviceCollection.AddSmtpMail(config);
+            //IConfiguration config = builder.Build();
+            //serviceCollection.AddSmtpMail(config);
 
-            var mailSettings = config.GetSection("MailSettings").Get<SmtpSettings>();
+            //var mailSettings = config.GetSection("MailSettings").Get<SmtpSettings>();
         }
     }
 }

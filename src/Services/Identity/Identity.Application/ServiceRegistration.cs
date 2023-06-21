@@ -1,4 +1,4 @@
-﻿using ECommerceLP.Application.Repositories;
+﻿using ECommerceLP.Core.UnitOfWork.Abstraction;
 using FluentValidation;
 using Identity.Application.Common.Abstracts;
 using Identity.Application.CQRS.Users.Commands.CreateUser;
@@ -22,9 +22,7 @@ namespace Identity.Application
             {
                 cfg.RegisterServicesFromAssembly(AppDomain.CurrentDomain.Load("Identity.Application"));
             });
-            serviceCollection.AddAutoMapper(AppDomain.CurrentDomain.Load("Identity.Application"));
-            serviceCollection.AddScoped(typeof(ICommandRepository<>), typeof(CommandRepository<>));
-            serviceCollection.AddScoped(typeof(IQueryRepository<>), typeof(QueryRepository<>));
+            serviceCollection.AddAutoMapper(AppDomain.CurrentDomain.Load("Identity.Application"));           
             serviceCollection.AddScoped<IRequestHandler<CreateUserCommand, CreateUserDTO>, CreateUserCommandHandler>();
             serviceCollection.AddScoped<IRequestHandler<LoginUserCommand, LoginDto>, LoginUserCommandHandler>();
             serviceCollection.AddValidatorsFromAssemblyContaining<LoginUserCommandValidator>();

@@ -7,14 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Configurations\ocelot.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Configurations\ocelot.json" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.3" />
     <PackageReference Include="Ocelot" Version="19.0.2" />
     <PackageReference Include="Ocelot.Provider.Consul" Version="19.0.2" />

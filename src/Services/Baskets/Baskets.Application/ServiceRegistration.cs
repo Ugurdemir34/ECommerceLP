@@ -1,7 +1,6 @@
 ﻿using Baskets.Application.CQRS.BasketItems.Commands.CreateBasketItem;
 using Baskets.Application.CQRS.Baskets.Commands.CreateBasket;
 using Baskets.Domain.Repositories;
-using ECommerceLP.Application.Repositories;
 using EventBus.Base.Abstraction;
 using MediatR;
 using Microsoft.Extensions.Configuration;
@@ -23,8 +22,8 @@ namespace Baskets.Application
                 cfg.RegisterServicesFromAssembly(AppDomain.CurrentDomain.Load("Baskets.Application"));
             });
             serviceCollection.AddAutoMapper(AppDomain.CurrentDomain.Load("Baskets.Application"));
-            serviceCollection.AddScoped(typeof(ICommandRepository<>), typeof(CommandRepository<>));
-            serviceCollection.AddScoped(typeof(IQueryRepository<>), typeof(QueryRepository<>));
+            //serviceCollection.AddScoped(typeof(ICommandRepository<>), typeof(CommandRepository<>));
+            //serviceCollection.AddScoped(typeof(IQueryRepository<>), typeof(QueryRepository<>));
             serviceCollection.AddScoped<IRequestHandler<CreateBasketCommand, bool>, CreateBasketCommandHandler>();
             serviceCollection.AddScoped<IRequestHandler<CreateBasketItemCommand, bool>, CreateBasketItemCommandHandler>();
             //serviceCollection.AddValidatorsFromAssemblyContaining<CreateOrderCommandValidator>();

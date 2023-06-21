@@ -1,5 +1,5 @@
 ﻿using BCrypt.Net;
-using ECommerceLP.Application.Settings;
+using ECommerceLP.Core.Abstraction.Settings;
 using Identity.Application.Common.Abstracts;
 using Identity.Common.Dtos;
 using Identity.Common.Enums;
