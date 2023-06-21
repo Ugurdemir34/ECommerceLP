@@ -5,18 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NotificationService.IntegrationEvents.Events;
-using ECommerceLP.Application.Services;
-using ECommerceLP.Common.Mail.Models;
 
 namespace NotificationService.IntegrationEvents.EventHandlers
 {
     public class OrderConfirmIntegrationEventHandler : IIntegrationEventHandler<OrderConfirmIntegrationEvent>
     {
-        private readonly IMailService _mailService;
-
-        public OrderConfirmIntegrationEventHandler(IMailService mailService)
+        public OrderConfirmIntegrationEventHandler()
         {
-            _mailService = mailService;
         }
 
         public Task Handle(OrderConfirmIntegrationEvent @event)

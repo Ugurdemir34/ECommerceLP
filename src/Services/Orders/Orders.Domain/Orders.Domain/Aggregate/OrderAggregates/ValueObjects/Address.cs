@@ -1,4 +1,4 @@
-﻿using ECommerceLP.Domain.Common.Classes;
+﻿using ECommerceLP.Core.DDD.Abstraction;
 using System;
 using System.Collections.Generic;
 using System.Linq;

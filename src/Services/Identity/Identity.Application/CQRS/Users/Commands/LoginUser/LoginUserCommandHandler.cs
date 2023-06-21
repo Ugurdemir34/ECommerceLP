@@ -32,19 +32,17 @@ namespace Identity.Application.CQRS.Users.Commands.LoginUser
         {
             var repo = _unitOfWork.GetQueryRepository<ModelUser>();
             var user = await repo.GetAsync(u => u.UserName == request.UserName);
-            if(user == null)
+            if (user == null)
             {
-                var ex = new CustomBusinessException(Messages.UserNameOrPasswordInCorrect);
-                _logger.Log(LogLevel.Warning, ex.Message, true, request);
-                throw ex;
+                _logger.Log(LogLevel.Error, Messages.UserNameOrPasswordInCorrect, true, request);
+                throw new CustomBusinessException(Messages.UserNameOrPasswordInCorrect);
             }
             if (!SecurityHashing.ValidateHash(HashAlgorithmType.Sha256, user.PasswordHash, request.Password))
             {
-                var ex = new CustomBusinessException(Messages.UserNameOrPasswordInCorrect);
-                _logger.Log(LogLevel.Warning, ex.Message, true, request);
-                throw ex;
+                _logger.Log(LogLevel.Error, Messages.UserNameOrPasswordInCorrect, true, request);
+                throw new CustomBusinessException(Messages.UserNameOrPasswordInCorrect);
             }
-            return _authentication.GenerateToken(user.UserName, user.Id,user.UserType);
+            return _authentication.GenerateToken(user.UserName, user.Id, user.UserType);
 
         }
     }

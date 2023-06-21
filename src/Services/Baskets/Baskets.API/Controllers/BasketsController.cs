@@ -16,14 +16,14 @@ namespace Baskets.API.Controllers
             _processor = processor;
         }
 
-        [HttpPost("")]
+        [HttpPost]
+        [Route("Create")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<Response<bool>> Create(CreateBasketRequest request, CancellationToken cancellationToken)
+        public async Task<Response<bool>> CreateBasket(CreateBasketRequest request, CancellationToken cancellationToken)
         {
             var command = new CreateBasketCommand(request);
             var result = await _processor.ProcessAsync(command, cancellationToken);
             return this.ProduceResponse(result);
         }
-
     }
 }

@@ -18,7 +18,8 @@ namespace Identity.API.Controllers
             _processor = processor;
         }
 
-        [HttpPost("Login")]
+        [HttpPost]
+        [Route("Login")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<Response<LoginDto>> Login(LoginRequest login, CancellationToken cancellationToken)
         {
@@ -28,7 +29,8 @@ namespace Identity.API.Controllers
             //_logger.Log(LogLevel.Warning, ex.Message, true, "hey");
 
         }
-        [HttpPost("Register")]
+        [HttpPost]
+        [Route("Register")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<Response<CreateUserDTO>> Register(RegisterRequest login, CancellationToken cancellationToken)
         {

@@ -8,7 +8,7 @@ using ECommerceLP.Core.Serialization.JSON;
 using Microsoft.EntityFrameworkCore;
 using Baskets.Infrastructure;
 using ECommerceLP.Core.Serialization.JSON.Extensions;
-
+using ECommerceLP.Core.CQRS.Extensions;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -18,6 +18,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 //builder.Services.AddCoreApplication(builder.Configuration);
+builder.Services.AddCQRS();
 builder.Services.AddUnitOfWork();
 builder.Services.AddJSONSerialization();
 builder.Services.AddBasketPersistence(builder.Configuration);

@@ -1,4 +1,5 @@
 ﻿using ECommerceLP.Core.Abstraction.Cache;
+using ECommerceLP.Core.CQRS.Abstraction;
 using ECommerceLP.Core.CQRS.Abstraction.Query;
 using ECommerceLP.Core.UnitOfWork.Abstraction;
 using MediatR;
@@ -15,17 +16,15 @@ namespace ECommerceLP.Core.CQRS.Decorators
     public class CacheQueryHandlerDecorator<TQuery, TResult> : IQueryHandler<TQuery, TResult> where TQuery : IQuery<TResult>
     {
         private readonly IRequestHandler<TQuery, TResult> _decorated;
-        private readonly IUnitOfWork _unitOfWork;
         private readonly IECommerceCache _cache;
         private readonly IConfiguration _configuration;
         private bool isCacheable;
-        public CacheQueryHandlerDecorator(IRequestHandler<TQuery, TResult> decorated, IUnitOfWork unitOfWork, IConfiguration configuration, IECommerceCache cache)
+        public CacheQueryHandlerDecorator(IRequestHandler<TQuery, TResult> decorated, IConfiguration configuration, IECommerceCache cache)
         {
             _decorated = decorated;
-            _unitOfWork = unitOfWork;
             _configuration = configuration;
             _cache = cache;
-            //isCacheRemoveble = this._decorated.GetType().GetInterfaces().Any(x => x.Name == nameof(ICommandRemoveCache));
+            isCacheable = this._decorated.GetType().GetInterfaces().Any(x => x.Name == nameof(IQueryCacheable));
         }
 
         public async Task<TResult> Handle(TQuery command, CancellationToken cancellationToken)
@@ -39,13 +38,24 @@ namespace ECommerceLP.Core.CQRS.Decorators
                     result = await this._decorated.Handle(command, cancellationToken);
                     return result;
                 }
-                //var cacheKey = this.Get
+                var cacheKey = this.GetCacheKey(command);
+                var value = await this._cache.GetValue<TResult>(cacheKey);
+                if (value != null)
+                {
+                    result = value;
+                }
+                else
+                {
+                    result = await this._decorated.Handle(command, cancellationToken);
+                    await this._cache.SetValue(cacheKey, result);
+                }
             }
             catch (Exception)
             {
 
-                throw;
+                throw new ApplicationException("An error occured !");
             }
+            return result;
             //var result = await _decorated.Handle(command, cancellationToken);
 
             //if (isCacheRemoveble)

@@ -2,6 +2,7 @@
 using ECommerceLP.Core.Api.Exceptions.Base;
 using ECommerceLP.Core.IOC;
 using ECommerceLP.Core.UnitOfWork.Abstraction;
+using ECommerceLP.Core.UnitOfWork.Repository;
 using ECommerceLP.Core.UnitOfWork.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,6 +25,8 @@ namespace ECommerceLP.Core.UnitOfWork.Extensions
             services.AddScoped(typeof(IUnitOfWork<>), typeof(ECommerceLP.Core.UnitOfWork.UnitOfWork.UnitOfWork<>));
             //services.AddScoped(typeof(IRepositoryFactory<>),
             //         provider => provider.GetService(typeof(IUnitOfWork<>)));
+            services.AddScoped(typeof(ICommandRepository<>), typeof(CommandRepository<>));
+            services.AddScoped(typeof(IQueryRepository<>), typeof(QueryRepository<>));
 
             var discovery = AssemblyDiscovery.GetInstance();
             foreach (var assembly in discovery.RepositoryAssemblies)

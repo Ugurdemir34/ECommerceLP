@@ -1,21 +1,12 @@
 using Catalogs.Application;
 using Catalogs.Persistence;
 using Catalogs.Persistence.Context;
-using ECommerceLP.Application;
-using ECommerceLP.Application.Decorators;
-using ECommerceLP.Application.Services;
-using ECommerceLP.Infrastructure.Cache;
-using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using ECommerceLP.Core.CQRS.Extensions;
 using ECommerceLP.Core.UnitOfWork.Extensions;
-using ECommerceLP.Core.UnitOfWork.Abstraction;
-using ECommerceLP.Core.UnitOfWork.UnitOfWork;
-using ECommerceLP.Core.CQRS.Abstraction;
-using ECommerceLP.Core.CQRS;
-using ECommerceLP.Common.Collections.Abstract;
-using ECommerceLP.Common.Collections.Concrete;
+using ECommerceLP.Core.Cache.Redis.Extensions;
+using MediatR;
+using ECommerceLP.Core.CQRS.Decorators;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,7 +16,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+builder.Services.AddRedis(builder.Configuration);
 
 builder.Services.AddCQRS();
 builder.Services.AddMediatR(cfg =>
@@ -35,6 +26,8 @@ builder.Services.AddMediatR(cfg =>
 builder.Services.AddUnitOfWork();
 builder.Services.AddCatalogPersistence(builder.Configuration);
 builder.Services.AddCatalogApplication(builder.Configuration);
+builder.Services.Decorate(typeof(IRequestHandler<,>), typeof(CacheQueryHandlerDecorator<,>));
+
 //builder.Services.AddTransient(typeof(IUnitOfWork<CatalogContext>), typeof(UnitOfWork<CatalogContext>));
 //builder.Services.AddScoped<ICacheService, RedisService>();
 //builder.Services.AddCoreApplication(builder.Configuration);

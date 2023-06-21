@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Abstraction\src\ECommerceLP.Core.Abstraction\ECommerceLP.Core.Abstraction.csproj" />
+    <ProjectReference Include="..\ECommerceLP.Core.Cache.Abstraction\ECommerceLP.Core.Cache.Abstraction.csproj" />
   </ItemGroup>
 
 </Project>

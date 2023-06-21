@@ -1,10 +1,6 @@
-using ECommerceLP.Application;
-using ECommerceLP.Infrastructure;
 using Orders.Persistence;
 using Orders.Persistence.Context;
 using Orders.Application;
-using ECommerceLP.Infrastructure.UnitOfWork;
-using ECommerceLP.Application.Settings;
 using Swashbuckle.AspNetCore.Filters;
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
@@ -85,7 +81,6 @@ using (var scope = app.Services.CreateScope())
 
 
 app.UseHttpsRedirection();
-app.UseExceptionHandler();
 
 app.UseAuthentication();
 

@@ -15,7 +15,7 @@ namespace Baskets.API.Controllers
         {
             _processor = processor;
         }
-        [HttpPost("")]
+        [HttpPost("Create")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<Response<bool>> Create(CreateBasketRequest request, CancellationToken cancellationToken)
         {
