@@ -9,6 +9,16 @@ services:
         restart: always
         ports:
             - "1433:1433"
+        volumes:
+            - dbdata:/var/opt/mssql
+
+    redis:
+        container_name: redis
+        restart: always
+        ports: 
+            - "6379:6379"
+        volumes:
+            - redisdata:/var/opt/redis
 
     rabbitmq:
         container_name: rabbitmq
@@ -28,3 +38,32 @@ services:
             - rabbitmq
         ports:
             - "8001:80"
+
+    catalog.api:
+         container_name: catalog.api
+         environment:
+            - ASPNETCORE_ENVIRONMENT=Development
+            - "ConnectionStrings:CatalogDB=Server=db;Database=ECommerceDB;User Id=sa;Password=Password123.;Encrypt=False"           
+            #- RedisConfiguration_Url=redis
+            #- RedisConfiguration_Port=6379
+            #- RedisConfiguration_Host=redis:6379
+         depends_on:
+            - db
+            - redis
+         ports:
+            - "8002:80"
+
+    identity.api:
+         container_name: identity.api
+         environment:
+            - ASPNETCORE_ENVIRONMENT=Development
+            - "ConnectionStrings:UserDB=Server=db;Database=ECommerceDB;User Id=sa;Password=Password123.;Encrypt=False"           
+         depends_on:
+            - db
+         ports:
+            - "8003:80"
+
+
+volumes:
+    dbdata:
+    redisdata:

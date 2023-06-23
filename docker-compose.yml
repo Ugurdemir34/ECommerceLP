@@ -4,6 +4,12 @@ services:
 
   db:
     image: mcr.microsoft.com/mssql/server:2017-latest  
+
+  redis:
+    image: redis:alpine
+
+  rabbitmq:
+    image: rabbitmq:3-management 
     
   order.api:
     image: orderingapi
@@ -11,5 +17,16 @@ services:
       context: .
       dockerfile: src\Services\Orders\Orders.API\Dockerfile
 
-  rabbitmq:
-    image: rabbitmq:3-management  
+  catalog.api:
+    image: catalogapi
+    build:
+      context: .
+      dockerfile: src\Services\Catalogs\Catalogs.API\Dockerfile
+
+  identity.api:
+    image: identityapi
+    build:
+      context: .
+      dockerfile: src\Services\Identity\Identity.API\Dockerfile
+
+   
