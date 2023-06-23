@@ -10,6 +10,7 @@ using EventBus.Factory;
 using Microsoft.Extensions.DependencyInjection;
 using ECommerceLP.Core.UnitOfWork.Extensions;
 using ECommerceLP.Core.CQRS.Extensions;
+using RabbitMQ.Client;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -53,6 +54,13 @@ builder.Services.AddSingleton<IEventBus>(sp =>
         EventNameSuffix = "IntegrationEvent",
         SubscriberClientAppName = "OrderService",
         EventBusType = EventBusType.RabbitMQ
+        //Connection = new ConnectionFactory()
+        //{
+        //    HostName = "localhost",
+        //    Port=15762,
+        //    UserName="guest",
+        //    Password="guest"
+        //}
     };
     return EventBusFactory.Create(config, sp);
 });

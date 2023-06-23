@@ -1,63 +1,15 @@
 version: '3.8'
 
 services:
-  db:
-        image: "mcr.microsoft.com/mssql/server:2022-latest"
-        ports:
-          - "1433:1433"
 
-        environment:
-            SA_PASSWORD: "Password123."
-            ACCEPT_EULA: "Y"
- 
+  db:
+    image: mcr.microsoft.com/mssql/server:2017-latest  
+    
   order.api:
-    #image: catalog-api
-    #container_name: ms-catalog-api
+    image: orderingapi
     build:
       context: .
       dockerfile: src\Services\Orders\Orders.API\Dockerfile
-    ports:
-      - "8181:81"
-    depends_on:
-      - db
-
-
-  catalog.api:
-    #image: catalog-api
-    #container_name: ms-catalog-api
-    build:
-      context: .
-      dockerfile: src\Services\Catalogs\Catalogs.API\Dockerfile
-    ports:
-      - "8282:85"
-    depends_on:
-      - db
-    #restart: always
-
 
   rabbitmq:
-    image: rabbitmq
-    container_name: 'rabbitmq'
-    ports:
-      - "15672:15672"
-      - "5672:5672"
-    environment:
-      - RABBITMQ_DEFAULT_USER=guest
-      - RABBITMQ_DEFAULT_PASS=guest
-    volumes:
-        - "/rabbitmq/:/var/lib/rabbitmq/"
-    restart: always
-
-  #redis:
-  #  container_name: "redis"
-  #  image: redis:alpine
-  #  ports:
-  #    - "6379:6379"
-  #  command: redis-server /usr/local/etc/redis/redis.conf --requirepass asdfg12345
-      
-  #  volumes:
-  #     -  /redis.conf:/usr/local/etc/redis/redis.conf
-  #  restart: always
-
-
-   
+    image: rabbitmq:3-management  
