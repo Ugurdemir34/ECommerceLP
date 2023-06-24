@@ -63,6 +63,34 @@ services:
          ports:
             - "8003:80"
 
+    basket.api:
+         container_name: basket.api
+         environment:
+            - ASPNETCORE_ENVIRONMENT=Development
+            - "ConnectionStrings:BasketDB=Server=db;Database=ECommerceDB;User Id=sa;Password=Password123.;Encrypt=False"           
+         depends_on:
+            - db
+         ports:
+            - "8004:80"
+
+    product.api:
+         container_name: product.api
+         environment:
+            - ASPNETCORE_ENVIRONMENT=Development
+            - "ConnectionStrings:ProductDB=Server=db;Database=ECommerceDB;User Id=sa;Password=Password123.;Encrypt=False"           
+         depends_on:
+            - db
+         ports:
+            - "8005:80"
+
+    notification.service:
+         container_name: notification.service
+         environment:
+            - ASPNETCORE_ENVIRONMENT=Development
+         ports:
+            - "8006:80"
+         depends_on:
+            - rabbitmq
 
 volumes:
     dbdata:

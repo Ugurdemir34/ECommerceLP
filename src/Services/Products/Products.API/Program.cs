@@ -1,4 +1,7 @@
+using Microsoft.EntityFrameworkCore;
 using Products.Persistence;
+using Products.Persistence.Context;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -16,7 +19,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<ProductContext>();
+    dbContext.Database.Migrate();
+}
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

@@ -28,5 +28,23 @@ services:
     build:
       context: .
       dockerfile: src\Services\Identity\Identity.API\Dockerfile
+ 
+  basket.api:
+    image: basketapi
+    build:
+      context: .
+      dockerfile: src\Services\Baskets\Baskets.API\Dockerfile
+
+  product.api:
+    image: productapi
+    build:
+      context: .
+      dockerfile: src\Services\Products\Products.API\Dockerfile
+
+  notification.service:
+    image: notificationservice
+    build:
+       context: .
+       dockerfile: src\Services\Notification\NotificationService\Dockerfile
 
    
