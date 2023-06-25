@@ -17,6 +17,12 @@ services:
       context: .
       dockerfile: src\Services\Orders\Orders.API\Dockerfile
 
+  api.gateway:
+     image: apigateway
+     build:
+      context: .
+      dockerfile: src\ApiGateways\WebApiGateway\Web.ApiGateway\Dockerfile  
+
   catalog.api:
     image: catalogapi
     build:

@@ -27,6 +27,22 @@ services:
             - "5672:5672"
             - "15672:15672"
 
+    api.gateway:
+        container_name: api.gateway
+        restart: always
+        ports: 
+            - "9141:80"
+        expose:
+            - "8001:80"
+            - "8002:80"
+            - "8003:80"
+            - "8004:80"
+            - "8005:80"
+            - "8006:80"
+        #volumes:
+        #    - ./path/to/certificate.crt:/etc/ssl/certs/certificate.crt:ro
+        #environment:
+        #     - ASPNETCORE_Kestrel__Certificates__Default__Path=/etc/ssl/certs/certificate.crt
     order.api:
         container_name: order.api
         environment:
