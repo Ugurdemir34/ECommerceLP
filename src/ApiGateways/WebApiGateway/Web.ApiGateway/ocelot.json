@@ -3,12 +3,7 @@
     {
       "DownstreamPathTemplate": "/api/baskets/Create",
       "DownstreamScheme": "https",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "basket.api",
-          "Port": 7296
-        }
-      ],
+      "ServiceName": "basketapi",
       "UpstreamPathTemplate": "/api/baskets/Create",
       "UpstreamHttpMethod": [ "POST" ],
       "UpstreamScheme": "https"
@@ -16,156 +11,101 @@
     {
       "DownstreamPathTemplate": "/api/BasketItems/Create",
       "DownstreamScheme": "https",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "basket.api",
-          "Port": 7296
-        }
-      ],
+      "ServiceName": "basketapi",
       "UpstreamPathTemplate": "/api/BasketItems/Create",
       "UpstreamHttpMethod": [ "POST" ],
       "UpstreamScheme": "https"
     },
     {
-      "DownstreamPathTemplate": "/api/Catalogs/GetCategories",
-      "DownstreamScheme": "https",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 7042
-        }
-      ],
-      "UpstreamPathTemplate": "/api/Catalogs/GetCategories",
-      "UpstreamHttpMethod": [ "GET" ],
-      "UpstreamScheme": "https",
-      "RateLimitOptions": {
-        "ClientWhitelist": [
-
-        ],
-        "EnableRateLimiting": true,
-        "Period": "1s",
-        "PeriodTimespan": 1,
-        "Limit": 10,
-        "QuotaExceedMessage": "Too Many Requests"
-      }
+      "DownstreamPathTemplate": "/api/catalogs/getcategories",
+      "DownstreamScheme": "http",
+      "ServiceName": "catalogapi",
+      "UpstreamPathTemplate": "/api/catalogs/getcategories",
+      "UpstreamHttpMethod": [ "Get" ]
     },
     {
       "DownstreamPathTemplate": "/api/Catalogs/GetCategoryById",
-      "DownstreamScheme": "https",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "catalog.api",
-          "Port": 7042
-        }
-      ],
+      "DownstreamScheme": "http",
+      "ServiceName": "catalogapi",
       "UpstreamPathTemplate": "/api/Catalogs/GetCategoryById",
-      "UpstreamHttpMethod": [ "GET" ],
-      "UpstreamScheme": "https"
+      "UpstreamHttpMethod": [ "Get" ]
     },
     {
       "DownstreamPathTemplate": "/api/Catalogs/Create",
-      "DownstreamScheme": "https",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "catalog.api",
-          "Port": 7042
-        }
-      ],
+      "DownstreamScheme": "http",
+      "ServiceName": "catalogapi",
       "UpstreamPathTemplate": "/api/Catalogs/Create",
-      "UpstreamHttpMethod": [ "POST" ],
-      "UpstreamScheme": "https"
+      "UpstreamHttpMethod": [ "Post" ]
     },
     {
       "DownstreamPathTemplate": "/api/Catalogs/Delete",
-      "DownstreamScheme": "https",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "catalog.api",
-          "Port": 7042
-        }
-      ],
+      "DownstreamScheme": "http",
+      "ServiceName": "catalogapi",
       "UpstreamPathTemplate": "/api/Catalogs/Delete",
-      "UpstreamHttpMethod": [ "DELETE" ],
-      "UpstreamScheme": "https"
+      "UpstreamHttpMethod": [ "Delete" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Catalogs/api/catalogs/getgetcategory",
+      "DownstreamScheme": "http",
+      "ServiceName": "catalogapi",
+      "UpstreamPathTemplate": "/api/Catalogs/api/catalogs/getgetcategory",
+      "UpstreamHttpMethod": [ "POST" ]
     },
     {
       "DownstreamPathTemplate": "/api/Auth/Login",
-      "DownstreamScheme": "https",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "identity.api",
-          "Port": 7153
-        }
-      ],
+      "DownstreamScheme": "http",
+      "ServiceName": "identityapi",
       "UpstreamPathTemplate": "/api/Auth/Login",
       "UpstreamHttpMethod": [ "POST" ],
-      "UpstreamScheme": "https"
+      "UpstreamScheme": "http"
     },
     {
       "DownstreamPathTemplate": "/api/Auth/Register",
-      "DownstreamScheme": "https",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "identity.api",
-          "Port": 7153
-        }
-      ],
+      "DownstreamScheme": "http",
+      "ServiceName": "identityapi",
       "UpstreamPathTemplate": "/api/Auth/Register",
       "UpstreamHttpMethod": [ "POST" ],
-      "UpstreamScheme": "https"
+      "UpstreamScheme": "http"
     },
     {
       "DownstreamPathTemplate": "/api/Orders/Create",
-      "DownstreamScheme": "https",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "order.api",
-          "Port": 7204
-        }
-      ],
+      "DownstreamScheme": "http",
+      "ServiceName": "orderapi",
       "UpstreamPathTemplate": "/api/Orders/Create",
       "UpstreamHttpMethod": [ "POST" ],
-      "UpstreamScheme": "https"
+      "UpstreamScheme": "http"
+
     },
     {
       "DownstreamPathTemplate": "/api/Orders/Delete",
-      "DownstreamScheme": "https",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "order.api",
-          "Port": 7204
-        }
-      ],
+      "DownstreamScheme": "http",
+      "ServiceName": "orderapi",
       "UpstreamPathTemplate": "/api/Orders/Delete",
       "UpstreamHttpMethod": [ "DELETE" ],
-      "UpstreamScheme": "https"
+      "UpstreamScheme": "http"
     },
     {
       "DownstreamPathTemplate": "/api/Orders/Confirm",
-      "DownstreamScheme": "https",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "order.api",
-          "Port": 7204
-        }
-      ],
+      "DownstreamScheme": "http",
+      "ServiceName": "orderapi",
       "UpstreamPathTemplate": "/api/Orders/Confirm",
       "UpstreamHttpMethod": [ "POST" ],
-      "UpstreamScheme": "https"
+      "UpstreamScheme": "http"
     },
     {
       "DownstreamPathTemplate": "/api/Orders/Shipped",
-      "DownstreamScheme": "https",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "order.api",
-          "Port": 7204
-        }
-      ],
+      "DownstreamScheme": "http",
+      "ServiceName": "orderapi",
       "UpstreamPathTemplate": "/api/Orders/Shipped",
       "UpstreamHttpMethod": [ "POST" ],
-      "UpstreamScheme": "https"
+      "UpstreamScheme": "http"
     }
   ],
-  "GlobalConfiguration": { "BaseUrl": "https://localhost:9141" }
+  "GlobalConfiguration": {
+    "ServiceDiscoveryProvider": {
+      "Host": "consul",
+      "Port": 8500,
+      "Type": "Consul"
+    }
+  }
 }

@@ -25,10 +25,10 @@ namespace Catalogs.API.Controllers
         }
         #endregion
         #region GetCategoriesAsync
-        [HttpGet]
-        [Route("GetCategories")]
-        [ProducesResponseType(typeof(PagedList<CategoryDto>), StatusCodes.Status200OK)]
-        public async Task<Response<PagedList<CategoryDto>>> GetCategories(CategoryRequest request, CancellationToken cancellationToken)
+        [HttpGet("getcategories")]
+        //[Route("GetCategories")]
+        //[ProducesResponseType(typeof(PagedList<CategoryDto>), StatusCodes.Status200OK)]
+        public async Task<Response<PagedList<CategoryDto>>> GetCategories([FromBody]CategoryRequest request, CancellationToken cancellationToken)
         {
             var query = new GetCategoriesQuery(request);
             var result = await _processor.ProcessAsync(query, cancellationToken);
@@ -70,5 +70,11 @@ namespace Catalogs.API.Controllers
             return result;
         }
         #endregion
+
+    }
+    public class CategoryModel
+    {
+        public int PageSize { get; set; }
+        public int PageIndex { get; set; }
     }
 }

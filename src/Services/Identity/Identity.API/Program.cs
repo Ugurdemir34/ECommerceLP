@@ -10,6 +10,8 @@ using ECommerceLP.Core.Serialization.JSON.Extensions;
 using ECommerceLP.Core.Api.Middlewares;
 using ECommerceLP.Core.FileLogging;
 using ECommerceLP.Core.FileLogging.Extensions;
+using ECommerceLP.Core.ServiceDiscovery.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
 var conf = builder.Configuration;
 // Add services to the container.
@@ -23,7 +25,8 @@ builder.Services.AddCQRS();
 builder.Services.AddIdentityApplication();
 builder.Services.AddIdentityPersistence(builder.Configuration);
 builder.Services.AddIdentityInfrastructure();
-
+var serviceConfig = builder.Configuration.GetServiceConfig();
+builder.Services.RegisterConsulServices(serviceConfig);
 string contentRoot = builder.Services.BuildServiceProvider()
                              .GetService<Microsoft.AspNetCore.Hosting.IHostingEnvironment>()
                              .ContentRootPath;
@@ -63,7 +66,7 @@ if (app.Environment.IsDevelopment())
 }
 app.UseCustomExceptionMiddleware();
 app.UseExceptionHandler("/Error");
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
