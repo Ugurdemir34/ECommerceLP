@@ -7,7 +7,7 @@ using ECommerceLP.Core.UnitOfWork.Extensions;
 using ECommerceLP.Core.Cache.Redis.Extensions;
 using MediatR;
 using ECommerceLP.Core.CQRS.Decorators;
-
+using ECommerceLP.Core.ServiceDiscovery.Extensions;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -27,15 +27,8 @@ builder.Services.AddUnitOfWork();
 builder.Services.AddCatalogPersistence(builder.Configuration);
 builder.Services.AddCatalogApplication(builder.Configuration);
 builder.Services.Decorate(typeof(IRequestHandler<,>), typeof(CacheQueryHandlerDecorator<,>));
-
-//builder.Services.AddTransient(typeof(IUnitOfWork<CatalogContext>), typeof(UnitOfWork<CatalogContext>));
-//builder.Services.AddScoped<ICacheService, RedisService>();
-//builder.Services.AddCoreApplication(builder.Configuration);
-//builder.Services.Decorate(typeof(IRequestHandler<,>), typeof(QueryHandlerDecorator<,>));
-//builder.Services.AddScoped(typeof(IRepositoryFactory<CatalogContext>), typeof(IUnitOfWork<CatalogContext>));
-//builder.Services.AddTransient<IRepositoryFactory<CatalogContext>, UnitOfWork<CatalogContext>>();
-//builder.Services.AddTransient<IUnitOfWork<CatalogContext>, UnitOfWork<CatalogContext>>();
-//builder.Services.AddScoped(typeof(IPagedList<>), typeof(PagedList<>));
+var serviceConfig = builder.Configuration.GetServiceConfig();
+builder.Services.RegisterConsulServices(serviceConfig);
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.Load("Catalogs.Application"));
 var app = builder.Build();
 using (var scope = app.Services.CreateScope())
@@ -50,7 +43,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseAuthentication();
 

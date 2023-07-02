@@ -9,10 +9,9 @@ using Microsoft.EntityFrameworkCore;
 using Baskets.Infrastructure;
 using ECommerceLP.Core.Serialization.JSON.Extensions;
 using ECommerceLP.Core.CQRS.Extensions;
+using ECommerceLP.Core.ServiceDiscovery.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -24,8 +23,8 @@ builder.Services.AddJSONSerialization();
 builder.Services.AddBasketPersistence(builder.Configuration);
 builder.Services.AddBasketApplication();
 builder.Services.AddBasketInfrastructure();
-//builder.Services.AddTransient<IUnitOfWork, UnitOfWork<BasketContext>>();
-
+var serviceConfig = builder.Configuration.GetServiceConfig();
+builder.Services.RegisterConsulServices(serviceConfig);
 builder.Services.AddScoped<IBasketRepository, BasketRepository>();
 
 var app = builder.Build();
@@ -42,7 +41,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseAuthorization();
 

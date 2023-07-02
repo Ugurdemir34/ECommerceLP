@@ -11,7 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using ECommerceLP.Core.UnitOfWork.Extensions;
 using ECommerceLP.Core.CQRS.Extensions;
 using RabbitMQ.Client;
-
+using ECommerceLP.Core.ServiceDiscovery.Extensions;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -45,7 +45,6 @@ builder.Services.AddSwaggerGen(opt =>
         }
  });
 });
-//builder.Services.AddTransient<OrderConfirmIntegrationEventHandler>();
 builder.Services.AddSingleton<IEventBus>(sp =>
 {
     EventBusConfig config = new()
@@ -69,7 +68,9 @@ builder.Services.AddUnitOfWork();
 builder.Services.AddCQRS();
 builder.Services.AddOrderPersistence(builder.Configuration);
 builder.Services.AddOrderApplication(serviceProvider);
-//builder.Services.AddTransient<IUnitOfWork, UnitOfWork<OrderContext>>();
+
+var serviceConfig = builder.Configuration.GetServiceConfig();
+builder.Services.RegisterConsulServices(serviceConfig);
 
 //builder.Services.AddCoreApplication(builder.Configuration);
 builder.Services.AddHttpContextAccessor();
@@ -88,7 +89,7 @@ using (var scope = app.Services.CreateScope())
 }
 
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseAuthentication();
 

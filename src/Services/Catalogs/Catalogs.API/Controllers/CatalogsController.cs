@@ -25,10 +25,10 @@ namespace Catalogs.API.Controllers
         }
         #endregion
         #region GetCategoriesAsync
-        [HttpGet]
-        [Route("GetCategories")]
-        [ProducesResponseType(typeof(PagedList<CategoryDto>), StatusCodes.Status200OK)]
-        public async Task<Response<PagedList<CategoryDto>>> GetCategories(CategoryRequest request, CancellationToken cancellationToken)
+        [HttpGet("getcategories")]
+        //[Route("GetCategories")]
+        //[ProducesResponseType(typeof(PagedList<CategoryDto>), StatusCodes.Status200OK)]
+        public async Task<Response<PagedList<CategoryDto>>> GetCategories([FromBody] CategoryRequest request, CancellationToken cancellationToken)
         {
             var query = new GetCategoriesQuery(request);
             var result = await _processor.ProcessAsync(query, cancellationToken);
@@ -63,10 +63,10 @@ namespace Catalogs.API.Controllers
         [HttpDelete]
         [Route("Delete")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<bool> DeleteCategory(DeleteCategoryRequest request,CancellationToken cancellationToken)
+        public async Task<bool> DeleteCategory(DeleteCategoryRequest request, CancellationToken cancellationToken)
         {
             var command = new DeleteCategoryCommand(request);
-            var result = await _processor.ProcessAsync(command,cancellationToken);
+            var result = await _processor.ProcessAsync(command, cancellationToken);
             return result;
         }
         #endregion

@@ -1,7 +1,54 @@
 version: '3.8'
 
 services:
+  api.gateway:
+     image: apigateway:latest
+     build:
+      context: .
+      dockerfile: src\ApiGateways\WebApiGateway\Web.ApiGateway\Dockerfile  
 
+  orderapi:
+    image: orderapi
+    build:
+      context: .
+      dockerfile: src\Services\Orders\Orders.API\Dockerfile
+    container_name: orderapi
+
+  catalogapi:
+    image: catalogapi
+    build:
+      context: .
+      dockerfile: src\Services\Catalogs\Catalogs.API\Dockerfile
+    container_name: catalogapi
+
+  identityapi:
+    image: identityapi
+    build:
+      context: .
+      dockerfile: src\Services\Identity\Identity.API\Dockerfile
+    container_name: identityapi
+ 
+  basketapi:
+    image: basketapi
+    build:
+      context: .
+      dockerfile: src\Services\Baskets\Baskets.API\Dockerfile
+    container_name: basketapi
+
+  productapi:
+    image: productapi
+    build:
+      context: .
+      dockerfile: src\Services\Products\Products.API\Dockerfile
+    container_name: productapi
+
+  notificationservice:
+    image: notificationservice
+    build:
+       context: .
+       dockerfile: src\Services\Notification\NotificationService\Dockerfile
+    container_name: notificationservice
+  
   db:
     image: mcr.microsoft.com/mssql/server:2017-latest  
 
@@ -11,40 +58,11 @@ services:
   rabbitmq:
     image: rabbitmq:3-management 
     
-  order.api:
-    image: orderingapi
-    build:
-      context: .
-      dockerfile: src\Services\Orders\Orders.API\Dockerfile
-
-  catalog.api:
-    image: catalogapi
-    build:
-      context: .
-      dockerfile: src\Services\Catalogs\Catalogs.API\Dockerfile
-
-  identity.api:
-    image: identityapi
-    build:
-      context: .
-      dockerfile: src\Services\Identity\Identity.API\Dockerfile
  
-  basket.api:
-    image: basketapi
-    build:
-      context: .
-      dockerfile: src\Services\Baskets\Baskets.API\Dockerfile
 
-  product.api:
-    image: productapi
-    build:
-      context: .
-      dockerfile: src\Services\Products\Products.API\Dockerfile
-
-  notification.service:
-    image: notificationservice
-    build:
-       context: .
-       dockerfile: src\Services\Notification\NotificationService\Dockerfile
-
+  consul:
+     image: consul:1.15.4
+     command: consul agent -dev -log-level=warn -ui -client=0.0.0.0
+     hostname: consul
+     container_name: consul
    

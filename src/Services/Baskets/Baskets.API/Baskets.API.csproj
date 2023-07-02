@@ -23,6 +23,8 @@
     <ProjectReference Include="..\..\..\Core\Api\src\ECommerceLP.Core.Api\ECommerceLP.Core.Api.csproj" />
     <ProjectReference Include="..\..\..\Core\CQRS\src\ECommerceLP.Core.CQRS\ECommerceLP.Core.CQRS.csproj" />
     <ProjectReference Include="..\..\..\Core\Serialization\src\ECommerceLP.Core.Serialization.JSON\ECommerceLP.Core.Serialization.JSON.csproj" />
+    <ProjectReference Include="..\..\..\Core\ServiceDiscovery\src\ECommerceLP.Core.ServiceDiscovery.Abstraction\ECommerceLP.Core.ServiceDiscovery.Abstraction.csproj" />
+    <ProjectReference Include="..\..\..\Core\ServiceDiscovery\src\ECommerceLP.Core.ServiceDiscovery\ECommerceLP.Core.ServiceDiscovery.csproj" />
     <ProjectReference Include="..\..\..\Core\UnitOfWork\src\ECommerceLP.Core.UnitOfWork\ECommerceLP.Core.UnitOfWork.csproj" />
     <ProjectReference Include="..\Baskets.Application\Baskets.Application.csproj" />
     <ProjectReference Include="..\Baskets.Infrastructure\Baskets.Infrastructure.csproj" />

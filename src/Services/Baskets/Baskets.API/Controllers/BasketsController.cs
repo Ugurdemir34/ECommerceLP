@@ -9,13 +9,17 @@ namespace Baskets.API.Controllers
 {
     public class BasketsController : BaseApi
     {
+        #region Variables
         private readonly IProcessor _processor;
 
+        #endregion
+        #region Constructor
         public BasketsController(IProcessor processor)
         {
             _processor = processor;
         }
-
+        #endregion
+        #region Create
         [HttpPost]
         [Route("Create")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -24,6 +28,7 @@ namespace Baskets.API.Controllers
             var command = new CreateBasketCommand(request);
             var result = await _processor.ProcessAsync(command, cancellationToken);
             return this.ProduceResponse(result);
-        }
+        } 
+        #endregion
     }
 }
