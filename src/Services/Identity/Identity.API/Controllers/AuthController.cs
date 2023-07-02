@@ -12,12 +12,16 @@ namespace Identity.API.Controllers
 {
     public class AuthController : BaseApi
     {
+        #region Variables
         private readonly IProcessor _processor;
+        #endregion
+        #region Constructor
         public AuthController(IProcessor processor)
         {
             _processor = processor;
         }
-
+        #endregion
+        #region Login
         [HttpPost("login")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<Response<LoginDto>> Login(LoginRequest login, CancellationToken cancellationToken)
@@ -25,9 +29,9 @@ namespace Identity.API.Controllers
             var command = new LoginUserCommand(login);
             var result = await _processor.ProcessAsync(command, cancellationToken);
             return this.ProduceResponse(result);
-            //_logger.Log(LogLevel.Warning, ex.Message, true, "hey");
-
         }
+        #endregion
+        #region Register
         [HttpPost("register")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<Response<CreateUserDTO>> Register(RegisterRequest login, CancellationToken cancellationToken)
@@ -35,6 +39,7 @@ namespace Identity.API.Controllers
             var command = new CreateUserCommand(login);
             var result = await _processor.ProcessAsync(command, cancellationToken);
             return this.ProduceResponse(result);
-        }
+        } 
+        #endregion
     }
 }

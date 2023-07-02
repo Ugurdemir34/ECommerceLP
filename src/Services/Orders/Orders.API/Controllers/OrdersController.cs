@@ -12,16 +12,20 @@ using Orders.Common.Dtos;
 
 namespace Orders.API.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class OrdersController : BaseApi
     {
+        #region Variables
         private readonly IProcessor _processor;
 
+        #endregion
+        #region Constructor
         public OrdersController(IProcessor processor)
         {
             _processor = processor;
         }
-
+        #endregion
+        #region Create
         [HttpPost]
         [Route("Create")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -31,14 +35,8 @@ namespace Orders.API.Controllers
             var result = await _processor.ProcessAsync(command, cancellationToken);
             return this.ProduceResponse(result);
         }
-        //[HttpDelete("HardDelete")]
-        //[ProducesResponseType(StatusCodes.Status200OK)]
-        //public async Task<Response<bool>> HardDelete(HardDeleteOrderRequest request, CancellationToken cancellationToken)
-        //{
-        //    var command = new HardDeleteOrderCommand(request);
-        //    var result = await _processor.ProcessAsync(command, cancellationToken);
-        //    return this.ProduceResponse(result);
-        //}
+        #endregion
+        #region Delete
         [HttpDelete]
         [Route("Delete")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -48,7 +46,8 @@ namespace Orders.API.Controllers
             var result = await _processor.ProcessAsync(command, cancellationToken);
             return this.ProduceResponse(result);
         }
-
+        #endregion
+        #region Confirm
         [HttpPost]
         [Route("Confirm")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -58,6 +57,8 @@ namespace Orders.API.Controllers
             var result = await _processor.ProcessAsync(command, cancellationToken);
             return this.ProduceResponse(result);
         }
+        #endregion
+        #region Shipped
         [HttpPost]
         [Route("Shipped")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -67,5 +68,6 @@ namespace Orders.API.Controllers
             var result = await _processor.ProcessAsync(command, cancellationToken);
             return this.ProduceResponse(result);
         }
+        #endregion
     }
 }

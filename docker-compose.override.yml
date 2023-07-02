@@ -123,8 +123,6 @@ services:
         ports:
              - "8500"
 
-
-
 volumes:
     dbdata:
     redisdata:
