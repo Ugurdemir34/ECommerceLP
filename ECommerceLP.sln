@@ -177,9 +177,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServiceDiscovery", "Service
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{36DAF9B6-D46C-436F-ABF8-A0507729CF38}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerceLP.Core.ServiceDiscovery.Abstraction", "src\Core\ServiceDiscovery\src\ECommerceLP.Core.ServiceDiscovery.Abstraction\ECommerceLP.Core.ServiceDiscovery.Abstraction.csproj", "{46D9AD65-03DD-4FAC-B244-6E5F02765C18}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerceLP.Core.ServiceDiscovery.Abstraction", "src\Core\ServiceDiscovery\src\ECommerceLP.Core.ServiceDiscovery.Abstraction\ECommerceLP.Core.ServiceDiscovery.Abstraction.csproj", "{46D9AD65-03DD-4FAC-B244-6E5F02765C18}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerceLP.Core.ServiceDiscovery", "src\Core\ServiceDiscovery\src\ECommerceLP.Core.ServiceDiscovery\ECommerceLP.Core.ServiceDiscovery.csproj", "{B6DF87F3-4E22-4455-8E7F-404F6B48F84E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerceLP.Core.ServiceDiscovery", "src\Core\ServiceDiscovery\src\ECommerceLP.Core.ServiceDiscovery\ECommerceLP.Core.ServiceDiscovery.csproj", "{B6DF87F3-4E22-4455-8E7F-404F6B48F84E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Payments", "Payments", "{366A6139-D89D-41EA-B68A-AD174475E949}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentService", "src\Services\Payments\Payments.API\PaymentService\PaymentService.csproj", "{1E9D9BE0-BEC1-4E79-8DE6-AB0F01E5A18F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payment.Domain", "src\Services\Payments\Payment.Domain\Payment.Domain.csproj", "{CEED9D08-E64B-4D7E-95D0-65908A2A73C3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -399,6 +405,14 @@ Global
 		{B6DF87F3-4E22-4455-8E7F-404F6B48F84E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B6DF87F3-4E22-4455-8E7F-404F6B48F84E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B6DF87F3-4E22-4455-8E7F-404F6B48F84E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E9D9BE0-BEC1-4E79-8DE6-AB0F01E5A18F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E9D9BE0-BEC1-4E79-8DE6-AB0F01E5A18F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E9D9BE0-BEC1-4E79-8DE6-AB0F01E5A18F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E9D9BE0-BEC1-4E79-8DE6-AB0F01E5A18F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEED9D08-E64B-4D7E-95D0-65908A2A73C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEED9D08-E64B-4D7E-95D0-65908A2A73C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEED9D08-E64B-4D7E-95D0-65908A2A73C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEED9D08-E64B-4D7E-95D0-65908A2A73C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -491,6 +505,9 @@ Global
 		{36DAF9B6-D46C-436F-ABF8-A0507729CF38} = {AE41A093-2444-4550-98F2-CB74780D2865}
 		{46D9AD65-03DD-4FAC-B244-6E5F02765C18} = {36DAF9B6-D46C-436F-ABF8-A0507729CF38}
 		{B6DF87F3-4E22-4455-8E7F-404F6B48F84E} = {36DAF9B6-D46C-436F-ABF8-A0507729CF38}
+		{366A6139-D89D-41EA-B68A-AD174475E949} = {C81D8549-E2E9-4018-A08B-12A6E72D5066}
+		{1E9D9BE0-BEC1-4E79-8DE6-AB0F01E5A18F} = {366A6139-D89D-41EA-B68A-AD174475E949}
+		{CEED9D08-E64B-4D7E-95D0-65908A2A73C3} = {366A6139-D89D-41EA-B68A-AD174475E949}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4213A503-31D0-466C-BFF9-CF5045231DC5}
