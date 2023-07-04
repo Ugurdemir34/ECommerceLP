@@ -5,6 +5,7 @@ using Baskets.Persistence.Contexts;
 using ECommerceLP.Core.Abstraction.Exception;
 using ECommerceLP.Core.CQRS.Abstraction.Command;
 using ECommerceLP.Core.UnitOfWork.Abstraction;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,10 +18,12 @@ namespace Baskets.Application.CQRS.Baskets.Commands.BuyBasket
     {
         private readonly IPaymentService _paymentService;
         private readonly IUnitOfWork<BasketContext> _unitOfWork;
-        public BuyBasketCommandHandler(IPaymentService paymentService, IUnitOfWork<BasketContext> unitOfWork)
+        private readonly ILogger<BuyBasketCommandHandler> _logger;
+        public BuyBasketCommandHandler(IPaymentService paymentService, IUnitOfWork<BasketContext> unitOfWork, ILogger<BuyBasketCommandHandler> logger)
         {
             _paymentService = paymentService;
             _unitOfWork = unitOfWork;
+            _logger = logger;
         }
 
         public async Task<bool> Handle(BuyBusketCommand request, CancellationToken cancellationToken)
@@ -29,8 +32,16 @@ namespace Baskets.Application.CQRS.Baskets.Commands.BuyBasket
             {
                 var basketQueryRepo = _unitOfWork.GetQueryRepository<Basket>();
                 var basket = await basketQueryRepo.GetAsync(b => b.UserId == request.UserId, b => b.BasketItems);
-                if (basket != null) { throw new CustomBusinessException(Messages.BasketNotFound); }
-                if (basket.BasketItems.Count==0) { throw new CustomBusinessException(Messages.BasketItemsFound); }
+                if (basket != null) 
+                {
+                    _logger.LogInformation(Messages.BasketNotFound, true, request);
+                    throw new CustomBusinessException(Messages.BasketNotFound); 
+                }
+                if (basket.BasketItems.Count==0)
+                {
+                    _logger.LogInformation(Messages.BasketItemsFound, true, request);
+                    throw new CustomBusinessException(Messages.BasketItemsFound);
+                }
 
                 return default;
 

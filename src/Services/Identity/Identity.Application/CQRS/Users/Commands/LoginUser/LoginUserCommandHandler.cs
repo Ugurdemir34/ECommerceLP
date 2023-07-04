@@ -34,7 +34,7 @@ namespace Identity.Application.CQRS.Users.Commands.LoginUser
             var user = await repo.GetAsync(u => u.UserName == request.UserName);
             if (user == null)
             {
-                _logger.Log(LogLevel.Error, Messages.UserNameOrPasswordInCorrect, true, request);
+                _logger.LogInformation(Messages.UserNameOrPasswordInCorrect, true, request);
                 throw new CustomBusinessException(Messages.UserNameOrPasswordInCorrect);
             }
             if (!SecurityHashing.ValidateHash(HashAlgorithmType.Sha256, user.PasswordHash, request.Password))
