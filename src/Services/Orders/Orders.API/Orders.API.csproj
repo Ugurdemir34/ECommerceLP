@@ -30,6 +30,7 @@
     <ProjectReference Include="..\..\..\Core\Api\src\ECommerceLP.Core.Api\ECommerceLP.Core.Api.csproj" />
     <ProjectReference Include="..\..\..\Core\CQRS\src\ECommerceLP.Core.CQRS.Abstraction\ECommerceLP.Core.CQRS.Abstraction.csproj" />
     <ProjectReference Include="..\..\..\Core\CQRS\src\ECommerceLP.Core.CQRS\ECommerceLP.Core.CQRS.csproj" />
+    <ProjectReference Include="..\..\..\Core\Logging\src\ECommerceLP.Core.Serilog\ECommerceLP.Core.Serilog.csproj" />
     <ProjectReference Include="..\..\..\Core\ServiceDiscovery\src\ECommerceLP.Core.ServiceDiscovery.Abstraction\ECommerceLP.Core.ServiceDiscovery.Abstraction.csproj" />
     <ProjectReference Include="..\..\..\Core\ServiceDiscovery\src\ECommerceLP.Core.ServiceDiscovery\ECommerceLP.Core.ServiceDiscovery.csproj" />
     <ProjectReference Include="..\..\..\Core\UnitOfWork\src\ECommerceLP.Core.UnitOfWork\ECommerceLP.Core.UnitOfWork.csproj" />

@@ -20,6 +20,7 @@ var sp = services.BuildServiceProvider();
 IEventBus eventBus = sp.GetRequiredService<IEventBus>();
 eventBus.Subscribe<OrderConfirmIntegrationEvent, OrderConfirmIntegrationEventHandler>();
 eventBus.Subscribe<OrderShippedIntegrationEvent, OrderShippedIntegrationEventHandler>();
+eventBus.Subscribe<PaymentCompletedIntegrationEvent, PaymentCompletedEventHandler>();
 Console.WriteLine("Notification service has been started...");
 Console.ReadLine();
 

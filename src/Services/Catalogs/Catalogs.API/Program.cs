@@ -8,6 +8,8 @@ using ECommerceLP.Core.Cache.Redis.Extensions;
 using MediatR;
 using ECommerceLP.Core.CQRS.Decorators;
 using ECommerceLP.Core.ServiceDiscovery.Extensions;
+using ECommerceLP.Core.Serilog.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -17,7 +19,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddRedis(builder.Configuration);
-
+builder.AddSeriLog();
 builder.Services.AddCQRS();
 builder.Services.AddMediatR(cfg =>
 {

@@ -39,7 +39,7 @@ namespace Identity.API.Controllers
             var command = new CreateUserCommand(login);
             var result = await _processor.ProcessAsync(command, cancellationToken);
             return this.ProduceResponse(result);
-        } 
+        }
         #endregion
     }
 }

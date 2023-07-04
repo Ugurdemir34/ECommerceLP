@@ -1,12 +1,12 @@
 {
   "profiles": {
-    "Payments.Application": {
+    "ECommerceLP.Core.ServiceDiscovery": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "https://localhost:53527;http://localhost:53529"
+      "applicationUrl": "https://localhost:49742;http://localhost:49743"
     }
   }
 }

@@ -19,6 +19,7 @@ namespace NotificationService
         {
             serviceCollection.AddTransient<OrderConfirmIntegrationEventHandler>();
             serviceCollection.AddTransient<OrderShippedIntegrationEventHandler>();
+            serviceCollection.AddTransient<PaymentCompletedEventHandler>();
             serviceCollection.AddSingleton<IEventBus>(sp =>
             {
                 EventBusConfig config = new()

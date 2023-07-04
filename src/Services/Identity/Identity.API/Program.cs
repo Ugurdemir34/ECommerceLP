@@ -11,7 +11,9 @@ using ECommerceLP.Core.Api.Middlewares;
 using ECommerceLP.Core.FileLogging;
 using ECommerceLP.Core.FileLogging.Extensions;
 using ECommerceLP.Core.ServiceDiscovery.Extensions;
-
+using ECommerceLP.Core.Serilog.Extensions;
+using Serilog;
+using Serilog.AspNetCore;
 var builder = WebApplication.CreateBuilder(args);
 var conf = builder.Configuration;
 // Add services to the container.
@@ -26,29 +28,35 @@ builder.Services.AddIdentityApplication();
 builder.Services.AddIdentityPersistence(builder.Configuration);
 builder.Services.AddIdentityInfrastructure();
 var serviceConfig = builder.Configuration.GetServiceConfig();
-builder.Services.RegisterConsulServices(serviceConfig);
+//builder.Services.RegisterConsulServices(serviceConfig);
 string contentRoot = builder.Services.BuildServiceProvider()
                              .GetService<Microsoft.AspNetCore.Hosting.IHostingEnvironment>()
                              .ContentRootPath;
 
 
-builder.Services.AddLogging(loggingBuilder =>
-{
-    var loggingSection = builder.Configuration.GetSection("Logging");
-    loggingBuilder.AddConfiguration(loggingSection);
-    loggingBuilder.AddConsole();
+//builder.Services.AddLogging(loggingBuilder =>
+//{
+//    var loggingSection = builder.Configuration.GetSection("Logging");
+//    loggingBuilder.AddConfiguration(loggingSection);
+//    loggingBuilder.AddConsole();
 
-    Action<FileLoggerOptions> resolveRelativeLoggingFilePath = (fileOpts) =>
-    {
-        fileOpts.FormatLogFileName = fName =>
-        {
-            return Path.IsPathRooted(fName) ? fName : Path.Combine(contentRoot, fName);
-        };
-    };
+//    Action<FileLoggerOptions> resolveRelativeLoggingFilePath = (fileOpts) =>
+//    {
+//        fileOpts.FormatLogFileName = fName =>
+//        {
+//            return Path.IsPathRooted(fName) ? fName : Path.Combine(contentRoot, fName);
+//        };
+//    };
 
-    loggingBuilder.AddFile(loggingSection.GetSection("FileOne"), resolveRelativeLoggingFilePath);
-});
-
+//    loggingBuilder.AddFile(loggingSection.GetSection("FileOne"), resolveRelativeLoggingFilePath);
+//});
+//builder.AddSeriLog();
+//builder.Host.UseSerilog((context, config) =>
+//{
+//    config.ReadFrom.Configuration(context.Configuration);
+//});
+//builder.Host.UseSerilog((context, configuration) => configuration.ReadFrom.Configuration(context.Configuration));
+builder.AddSeriLog();
 builder.Services.AddJwtSettings(conf);
 builder.Services.AddJSONSerialization();
 var app = builder.Build();
@@ -57,7 +65,6 @@ using (var scope = app.Services.CreateScope())
     var dbContext = scope.ServiceProvider.GetRequiredService<UserContext>();
     dbContext.Database.Migrate();
 }
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

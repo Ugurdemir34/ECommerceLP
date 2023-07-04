@@ -27,6 +27,7 @@
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.3" />
+    <PackageReference Include="Serilog.AspNetCore" Version="7.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
@@ -35,6 +36,7 @@
     <ProjectReference Include="..\..\..\Core\CQRS\src\ECommerceLP.Core.CQRS.Abstraction\ECommerceLP.Core.CQRS.Abstraction.csproj" />
     <ProjectReference Include="..\..\..\Core\CQRS\src\ECommerceLP.Core.CQRS\ECommerceLP.Core.CQRS.csproj" />
     <ProjectReference Include="..\..\..\Core\Logging\src\ECommerceLP.Core.Logging\ECommerceLP.Core.FileLogging.csproj" />
+    <ProjectReference Include="..\..\..\Core\Logging\src\ECommerceLP.Core.Serilog\ECommerceLP.Core.Serilog.csproj" />
     <ProjectReference Include="..\..\..\Core\Serialization\src\ECommerceLP.Core.Serialization.JSON\ECommerceLP.Core.Serialization.JSON.csproj" />
     <ProjectReference Include="..\..\..\Core\ServiceDiscovery\src\ECommerceLP.Core.ServiceDiscovery.Abstraction\ECommerceLP.Core.ServiceDiscovery.Abstraction.csproj" />
     <ProjectReference Include="..\..\..\Core\ServiceDiscovery\src\ECommerceLP.Core.ServiceDiscovery\ECommerceLP.Core.ServiceDiscovery.csproj" />
