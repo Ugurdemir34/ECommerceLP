@@ -49,6 +49,13 @@ services:
        dockerfile: src\Services\Notification\NotificationService\Dockerfile
     container_name: notificationservice
   
+  paymentservice:
+    image: paymentservice
+    build:
+       context: .
+       dockerfile: src\Services\Payments\PaymentService\Dockerfile
+    container_name: paymentservice
+
   db:
     image: mcr.microsoft.com/mssql/server:2017-latest  
 
@@ -58,8 +65,6 @@ services:
   rabbitmq:
     image: rabbitmq:3-management 
     
- 
-
   consul:
      image: consul:1.15.4
      command: consul agent -dev -log-level=warn -ui -client=0.0.0.0

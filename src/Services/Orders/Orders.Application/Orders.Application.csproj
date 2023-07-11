@@ -22,7 +22,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\Core\CQRS\src\ECommerceLP.Core.CQRS.Abstraction\ECommerceLP.Core.CQRS.Abstraction.csproj" />
     <ProjectReference Include="..\..\..\Core\UnitOfWork\src\ECommerceLP.Core.UnitOfWork.Abstraction\ECommerceLP.Core.UnitOfWork.Abstraction.csproj" />
-    <ProjectReference Include="..\..\Payments\Payments.API\PaymentService\PaymentService.csproj" />
+    <ProjectReference Include="..\..\Payments\Payment.Domain\Payment.Domain.csproj" />
     <ProjectReference Include="..\Orders.Common\Orders.Common.csproj" />
     <ProjectReference Include="..\Orders.Domain\Orders.Domain\Orders.Domain.csproj" />
     <ProjectReference Include="..\Orders.Persistence\Orders.Persistence.csproj" />

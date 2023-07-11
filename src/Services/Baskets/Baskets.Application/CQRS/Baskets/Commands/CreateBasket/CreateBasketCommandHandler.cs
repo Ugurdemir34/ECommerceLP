@@ -28,7 +28,7 @@ namespace Baskets.Application.CQRS.Baskets.Commands.CreateBasket
             var basket = _repository.GetAsync(b => b.UserId == request.UserId, cancellationToken);
             if (basket != null)
             {
-                _logger.LogInformation(Messages.BasketAlreadyExists, true, request);
+                //_logger.LogInformation(Messages.BasketAlreadyExists, true, request);
                 throw new CustomBusinessException(Messages.BasketAlreadyExists);
             }
             await _repository.AddAsync(request.CreateBasket(), cancellationToken);

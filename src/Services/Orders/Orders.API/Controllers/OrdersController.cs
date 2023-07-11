@@ -12,7 +12,7 @@ using Orders.Common.Dtos;
 
 namespace Orders.API.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class OrdersController : BaseApi
     {
         #region Variables

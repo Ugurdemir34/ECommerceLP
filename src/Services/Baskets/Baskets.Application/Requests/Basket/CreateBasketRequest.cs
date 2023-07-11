@@ -8,7 +8,6 @@ namespace Baskets.Application.Requests.Basket
 {
     public class CreateBasketRequest
     {
-
         public Guid UserId { get; set; }
     }
 }

@@ -3,81 +3,101 @@ version: '3.8'
 services:
     orderapi:
         environment:
-            - ASPNETCORE_ENVIRONMENT=Development
+            - ASPNETCORE_ENVIRONMENT=Production
             - "ConnectionStrings:OrderDB=Server=db;Database=ECommerceDB;User Id=sa;Password=Password123.;Encrypt=False"           
             - "EventBusSettings:HostAddress=amqp://guest@rabbitmq:5672" 
-            - ServiceConfig__serviceDiscoveryAddress=http://consul:8500
-            - ServiceConfig__serviceAddress=http://orderapi:80
-            - ServiceConfig__serviceName=orderapi
-            - ServiceConfig__serviceId=orderapi-v1
+            #- ServiceConfig__serviceDiscoveryAddress=http://consul:8500
+            #- ServiceConfig__serviceAddress=http://orderapi:80
+            #- ServiceConfig__serviceName=orderapi
+            #- ServiceConfig__serviceId=v1
+
+
         depends_on:
             - db
             - rabbitmq
+            - consul
+
         ports:
             - "80"
 
     catalogapi:         
          environment:
-            - ASPNETCORE_ENVIRONMENT=Development
+            - ASPNETCORE_ENVIRONMENT=Production
             - "ConnectionStrings:CatalogDB=Server=db;Database=ECommerceDB;User Id=sa;Password=Password123.;Encrypt=False"           
-            - ServiceConfig__serviceDiscoveryAddress=http://consul:8500
-            - ServiceConfig__serviceAddress=http://catalogapi:80
-            - ServiceConfig__serviceName=catalogapi
-            - ServiceConfig__serviceId=catalogapi-v1
+            #- ServiceConfig__serviceDiscoveryAddress=http://consul:8500
+            #- ServiceConfig__serviceAddress=http://catalogapi:80
+            #- ServiceConfig__serviceName=catalogapi
+            #- ServiceConfig__serviceId=catalogapi-v1
          depends_on:
             - db
             - redis
+            - consul
          ports:
             - "80"
 
     identityapi:
          environment:
-            - ASPNETCORE_ENVIRONMENT=Development
+            - ASPNETCORE_ENVIRONMENT=Production
             - "ConnectionStrings:UserDB=Server=db;Database=ECommerceDB;User Id=sa;Password=Password123.;Encrypt=False"
-            - ServiceConfig__serviceDiscoveryAddress=http://consul:8500
-            - ServiceConfig__serviceAddress=http://identityapi:80
-            - ServiceConfig__serviceName=identityapi
-            - ServiceConfig__serviceId=identityapi-v1 
+            #- ServiceConfig__serviceDiscoveryAddress=http://consul:8500
+            #- ServiceConfig__serviceAddress=http://identityapi:80
+            #- ServiceConfig__serviceName=identityapi
+            #- ServiceConfig__serviceId=identityapi-v1 
          depends_on:
             - db
+            - consul
          ports:
             - "8003:80"
 
     basketapi:
          environment:
-            - ASPNETCORE_ENVIRONMENT=Development
+            - ASPNETCORE_ENVIRONMENT=Production
             - "ConnectionStrings:BasketDB=Server=db;Database=ECommerceDB;User Id=sa;Password=Password123.;Encrypt=False" 
-            - ServiceConfig__serviceDiscoveryAddress=http://consul:8500
-            - ServiceConfig__serviceAddress=http://basketapi:80
-            - ServiceConfig__serviceName=basketapi
-            - ServiceConfig__serviceId=basketapi-v1 
+            #- ServiceConfig__serviceDiscoveryAddress=http://consul:8500
+            #- ServiceConfig__serviceAddress=http://basketapi:80
+            #- ServiceConfig__serviceName=basketapi
+            #- ServiceConfig__serviceId=basketapi-v1 
          depends_on:
             - db
+            - consul
          ports:
             - "8004:80"
 
     productapi:
          environment:
-            - ASPNETCORE_ENVIRONMENT=Development
+            - ASPNETCORE_ENVIRONMENT=Production
             - "ConnectionStrings:ProductDB=Server=db;Database=ECommerceDB;User Id=sa;Password=Password123.;Encrypt=False"  
-            - ServiceConfig__serviceDiscoveryAddress=http://consul:8500
-            - ServiceConfig__serviceAddress=http://productapi:80
-            - ServiceConfig__serviceName=productapi
-            - ServiceConfig__serviceId=productapi-v1 
+            #- ServiceConfig__serviceDiscoveryAddress=http://consul:8500
+            #- ServiceConfig__serviceAddress=http://productapi:80
+            #- ServiceConfig__serviceName=productapi
+            #- ServiceConfig__serviceId=productapi-v1 
          depends_on:
             - db
+            - consul
          ports:
             - "8005:80"
 
     notificationservice:
          environment:
-            - ASPNETCORE_ENVIRONMENT=Development
-            - ServiceConfig__serviceDiscoveryAddress=http://consul:8500
-            - ServiceConfig__serviceAddress=http://notificationservice:80
-            - ServiceConfig__serviceName=notificationservice
-            - ServiceConfig__serviceId=notificationservice-v1
+            - ASPNETCORE_ENVIRONMENT=Production
+            #- ServiceConfig__serviceDiscoveryAddress=http://consul:8500
+            #- ServiceConfig__serviceAddress=http://notificationservice:80
+            #- ServiceConfig__serviceName=notificationservice
+            #- ServiceConfig__serviceId=notificationservice-v1
          ports:
             - "8006:80"
+         depends_on:
+            - rabbitmq
+
+    paymentservice:
+         environment:
+            - ASPNETCORE_ENVIRONMENT=Production
+            #- ServiceConfig__serviceDiscoveryAddress=http://consul:8500
+            #- ServiceConfig__serviceAddress=http://notificationservice:80
+            #- ServiceConfig__serviceName=notificationservice
+            #- ServiceConfig__serviceId=notificationservice-v1
+         ports:
+            - "8007:80"
          depends_on:
             - rabbitmq
 
@@ -112,16 +132,17 @@ services:
         restart: always
         ports: 
             - "80:80"
-        environment:
-            - ASPNETCORE_ENVIRONMENT=Development
+        #environment:
+        #    - ASPNETCORE_ENVIRONMENT=Development
         #volumes:
         #    - ./path/to/certificate.crt:/etc/ssl/certs/certificate.crt:ro
         #environment:
         #     - ASPNETCORE_Kestrel__Certificates__Default__Path=/etc/ssl/certs/certificate.crt
- 
+        depends_on:
+            - consul
     consul:
         ports:
-             - "8500"
+             - "8500:8500"
 
 volumes:
     dbdata:

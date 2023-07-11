@@ -28,7 +28,7 @@ namespace ECommerceLP.Core.Api.Middlewares
             {
                 await _next(httpContext);
             }
-            catch (Exception)
+            catch
             {
                 httpContext.Response.ContentType = "application/json";
 

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Identity.Application.Common.Abstracts
 {
-    public interface IAuthentication
+    public interface ITokenHelper
     {
         string HashPassword(string password);
         LoginDto GenerateToken(string userName,Guid userId,UserType userType); // Primitive Type ile yap !

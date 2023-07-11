@@ -19,13 +19,13 @@ namespace Orders.Persistence.Context
         public DbSet<OrderItem> OrderItems { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            //modelBuilder.Entity<OrderItem>()
+            //            .HasOne<Order>(oi => oi.Order)
+            //            .WithMany(o => o.OrderItems)
+            //            .HasForeignKey(oi => oi.OrderId)
+            //            .OnDelete(DeleteBehavior.Cascade);
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-            modelBuilder.Entity<OrderItem>()
-                        .HasOne<Order>(oi => oi.Order)
-                        .WithMany(o => o.OrderItems)
-                        .HasForeignKey(oi => oi.OrderId)
-                        .OnDelete(DeleteBehavior.Cascade);
-
             modelBuilder.Entity<Order>().OwnsOne(o => o.Address).WithOwner();
         }
     }

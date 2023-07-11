@@ -8,7 +8,6 @@ using Orders.Application.CQRS.Orders.Extensions;
 using Orders.Common.Dtos;
 using Orders.Domain.Aggregate.OrderAggregates;
 using Orders.Persistence.Context;
-using PaymentService.IntegrationEvents.EventHandlers;
 using PaymentService.IntegrationEvents.Events;
 using System;
 using System.Collections.Generic;
@@ -41,8 +40,8 @@ namespace Orders.Application.CQRS.Orders.Commands.CreateOrder
             var mapped = command.CreateOrder();
             var @event = new PaymentProcessedIntegrationEvent(DateTime.UtcNow, command.OrderItems.Sum(o => o.Price), $"Payment process started !");
             _eventBus.Publish(@event);
-            //await orderRepo.AddAsync(mapped);
-            //_unitOfWork.SaveChanges();
+            await orderRepo.AddAsync(mapped);
+            _unitOfWork.SaveChanges();
             return mapped.Map();
         }
     }

@@ -14,8 +14,9 @@ Console.CancelKeyPress += (sender, args) =>
 };
 ServiceCollection services = new ServiceCollection();
 
-Configuration.ConfigureServices(services);
-Configuration.ConfigureSettings(services);
+var configuration=Configuration.ConfigureSettings(services);
+Configuration.ConfigureServices(services,configuration);
+
 var sp = services.BuildServiceProvider();
 IEventBus eventBus = sp.GetRequiredService<IEventBus>();
 eventBus.Subscribe<OrderConfirmIntegrationEvent, OrderConfirmIntegrationEventHandler>();

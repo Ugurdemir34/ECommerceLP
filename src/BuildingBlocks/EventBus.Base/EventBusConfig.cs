@@ -22,6 +22,7 @@ namespace EventBus.Base
 
         public bool DeleteEventPrefix => !String.IsNullOrEmpty(EventNamePrefix);
         public bool DeleteEventSuffix => !String.IsNullOrEmpty(EventNameSuffix);
+        public string Host { get; set; }
 
     }
     public enum EventBusType

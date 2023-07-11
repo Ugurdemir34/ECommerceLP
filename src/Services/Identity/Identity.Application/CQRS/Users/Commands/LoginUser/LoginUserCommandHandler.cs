@@ -19,10 +19,10 @@ namespace Identity.Application.CQRS.Users.Commands.LoginUser
 {
     public class LoginUserCommandHandler : ICommandHandler<LoginUserCommand, LoginDto>
     {
-        private readonly IAuthentication _authentication;
+        private readonly ITokenHelper _authentication;
         private readonly IUnitOfWork<UserContext> _unitOfWork;
         private readonly ILogger<LoginUserCommandHandler> _logger;
-        public LoginUserCommandHandler(IAuthentication authentication, IUnitOfWork<UserContext> unitOfWork, ILogger<LoginUserCommandHandler> logger)
+        public LoginUserCommandHandler(ITokenHelper authentication, IUnitOfWork<UserContext> unitOfWork, ILogger<LoginUserCommandHandler> logger)
         {
             _authentication = authentication;
             _unitOfWork = unitOfWork;
@@ -34,12 +34,12 @@ namespace Identity.Application.CQRS.Users.Commands.LoginUser
             var user = await repo.GetAsync(u => u.UserName == request.UserName);
             if (user == null)
             {
-                _logger.LogInformation(Messages.UserNameOrPasswordInCorrect, true, request);
+                //_logger.LogInformation(Messages.UserNameOrPasswordInCorrect, true, request);
                 throw new CustomBusinessException(Messages.UserNameOrPasswordInCorrect);
             }
             if (!SecurityHashing.ValidateHash(HashAlgorithmType.Sha256, user.PasswordHash, request.Password))
             {
-                _logger.Log(LogLevel.Error, Messages.UserNameOrPasswordInCorrect, true, request);
+                //_logger.Log(LogLevel.Error, Messages.UserNameOrPasswordInCorrect, true, request);
                 throw new CustomBusinessException(Messages.UserNameOrPasswordInCorrect);
             }
             return _authentication.GenerateToken(user.UserName, user.Id, user.UserType);

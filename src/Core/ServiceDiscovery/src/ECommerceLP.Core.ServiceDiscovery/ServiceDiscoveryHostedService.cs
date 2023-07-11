@@ -24,7 +24,7 @@ namespace ECommerceLP.Core.ServiceDiscovery
         public async Task StartAsync(CancellationToken cancellationToken)
         {
             _registrationId = $"{_config.ServiceName}-{_config.ServiceId}";
-
+            Console.WriteLine(_registrationId);
             var registration = new AgentServiceRegistration
             {
                 ID = _registrationId,
@@ -33,7 +33,7 @@ namespace ECommerceLP.Core.ServiceDiscovery
                 Port = _config.ServiceAddress.Port
             };
 
-            await _client.Agent.ServiceDeregister(registration.ID, cancellationToken);
+            //await _client.Agent.ServiceDeregister(registration.ID, cancellationToken);
             await _client.Agent.ServiceRegister(registration, cancellationToken);
         }
 

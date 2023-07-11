@@ -31,7 +31,7 @@ namespace EventBus.RabbitMQ
             }
             else
             {
-                connectionFactory = new ConnectionFactory() { HostName="rabbitmq",UserName="guest",Password="guest",Port=5672};
+                connectionFactory = new ConnectionFactory() { HostName = config.Host, UserName = "guest", Password = "guest", Port = 5672 };
             }
             persistenceConnection = new RabbitMQPersistenceConnection(connectionFactory, config.ConnectionRetryCount);
             consumerChannel = CreateConsumerChannel();

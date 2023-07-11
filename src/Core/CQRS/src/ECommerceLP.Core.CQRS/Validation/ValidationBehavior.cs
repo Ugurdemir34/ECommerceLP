@@ -29,7 +29,7 @@ namespace ECommerceLP.Core.CQRS.Validation
 
             if (errors.Count != 0)
             {
-                throw new CustomBusinessException("", errors, true);
+                throw new ValidationException("Hata", errors, true);
             }
             return await next();
 

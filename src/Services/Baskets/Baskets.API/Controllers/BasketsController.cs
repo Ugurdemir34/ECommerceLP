@@ -28,7 +28,7 @@ namespace Baskets.API.Controllers
             var command = new CreateBasketCommand(request);
             var result = await _processor.ProcessAsync(command, cancellationToken);
             return this.ProduceResponse(result);
-        } 
+        }
         #endregion
     }
 }

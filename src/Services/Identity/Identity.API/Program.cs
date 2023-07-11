@@ -56,7 +56,7 @@ string contentRoot = builder.Services.BuildServiceProvider()
 //    config.ReadFrom.Configuration(context.Configuration);
 //});
 //builder.Host.UseSerilog((context, configuration) => configuration.ReadFrom.Configuration(context.Configuration));
-builder.AddSeriLog();
+//builder.AddSeriLog();
 builder.Services.AddJwtSettings(conf);
 builder.Services.AddJSONSerialization();
 var app = builder.Build();
@@ -68,11 +68,12 @@ using (var scope = app.Services.CreateScope())
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    app.UseDeveloperExceptionPage();
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 app.UseCustomExceptionMiddleware();
-app.UseExceptionHandler("/Error");
+app.UseExceptionHandler("/error");
 //app.UseHttpsRedirection();
 
 app.UseAuthorization();

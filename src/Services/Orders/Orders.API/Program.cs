@@ -23,22 +23,24 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerToken();
+builder.Configuration.AddEnvironmentVariables();
 builder.Services.AddSingleton<IEventBus>(sp =>
 {
-    EventBusConfig config = new()
-    {
-        ConnectionRetryCount = 5,
-        EventNameSuffix = "IntegrationEvent",
-        SubscriberClientAppName = "OrderService",
-        EventBusType = EventBusType.RabbitMQ
-        //Connection = new ConnectionFactory()
-        //{
-        //    HostName = "localhost",
-        //    Port=15762,
-        //    UserName="guest",
-        //    Password="guest"
-        //}
-    };
+    EventBusConfig config = builder.Configuration.GetSection("EventBusConfig").Get<EventBusConfig>();
+    //EventBusConfig config = new()
+    //{
+    //    ConnectionRetryCount = 5,
+    //    EventNameSuffix = "IntegrationEvent",
+    //    SubscriberClientAppName = "OrderService",
+    //    EventBusType = EventBusType.RabbitMQ
+    //    //Connection = new ConnectionFactory()
+    //    //{
+    //    //    HostName = "localhost",
+    //    //    Port=15762,
+    //    //    UserName="guest",
+    //    //    Password="guest"
+    //    //}
+    //};
     return EventBusFactory.Create(config, sp);
 });
 var serviceProvider = builder.Services.BuildServiceProvider();
@@ -55,10 +57,12 @@ builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 //Configure the HTTP request pipeline.
+app.UseSwagger();
+app.UseSwaggerUI();
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    Console.WriteLine("DEVELOPMENT SUCCESS");
+  
 }
 using (var scope = app.Services.CreateScope())
 {

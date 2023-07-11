@@ -6,7 +6,6 @@ using Identity.Application.CQRS.Users.Commands.CreateUser;
 using ECommerceLP.Core.Api.Controllers;
 using ECommerceLP.Core.CQRS.Abstraction;
 using ECommerceLP.Core.Abstraction.Messaging.Response;
-using Microsoft.Extensions.Logging;
 
 namespace Identity.API.Controllers
 {
@@ -15,12 +14,14 @@ namespace Identity.API.Controllers
         #region Variables
         private readonly IProcessor _processor;
         #endregion
+
         #region Constructor
         public AuthController(IProcessor processor)
         {
             _processor = processor;
         }
         #endregion
+
         #region Login
         [HttpPost("login")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -31,6 +32,7 @@ namespace Identity.API.Controllers
             return this.ProduceResponse(result);
         }
         #endregion
+
         #region Register
         [HttpPost("register")]
         [ProducesResponseType(StatusCodes.Status200OK)]

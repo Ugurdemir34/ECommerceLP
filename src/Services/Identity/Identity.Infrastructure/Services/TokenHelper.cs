@@ -15,11 +15,11 @@ using System.Text;
 using System.Threading.Tasks;
 namespace Identity.Application.Common.Concretes
 {
-    public class AuthenticationService : IAuthentication
+    public class TokenHelper : ITokenHelper
     {
         private readonly JwtTokenSettings _jwtSettings;
 
-        public AuthenticationService(JwtTokenSettings jwtSettings)
+        public TokenHelper(JwtTokenSettings jwtSettings)
         {
             _jwtSettings = jwtSettings;
         }
