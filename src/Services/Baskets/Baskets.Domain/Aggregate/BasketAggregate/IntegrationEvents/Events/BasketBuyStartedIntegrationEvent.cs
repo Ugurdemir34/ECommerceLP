@@ -9,17 +9,18 @@ namespace Baskets.Domain.Aggregate.BasketAggregate.IntegrationEvents.Events
 {
     public class BasketBuyStartedIntegrationEvent : IntegrationEvent
     {
-        public Basket Basket { get; set; }
+        public string BasketId { get; set; }
         public string FullAddress { get; set; }
-        public int CardTypeId { get; set; }
-        public string CardNumber { get; }
-        public string CardSecurityNumber { get; }
-        public string CardHolderName { get; }
-        public BasketBuyStartedIntegrationEvent(Basket basket, string fullAddress, int cardTypeId, string cardNumber, string cardSecurityNumber, string cardHolderName)
+        public string CardNumber { get; set; }
+        public string CardSecurityNumber { get; set; }
+        public string CardHolderName { get; set; }
+        public BasketBuyStartedIntegrationEvent()
         {
-            Basket = basket;
+
+        }
+        public BasketBuyStartedIntegrationEvent(string fullAddress, string cardNumber, string cardSecurityNumber, string cardHolderName)
+        {
             FullAddress = fullAddress;
-            CardTypeId = cardTypeId;
             CardNumber = cardNumber;
             CardSecurityNumber = cardSecurityNumber;
             CardHolderName = cardHolderName;

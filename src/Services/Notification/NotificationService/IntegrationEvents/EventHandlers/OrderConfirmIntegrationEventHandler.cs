@@ -13,7 +13,6 @@ namespace NotificationService.IntegrationEvents.EventHandlers
         public OrderConfirmIntegrationEventHandler()
         {
         }
-
         public Task Handle(OrderConfirmIntegrationEvent @event)
         {
             Console.WriteLine($"{@event.Message}");

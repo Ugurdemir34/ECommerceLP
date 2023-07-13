@@ -1,4 +1,6 @@
-﻿using Baskets.Application.CQRS.Baskets.Commands.CreateBasket;
+﻿using Baskets.Application.CQRS.Baskets.Commands.BuyBasket;
+using Baskets.Application.CQRS.Baskets.Commands.CreateBasket;
+using Baskets.Common.Dtos;
 using Baskets.Domain.Aggregate.BasketAggregate;
 using System;
 using System.Collections.Generic;
@@ -12,29 +14,54 @@ namespace Baskets.Application.CQRS.Baskets.Extensions
     {
         public static Basket CreateBasket(this CreateBasketCommand command)
         {
-            var basket = new Basket(command.UserId);
+            var basket = new Basket()
+            {
+                BasketItems = command.BasketItems.CreateList(),
+                IsOrdered = command.IsOrdered
+            };
             return basket;
         }
-        //public static OrderDto Map(this Order order)
+        //public static Basket CreateBasket(this BuyBasketCommand command, Guid userId)
         //{
-        //    return new OrderDto
+        //    var basket = new Basket()
         //    {
-        //        CanceledDate = order.CanceledDate,
-        //        ConfirmDate = order.ConfirmDate,
-        //        CreatedBy = order.CreatedBy,
-        //        ModifiedBy = order.ModifiedBy,
-        //        ModifiedDate = order.ModifiedDate,
-        //        CreatedDate = order.CreatedDate,
-        //        Expiry = order.Expiry,
-        //        Id = order.Id,
-        //        Number = order.Number,
-        //        OrderDate = order.OrderDate,
-        //        OrderItems = order.OrderItems.MapListDto(),
-        //        OrderStatus = (int)order.Status,
-        //        TotalPrice = order.TotalPrice,
-        //        UserId = order.UserId,
-        //        Address = order.Address.Map()
+        //        BasketItems = command.Ba
+        //        UserId = userId,
+
         //    };
+        //    return basket;
         //}
+        public static List<BasketItem> CreateList(this List<BasketItemDto> item)
+        {
+            var list = new List<BasketItem>();
+            foreach (var itemDto in item)
+            {
+                list.Add(new BasketItem(itemDto.BasketId, itemDto.ProductId, itemDto.Amount, itemDto.Price));
+            }
+            return list;
+        }
+        public static BasketDto Map(this Basket basket)
+        {
+            return new BasketDto
+            {
+                Id = basket.Id,
+                IsOrdered = basket.IsOrdered,
+                BasketItems = basket.BasketItems.MapList(),
+            };
+        }
+        public static List<BasketItemDto> MapList(this List<BasketItem> item)
+        {
+            var list = new List<BasketItemDto>();
+            foreach (var itemDto in item)
+            {
+                list.Add(new BasketItemDto
+                {
+                    ProductId = itemDto.ProductId,
+                    Amount = itemDto.Amount,
+                    Price = itemDto.Price
+                });
+            }
+            return list;
+        }
     }
 }

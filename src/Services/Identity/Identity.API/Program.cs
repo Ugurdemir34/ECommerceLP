@@ -28,7 +28,7 @@ builder.Services.AddIdentityApplication();
 builder.Services.AddIdentityPersistence(builder.Configuration);
 builder.Services.AddIdentityInfrastructure();
 var serviceConfig = builder.Configuration.GetServiceConfig();
-//builder.Services.RegisterConsulServices(serviceConfig);
+builder.Services.RegisterConsulServices(serviceConfig);
 string contentRoot = builder.Services.BuildServiceProvider()
                              .GetService<Microsoft.AspNetCore.Hosting.IHostingEnvironment>()
                              .ContentRootPath;
@@ -66,12 +66,10 @@ using (var scope = app.Services.CreateScope())
     dbContext.Database.Migrate();
 }
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseDeveloperExceptionPage();
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+
+app.UseSwagger();
+app.UseSwaggerUI();
+
 app.UseCustomExceptionMiddleware();
 app.UseExceptionHandler("/error");
 //app.UseHttpsRedirection();

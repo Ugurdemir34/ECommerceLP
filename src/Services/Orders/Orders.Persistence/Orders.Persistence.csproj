@@ -23,4 +23,8 @@
     <ProjectReference Include="..\Orders.Domain\Orders.Domain\Orders.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="IntegrationEvents\EventHandlers\" />
+  </ItemGroup>
+
 </Project>

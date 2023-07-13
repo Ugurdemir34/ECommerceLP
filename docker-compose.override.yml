@@ -52,7 +52,7 @@ services:
     basketapi:
          environment:
             - ASPNETCORE_ENVIRONMENT=Production
-            - "ConnectionStrings:BasketDB=Server=db;Database=ECommerceDB;User Id=sa;Password=Password123.;Encrypt=False" 
+            #- "ConnectionStrings:BasketDB=Server=db;Database=ECommerceDB;User Id=sa;Password=Password123.;Encrypt=False" 
             #- ServiceConfig__serviceDiscoveryAddress=http://consul:8500
             #- ServiceConfig__serviceAddress=http://basketapi:80
             #- ServiceConfig__serviceName=basketapi

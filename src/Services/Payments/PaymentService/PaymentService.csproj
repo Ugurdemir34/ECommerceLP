@@ -14,12 +14,17 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="7.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\BuildingBlocks\EventBus.Base\EventBus.Base.csproj" />
     <ProjectReference Include="..\..\..\BuildingBlocks\EventBus.Factory\EventBus.Factory.csproj" />
+    <ProjectReference Include="..\..\..\Core\Data\src\ECommerceLP.Core.Mongo.Abstractions\ECommerceLP.Core.Mongo.Abstractions.csproj" />
+    <ProjectReference Include="..\..\..\Core\Data\src\ECommerceLP.Core.Mongo\ECommerceLP.Core.Mongo.csproj" />
+    <ProjectReference Include="..\..\Baskets\Baskets.Persistence\Baskets.Persistence.csproj" />
     <ProjectReference Include="..\Payment.Domain\Payment.Domain.csproj" />
+    <ProjectReference Include="..\Payment.Persistence\Payment.Persistence.csproj" />
   </ItemGroup>
 
   <ItemGroup>

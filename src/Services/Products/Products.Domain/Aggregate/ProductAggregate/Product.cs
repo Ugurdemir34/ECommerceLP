@@ -1,4 +1,4 @@
-﻿using ECommerceLP.Domain.Entities;
+﻿using ECommerceLP.Core.DDD.Abstraction;
 
 namespace Products.Domain.Aggregate.ProductAggregate
 {

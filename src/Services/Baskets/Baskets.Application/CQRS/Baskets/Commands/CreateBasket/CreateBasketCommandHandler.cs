@@ -10,29 +10,46 @@ using Baskets.Domain.Repositories;
 using ECommerceLP.Core.CQRS.Abstraction.Command;
 using ECommerceLP.Core.Abstraction.Exception;
 using Microsoft.Extensions.Logging;
+using ECommerceLP.Core.Mongo.Abstractions;
+using Baskets.Persistence.Contexts;
+using Microsoft.AspNetCore.Http;
+using Baskets.Common.Dtos;
+using System.Net;
 
 namespace Baskets.Application.CQRS.Baskets.Commands.CreateBasket
 {
-    public class CreateBasketCommandHandler : ICommandHandler<CreateBasketCommand, bool>
+    public class CreateBasketCommandHandler : ICommandHandler<CreateBasketCommand, BasketDto>
     {
-        private readonly IBasketRepository _repository;
+        private readonly IMongoRepositoryFactory<BasketContext> _context;
         private readonly ILogger<CreateBasketCommandHandler> _logger;
-        public CreateBasketCommandHandler(IBasketRepository repository, ILogger<CreateBasketCommandHandler> logger)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public CreateBasketCommandHandler(ILogger<CreateBasketCommandHandler> logger, IMongoRepositoryFactory<BasketContext> context, IHttpContextAccessor accessor)
         {
-            _repository = repository;
             _logger = logger;
+            _context = context;
+            _httpContextAccessor = accessor;
         }
 
-        public async Task<bool> Handle(CreateBasketCommand request, CancellationToken cancellationToken)
+        public async Task<BasketDto> Handle(CreateBasketCommand request, CancellationToken cancellationToken)
         {
-            var basket = _repository.GetAsync(b => b.UserId == request.UserId, cancellationToken);
-            if (basket != null)
+            var user = _httpContextAccessor.HttpContext.User.FindFirst("userId");
+            if (user == null)
             {
-                //_logger.LogInformation(Messages.BasketAlreadyExists, true, request);
+                throw new CustomBusinessException(Messages.YouDontHavePermission);
+
+            }
+
+            var basketRepo = _context.GetRepository<Basket>();
+            var basket = await basketRepo.AnyAsync(b=>b.UserId==Guid.Parse(user.Value));
+            if (basket)
+            {
                 throw new CustomBusinessException(Messages.BasketAlreadyExists);
             }
-            await _repository.AddAsync(request.CreateBasket(), cancellationToken);
-            return true;
+            var addedBasket = request.CreateBasket();
+            addedBasket.UserId = Guid.Parse(user.Value);
+            addedBasket.BasketItems.ForEach(bi => { bi.BasketId = addedBasket.Id; });
+            await basketRepo.AddAsync(addedBasket);
+            return addedBasket.Map();
         }
     }
 }

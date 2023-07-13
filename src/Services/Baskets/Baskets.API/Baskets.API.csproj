@@ -10,6 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.5">
       <PrivateAssets>all</PrivateAssets>
@@ -20,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\BuildingBlocks\EventBus.Factory\EventBus.Factory.csproj" />
     <ProjectReference Include="..\..\..\Core\Api\src\ECommerceLP.Core.Api\ECommerceLP.Core.Api.csproj" />
     <ProjectReference Include="..\..\..\Core\CQRS\src\ECommerceLP.Core.CQRS\ECommerceLP.Core.CQRS.csproj" />
     <ProjectReference Include="..\..\..\Core\Logging\src\ECommerceLP.Core.Serilog\ECommerceLP.Core.Serilog.csproj" />

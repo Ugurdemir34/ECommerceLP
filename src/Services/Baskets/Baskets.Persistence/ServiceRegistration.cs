@@ -1,4 +1,6 @@
 ﻿using Baskets.Persistence.Contexts;
+using Baskets.Persistence.EventHandlers;
+using EventBus.Base.Abstraction;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,10 +16,7 @@ namespace Baskets.Persistence
     {
         public static void AddBasketPersistence(this IServiceCollection serviceCollection,IConfiguration configuration)
         {
-            serviceCollection.AddDbContext<BasketContext>(opt =>
-            {
-                opt.UseSqlServer(configuration.GetConnectionString("BasketDB"));
-            });
+            serviceCollection.AddTransient<BasketBuyCompletedIntegrationEventHandler>();           
         }
     }
 }

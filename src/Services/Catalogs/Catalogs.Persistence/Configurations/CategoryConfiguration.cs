@@ -14,8 +14,8 @@ namespace Catalogs.Persistence.Configurations
         public void Configure(EntityTypeBuilder<Category> builder)
         {
             builder.ToTable("Categories");
-            builder.Property(c=>c.Title).IsRequired();
-            builder.Property(c=>c.Description).IsRequired();
+            builder.Property(c=>c.Title).IsRequired().HasColumnName("Title");
+            builder.Property(c=>c.Description).IsRequired().HasColumnName("Description");
         }
     }
 }
