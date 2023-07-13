@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\BuildingBlocks\EventBus.Base\EventBus.Base.csproj" />
+    <ProjectReference Include="..\..\..\Core\Data\src\ECommerceLP.Core.Mongo.Abstractions\ECommerceLP.Core.Mongo.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>

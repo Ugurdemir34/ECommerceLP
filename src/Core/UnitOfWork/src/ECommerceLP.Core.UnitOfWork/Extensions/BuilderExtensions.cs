@@ -47,10 +47,10 @@ namespace ECommerceLP.Core.UnitOfWork.Extensions
                 }
 
             }
-            services.ToScan(scan => scan.FromAssemblies(discovery.RepositoryAssemblies)
-                                      .AddClasses(x => x.AssignableTo(typeof(ICustomRepository)))
-                                      .AsImplementedInterfaces()
-                                      .WithScopedLifetime());
+            //services.ToScan(scan => scan.FromAssemblies(discovery.RepositoryAssemblies)
+            //                          .AddClasses(x => x.AssignableTo(typeof(ICustomRepository)))
+            //                          .AsImplementedInterfaces()
+            //                          .WithScopedLifetime());
 
             return services;
         }

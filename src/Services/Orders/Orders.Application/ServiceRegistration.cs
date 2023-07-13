@@ -31,6 +31,7 @@ namespace Orders.Application
             serviceCollection.AddScoped<IRequestHandler<DeleteOrderCommand, bool>, DeleteOrderCommandHandler>();
             serviceCollection.AddValidatorsFromAssemblyContaining<CreateOrderCommandValidator>();
             IEventBus eventBus = provider.GetRequiredService<IEventBus>();
+
         }
     }
 }

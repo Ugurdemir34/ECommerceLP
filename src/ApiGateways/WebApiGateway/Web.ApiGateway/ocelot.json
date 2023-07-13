@@ -1,20 +1,44 @@
 {
   "Routes": [
     {
-      "DownstreamPathTemplate": "/api/baskets/Create",
-      "DownstreamScheme": "https",
+      "DownstreamPathTemplate": "/api/Baskets/Create",
+      "DownstreamScheme": "http",
       "ServiceName": "basketapi",
-      "UpstreamPathTemplate": "/api/baskets/Create",
+      "UpstreamPathTemplate": "/api/Baskets/Create",
       "UpstreamHttpMethod": [ "POST" ],
-      "UpstreamScheme": "https"
+      "UpstreamScheme": "http"
+    },
+    {
+      "DownstreamPathTemplate": "/api/Baskets/Checkout",
+      "DownstreamScheme": "http",
+      "ServiceName": "basketapi",
+      "UpstreamPathTemplate": "/api/Baskets/Checkout",
+      "UpstreamHttpMethod": [ "POST" ],
+      "UpstreamScheme": "http"
     },
     {
       "DownstreamPathTemplate": "/api/BasketItems/Create",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "ServiceName": "basketapi",
       "UpstreamPathTemplate": "/api/BasketItems/Create",
       "UpstreamHttpMethod": [ "POST" ],
-      "UpstreamScheme": "https"
+      "UpstreamScheme": "http"
+    },
+    {
+      "DownstreamPathTemplate": "/api/BasketItems/Add",
+      "DownstreamScheme": "http",
+      "ServiceName": "basketapi",
+      "UpstreamPathTemplate": "/api/BasketItems/Add",
+      "UpstreamHttpMethod": [ "POST" ],
+      "UpstreamScheme": "http"
+    },
+    {
+      "DownstreamPathTemplate": "/api/BasketItems/Delete",
+      "DownstreamScheme": "http",
+      "ServiceName": "basketapi",
+      "UpstreamPathTemplate": "/api/BasketItems/Delete",
+      "UpstreamHttpMethod": [ "POST" ],
+      "UpstreamScheme": "http"
     },
     {
       "DownstreamPathTemplate": "/api/catalogs/getcategories",

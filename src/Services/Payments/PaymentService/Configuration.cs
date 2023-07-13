@@ -9,6 +9,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ECommerceLP.Core.Mongo.Extensions;
+using ECommerceLP.Core.Mongo.Abstractions;
+using ECommerceLP.Core.Abstraction.Settings;
+using Baskets.Persistence.EventHandlers;
 
 namespace PaymentService
 {
@@ -16,7 +20,8 @@ namespace PaymentService
     {
         public static void ConfigureServices(ServiceCollection serviceCollection, IConfiguration configuration)
         {
-            serviceCollection.AddTransient<PaymentProcessedEventHandler>();
+            serviceCollection.AddTransient<PaymentProcessedIntegrationEventHandler>();
+            serviceCollection.AddTransient<BasketBuyStartedIntegrationEventHandler>();
             serviceCollection.AddSingleton<IEventBus>(sp =>
             {
                 //EventBusConfig config = new()

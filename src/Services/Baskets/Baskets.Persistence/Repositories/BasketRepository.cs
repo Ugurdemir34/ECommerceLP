@@ -20,15 +20,17 @@ namespace Baskets.Persistence.Repositories
             _context = context;
         }
 
-        public async Task AddAsync(Basket basket, CancellationToken token)
+        public Task AddAsync(Basket basket, CancellationToken token)
         {
-            var added = _context.AddAsync(basket, token);
+            //var added = _context.AddAsync(basket, token);
+            return Task.CompletedTask;
         }
 
         public async Task<Basket> GetAsync(Expression<Func<Basket, bool>> predicate,CancellationToken token)
         {
-            var entity = _context.Set<Basket>();
-            return await entity.FirstOrDefaultAsync(predicate,token);
+            return default;
+            //var entity = _context.Set<Basket>();
+            //return await entity.FirstOrDefaultAsync(predicate,token);
         }
     }
 }

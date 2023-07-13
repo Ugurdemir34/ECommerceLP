@@ -43,6 +43,7 @@ builder.Services.AddSingleton<IEventBus>(sp =>
     //};
     return EventBusFactory.Create(config, sp);
 });
+
 var serviceProvider = builder.Services.BuildServiceProvider();
 builder.Services.AddUnitOfWork();
 builder.Services.AddCQRS();
