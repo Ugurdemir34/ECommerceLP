@@ -1,20 +1,12 @@
 ﻿using Baskets.Application.CQRS.BasketItems.Extensions;
 using Baskets.Common.Constants;
-using Baskets.Common.Dtos;
 using Baskets.Domain.Aggregate.BasketAggregate;
 using Baskets.Persistence.Contexts;
-using DnsClient.Internal;
 using ECommerceLP.Core.Abstraction.Exception;
 using ECommerceLP.Core.CQRS.Abstraction.Command;
 using ECommerceLP.Core.Mongo.Abstractions;
-using ECommerceLP.Core.UnitOfWork.Abstraction;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Baskets.Application.CQRS.BasketItems.Commands.DeleteBasketItem
 {

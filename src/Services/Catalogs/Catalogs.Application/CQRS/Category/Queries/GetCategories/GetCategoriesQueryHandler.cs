@@ -8,7 +8,7 @@ using ECommerceLP.Core.UnitOfWork.Abstraction;
 
 namespace Catalogs.Application.CQRS.Category.Queries.GetCategories
 {
-    public class GetCategoriesQueryHandler : IQueryHandler<GetCategoriesQuery, PagedList<CategoryDto>>,IQueryCacheable
+    public class GetCategoriesQueryHandler : IQueryHandler<GetCategoriesQuery, PagedList<CategoryDto>>, IQueryCacheable
     {
         private readonly IUnitOfWork<CatalogContext> _unitOfWork;
         private IMapper _mapper;
@@ -24,6 +24,6 @@ namespace Catalogs.Application.CQRS.Category.Queries.GetCategories
             var result = _mapper.Map<PagedList<CategoryDto>>(list);
             return result;
         }
-        
+
     }
 }

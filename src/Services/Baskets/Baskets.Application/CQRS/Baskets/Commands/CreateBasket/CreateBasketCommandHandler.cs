@@ -1,12 +1,6 @@
 ﻿using Baskets.Common.Constants;
 using Baskets.Domain.Aggregate.BasketAggregate;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Baskets.Application.CQRS.Baskets.Extensions;
-using Baskets.Domain.Repositories;
 using ECommerceLP.Core.CQRS.Abstraction.Command;
 using ECommerceLP.Core.Abstraction.Exception;
 using Microsoft.Extensions.Logging;
@@ -14,7 +8,6 @@ using ECommerceLP.Core.Mongo.Abstractions;
 using Baskets.Persistence.Contexts;
 using Microsoft.AspNetCore.Http;
 using Baskets.Common.Dtos;
-using System.Net;
 
 namespace Baskets.Application.CQRS.Baskets.Commands.CreateBasket
 {
@@ -40,13 +33,13 @@ namespace Baskets.Application.CQRS.Baskets.Commands.CreateBasket
             }
 
             var basketRepo = _context.GetRepository<Basket>();
-            var basket = await basketRepo.AnyAsync(b=>b.UserId==Guid.Parse(user.Value));
+            var basket = await basketRepo.AnyAsync(b => b.UserId == Guid.Parse(user.Value));
             if (basket)
             {
                 throw new CustomBusinessException(Messages.BasketAlreadyExists);
             }
             var addedBasket = request.CreateBasket();
-            addedBasket.UserId = Guid.Parse(user.Value);
+            addedBasket.UserId = Guid.Parse(user.Value);//metodla yaz
             addedBasket.BasketItems.ForEach(bi => { bi.BasketId = addedBasket.Id; });
             await basketRepo.AddAsync(addedBasket);
             return addedBasket.Map();

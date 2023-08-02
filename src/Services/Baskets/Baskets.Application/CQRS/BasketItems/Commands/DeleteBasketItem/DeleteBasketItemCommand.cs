@@ -1,12 +1,5 @@
-﻿using Baskets.Application.Requests.Basket;
-using Baskets.Application.Requests.BasketItem;
-using Baskets.Common.Dtos;
+﻿using Baskets.Application.Requests.BasketItem;
 using ECommerceLP.Core.CQRS.Abstraction.Command;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Baskets.Application.CQRS.BasketItems.Commands.DeleteBasketItem
 {
