@@ -8,6 +8,10 @@ namespace ECommerceLP.Core.Abstraction.Messaging.Response
 {
     public class Response<T>
     {
+        public Response()
+        {
+            
+        }
         public Response(T body, bool isSuccess, int code = 0)
         {
             this.Body = body;

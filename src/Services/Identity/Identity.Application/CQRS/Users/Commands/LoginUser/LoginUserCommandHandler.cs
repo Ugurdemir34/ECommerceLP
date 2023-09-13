@@ -42,7 +42,8 @@ namespace Identity.Application.CQRS.Users.Commands.LoginUser
                 //_logger.Log(LogLevel.Error, Messages.UserNameOrPasswordInCorrect, true, request);
                 throw new CustomBusinessException(Messages.UserNameOrPasswordInCorrect);
             }
-            return _authentication.GenerateToken(user.UserName, user.Id, user.UserType);
+            var aaaa = _authentication.GenerateToken(user.UserName, user.Id, user.UserType);
+            return aaaa;
 
         }
     }
