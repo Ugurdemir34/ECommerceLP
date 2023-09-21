@@ -1,0 +1,135 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/Baskets/Create",
+      "DownstreamScheme": "http",
+      "ServiceName": "basketapi",
+      "UpstreamPathTemplate": "/api/Baskets/Create",
+      "UpstreamHttpMethod": [ "POST" ],
+      "UpstreamScheme": "http"
+    },
+    {
+      "DownstreamPathTemplate": "/api/Baskets/Checkout",
+      "DownstreamScheme": "http",
+      "ServiceName": "basketapi",
+      "UpstreamPathTemplate": "/api/Baskets/Checkout",
+      "UpstreamHttpMethod": [ "POST" ],
+      "UpstreamScheme": "http"
+    },
+    {
+      "DownstreamPathTemplate": "/api/BasketItems/Create",
+      "DownstreamScheme": "http",
+      "ServiceName": "basketapi",
+      "UpstreamPathTemplate": "/api/BasketItems/Create",
+      "UpstreamHttpMethod": [ "POST" ],
+      "UpstreamScheme": "http"
+    },
+    {
+      "DownstreamPathTemplate": "/api/BasketItems/Add",
+      "DownstreamScheme": "http",
+      "ServiceName": "basketapi",
+      "UpstreamPathTemplate": "/api/BasketItems/Add",
+      "UpstreamHttpMethod": [ "POST" ],
+      "UpstreamScheme": "http"
+    },
+    {
+      "DownstreamPathTemplate": "/api/BasketItems/Delete",
+      "DownstreamScheme": "http",
+      "ServiceName": "basketapi",
+      "UpstreamPathTemplate": "/api/BasketItems/Delete",
+      "UpstreamHttpMethod": [ "POST" ],
+      "UpstreamScheme": "http"
+    },
+    {
+      "DownstreamPathTemplate": "/api/catalogs/getcategories",
+      "DownstreamScheme": "http",
+      "ServiceName": "catalogapi",
+      "UpstreamPathTemplate": "/api/catalogs/getcategories",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Catalogs/GetCategoryById",
+      "DownstreamScheme": "http",
+      "ServiceName": "catalogapi",
+      "UpstreamPathTemplate": "/api/Catalogs/GetCategoryById",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Catalogs/Create",
+      "DownstreamScheme": "http",
+      "ServiceName": "catalogapi",
+      "UpstreamPathTemplate": "/api/Catalogs/Create",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Catalogs/Delete",
+      "DownstreamScheme": "http",
+      "ServiceName": "catalogapi",
+      "UpstreamPathTemplate": "/api/Catalogs/Delete",
+      "UpstreamHttpMethod": [ "Delete" ]
+    },
+    //{
+    //  "DownstreamPathTemplate": "/api/Catalogs/api/catalogs/getgetcategory",
+    //  "DownstreamScheme": "http",
+    //  "ServiceName": "catalogapi",
+    //  "UpstreamPathTemplate": "/api/Catalogs/api/catalogs/getgetcategory",
+    //  "UpstreamHttpMethod": [ "POST" ]
+    //},
+    {
+      "DownstreamPathTemplate": "/api/Auth/Login",
+      "DownstreamScheme": "http",
+      "ServiceName": "identityapi",
+      "UpstreamPathTemplate": "/api/Auth/Login",
+      "UpstreamHttpMethod": [ "POST" ],
+      "UpstreamScheme": "http"
+    },
+    {
+      "DownstreamPathTemplate": "/api/Auth/Register",
+      "DownstreamScheme": "http",
+      "ServiceName": "identityapi",
+      "UpstreamPathTemplate": "/api/Auth/Register",
+      "UpstreamHttpMethod": [ "POST" ],
+      "UpstreamScheme": "http"
+    },
+    {
+      "DownstreamPathTemplate": "/api/Orders/Create",
+      "DownstreamScheme": "http",
+      "ServiceName": "orderapi",
+      "UpstreamPathTemplate": "/api/Orders/Create",
+      "UpstreamHttpMethod": [ "POST" ],
+      "UpstreamScheme": "http"
+
+    },
+    {
+      "DownstreamPathTemplate": "/api/Orders/Delete",
+      "DownstreamScheme": "http",
+      "ServiceName": "orderapi",
+      "UpstreamPathTemplate": "/api/Orders/Delete",
+      "UpstreamHttpMethod": [ "DELETE" ],
+      "UpstreamScheme": "http"
+    },
+    {
+      "DownstreamPathTemplate": "/api/Orders/Confirm",
+      "DownstreamScheme": "http",
+      "ServiceName": "orderapi",
+      "UpstreamPathTemplate": "/api/Orders/Confirm",
+      "UpstreamHttpMethod": [ "POST" ],
+      "UpstreamScheme": "http"
+    },
+    {
+      "DownstreamPathTemplate": "/api/Orders/Shipped",
+      "DownstreamScheme": "http",
+      "ServiceName": "orderapi",
+      "UpstreamPathTemplate": "/api/Orders/Shipped",
+      "UpstreamHttpMethod": [ "POST" ],
+      "UpstreamScheme": "http"
+    }
+  ],
+  "GlobalConfiguration": {
+    "ServiceDiscoveryProvider": {
+      "Host": "consul",
+      "Port": 8500,
+      "Type": "Consul"
+    }
+  }
+}

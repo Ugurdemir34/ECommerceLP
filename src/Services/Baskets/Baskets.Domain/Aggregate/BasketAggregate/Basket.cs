@@ -1,5 +1,7 @@
-﻿using ECommerceLP.Domain.Common.Interfaces;
-using ECommerceLP.Domain.Entities;
+﻿using ECommerceLP.Core.DDD.Abstraction;
+using ECommerceLP.Core.Mongo.Abstractions.Attributes;
+using ECommerceLP.Core.Mongo.Abstractions.Document;
+using MongoDB.Bson.Serialization.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,11 +10,17 @@ using System.Threading.Tasks;
 
 namespace Baskets.Domain.Aggregate.BasketAggregate
 {
-    public class Basket : BaseEntity, IAggregateRoot
+    [CollectionInfo(CollectionName ="baskets")]
+    public class Basket : DocumentBase, IAggregateRoot
     {
+        [BsonElement("userid")]
         public Guid UserId { get; set; }
-        public ICollection<BasketItem> BasketItems { get; set; }
-        public float GetTotalPrice => BasketItems.Sum(b => b.Price);
+        [BsonElement("basketItems")]
+        public List<BasketItem> BasketItems { get; set; }
+        [BsonElement("totalPrice")]
+        public float TotalPrice => BasketItems.Sum(b => b.Price);
+        [BsonElement("isOrdered")]
+        public bool IsOrdered { get; set; }
         public Basket()
         {
 

@@ -1,12 +1,6 @@
-﻿using ECommerceLP.Application.Interfaces.Abstract;
-using Identity.Application.Requests.User;
+﻿using ECommerceLP.Core.CQRS.Abstraction.Command;
 using Identity.Common.Dtos;
-using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Identity.Common.Requests;
 
 namespace Identity.Application.CQRS.Users.Commands.LoginUser
 {

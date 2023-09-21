@@ -2,21 +2,23 @@
 
 FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
 WORKDIR /app
-EXPOSE 80
-EXPOSE 443
+EXPOSE 81
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY ["src/Services/Baskets/Baskets.API/Baskets.API.csproj", "src/Services/Baskets/Baskets.API/"]
-RUN dotnet restore "src/Services/Baskets/Baskets.API/Baskets.API.csproj"
 COPY . .
-WORKDIR "/src/src/Services/Baskets/Baskets.API"
-RUN dotnet build "Baskets.API.csproj" -c Release -o /app/build
 
-FROM build AS publish
-RUN dotnet publish "Baskets.API.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet restore "src/Services/Baskets/Baskets.API/Baskets.API.csproj" 
+WORKDIR "/src/."
+COPY . . 
+RUN dotnet build "src/Services/Baskets/Baskets.API/Baskets.API.csproj" -c Release -o /app/build
+
+FROM build as publish
+
+RUN dotnet publish "src/Services/Baskets/Baskets.API/Baskets.API.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+#ENV ASPNETCORE_URLS http://*.PORT_NUMBER
 ENTRYPOINT ["dotnet", "Baskets.API.dll"]

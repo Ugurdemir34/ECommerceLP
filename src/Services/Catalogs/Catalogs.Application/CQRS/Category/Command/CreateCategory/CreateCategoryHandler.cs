@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
 using Catalogs.Common.Dtos;
-using ECommerceLP.Application.Interfaces.Abstract;
-using ECommerceLP.Infrastructure.UnitOfWork;
+using Catalogs.Persistence.Context;
+using ECommerceLP.Core.CQRS.Abstraction.Command;
+using ECommerceLP.Core.UnitOfWork.Abstraction;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,12 +13,12 @@ namespace Catalogs.Application.CQRS.Category.Command.CreateCategory
 {
     public class CreateCategoryHandler : ICommandHandler<CreateCategoryCommand, CategoryDto>
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IUnitOfWork<CatalogContext> _unitOfWork;
         private IMapper _mapper;
-        public CreateCategoryHandler(IUnitOfWork unitOfWork, IMapper mapper)
+        public CreateCategoryHandler(IMapper mapper, IUnitOfWork<CatalogContext> unitOfWork)
         {
-            _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _unitOfWork = unitOfWork;
         }
         public async Task<CategoryDto> Handle(CreateCategoryCommand request, CancellationToken cancellationToken)
         {

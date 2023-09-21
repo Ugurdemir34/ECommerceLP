@@ -1,5 +1,5 @@
 ﻿using Catalogs.Persistence.Context;
-using ECommerceLP.Application.Settings;
+using ECommerceLP.Core.Abstraction.Settings;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;

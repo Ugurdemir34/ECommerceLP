@@ -20,24 +20,38 @@
     <PackageReference Include="MediatR" Version="12.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.3">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.3" />
+    <PackageReference Include="Serilog.AspNetCore" Version="7.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Core\ECommerceLP.Api\ECommerceLP.Api.csproj" />
-    <ProjectReference Include="..\..\..\Core\ECommerceLP.Application\ECommerceLP.Application.csproj" />
-    <ProjectReference Include="..\..\..\Core\ECommerceLP.Common\ECommerceLP.Common.csproj" />
-    <ProjectReference Include="..\..\..\Infrastructure\ECommerceLP.Infrastructure\ECommerceLP.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\..\Core\Api\src\ECommerceLP.Core.Api\ECommerceLP.Core.Api.csproj" />
+    <ProjectReference Include="..\..\..\Core\CQRS\src\ECommerceLP.Core.CQRS.Abstraction\ECommerceLP.Core.CQRS.Abstraction.csproj" />
+    <ProjectReference Include="..\..\..\Core\CQRS\src\ECommerceLP.Core.CQRS\ECommerceLP.Core.CQRS.csproj" />
+    <ProjectReference Include="..\..\..\Core\Logging\src\ECommerceLP.Core.Logging\ECommerceLP.Core.FileLogging.csproj" />
+    <ProjectReference Include="..\..\..\Core\Logging\src\ECommerceLP.Core.Serilog\ECommerceLP.Core.Serilog.csproj" />
+    <ProjectReference Include="..\..\..\Core\Serialization\src\ECommerceLP.Core.Serialization.JSON\ECommerceLP.Core.Serialization.JSON.csproj" />
+    <ProjectReference Include="..\..\..\Core\ServiceDiscovery\src\ECommerceLP.Core.ServiceDiscovery.Abstraction\ECommerceLP.Core.ServiceDiscovery.Abstraction.csproj" />
+    <ProjectReference Include="..\..\..\Core\ServiceDiscovery\src\ECommerceLP.Core.ServiceDiscovery\ECommerceLP.Core.ServiceDiscovery.csproj" />
+    <ProjectReference Include="..\..\..\Core\UnitOfWork\src\ECommerceLP.Core.UnitOfWork\ECommerceLP.Core.UnitOfWork.csproj" />
     <ProjectReference Include="..\Identity.Application\Identity.Application.csproj" />
     <ProjectReference Include="..\Identity.Infrastructure\Identity.Infrastructure.csproj" />
     <ProjectReference Include="..\Identity.Persistence\Identity.Persistence.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="appsettings.Production.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
 

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -7,7 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Dtos\" />
+    <ProjectReference Include="..\..\..\Core\Abstraction\src\ECommerceLP.Core.Abstraction\ECommerceLP.Core.Abstraction.csproj" />
+    <ProjectReference Include="..\..\..\Core\RemoteCall\src\ECommerceLP.Core.RemoteCall\ECommerceLP.Core.RemoteCall.csproj" />
   </ItemGroup>
 
 </Project>

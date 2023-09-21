@@ -8,13 +8,13 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.3" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.3" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="7.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Core\ECommerceLP.Application\ECommerceLP.Application.csproj" />
+    <ProjectReference Include="..\..\..\Core\Abstraction\src\ECommerceLP.Core.Abstraction\ECommerceLP.Core.Abstraction.csproj" />
     <ProjectReference Include="..\Catalogs.Domain\Catalogs.Domain.csproj" />
   </ItemGroup>
 

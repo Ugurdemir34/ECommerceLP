@@ -1,8 +1,7 @@
 ﻿using Baskets.Domain.Aggregate.BasketAggregate;
 using Baskets.Domain.Repositories;
 using Baskets.Persistence.Contexts;
-using ECommerceLP.Application.Repositories;
-using ECommerceLP.Infrastructure.Repository;
+using ECommerceLP.Core.UnitOfWork.Abstraction;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -13,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Baskets.Persistence.Repositories
 {
-    public class BasketRepository:CustomRepository,IBasketRepository
+    public class BasketRepository:ICustomRepository,IBasketRepository
     {
         private readonly BasketContext _context;
         public BasketRepository(BasketContext context)
@@ -21,15 +20,17 @@ namespace Baskets.Persistence.Repositories
             _context = context;
         }
 
-        public async Task AddAsync(Basket basket, CancellationToken token)
+        public Task AddAsync(Basket basket, CancellationToken token)
         {
-            var added = _context.AddAsync(basket, token);
+            //var added = _context.AddAsync(basket, token);
+            return Task.CompletedTask;
         }
 
         public async Task<Basket> GetAsync(Expression<Func<Basket, bool>> predicate,CancellationToken token)
         {
-            var entity = _context.Set<Basket>();
-            return await entity.FirstOrDefaultAsync(predicate,token);
+            return default;
+            //var entity = _context.Set<Basket>();
+            //return await entity.FirstOrDefaultAsync(predicate,token);
         }
     }
 }

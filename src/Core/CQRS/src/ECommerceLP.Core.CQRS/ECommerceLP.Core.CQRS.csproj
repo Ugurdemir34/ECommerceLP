@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="11.5.2" />
+    <PackageReference Include="MediatR" Version="12.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="7.0.0" />
+    <PackageReference Include="StackExchange.Redis" Version="2.6.104" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Abstraction\src\ECommerceLP.Core.Abstraction\ECommerceLP.Core.Abstraction.csproj" />
+    <ProjectReference Include="..\..\..\Cache\src\ECommerceLP.Core.Cache.Abstraction\ECommerceLP.Core.Cache.Abstraction.csproj" />
+    <ProjectReference Include="..\..\..\Security\src\ECommerceLP.Core.Security\ECommerceLP.Core.Security.csproj" />
+    <ProjectReference Include="..\..\..\UnitOfWork\src\ECommerceLP.Core.UnitOfWork.Abstraction\ECommerceLP.Core.UnitOfWork.Abstraction.csproj" />
+    <ProjectReference Include="..\ECommerceLP.Core.CQRS.Abstraction\ECommerceLP.Core.CQRS.Abstraction.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,8 +1,16 @@
-﻿using Baskets.Application.Services;
+﻿using Baskets.Application.CQRS.Baskets.Extensions;
 using Baskets.Common.Constants;
+using Baskets.Common.Dtos;
 using Baskets.Domain.Aggregate.BasketAggregate;
-using ECommerceLP.Application.Interfaces.Abstract;
-using ECommerceLP.Infrastructure.UnitOfWork;
+using Baskets.Domain.Aggregate.BasketAggregate.IntegrationEvents.Events;
+using Baskets.Persistence.Contexts;
+using ECommerceLP.Core.Abstraction.Exception;
+using ECommerceLP.Core.CQRS.Abstraction.Command;
+using ECommerceLP.Core.Mongo.Abstractions;
+using ECommerceLP.Core.UnitOfWork.Abstraction;
+using EventBus.Base.Abstraction;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,29 +19,42 @@ using System.Threading.Tasks;
 
 namespace Baskets.Application.CQRS.Baskets.Commands.BuyBasket
 {
-    public class BuyBasketCommandHandler : ICommandHandler<BuyBusketCommand, bool>
+    public class BuyBasketCommandHandler : ICommandHandler<BuyBasketCommand, BasketDto>
     {
-        private readonly IPaymentService _paymentService;
-        private readonly IUnitOfWork _unitOfWork;
-        public BuyBasketCommandHandler(IPaymentService paymentService, IUnitOfWork unitOfWork)
+        private readonly ILogger<BuyBasketCommandHandler> _logger;
+        private readonly IMongoRepositoryFactory<BasketContext> _context;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IEventBus _eventBus;
+
+        public BuyBasketCommandHandler(ILogger<BuyBasketCommandHandler> logger, IMongoRepositoryFactory<BasketContext> context, IHttpContextAccessor httpContextAccessor, IEventBus eventBus)
         {
-            _paymentService = paymentService;
-            _unitOfWork = unitOfWork;
+            _logger = logger;
+            _context = context;
+            _httpContextAccessor = httpContextAccessor;
+            _eventBus = eventBus;
         }
 
-        public async Task<bool> Handle(BuyBusketCommand request, CancellationToken cancellationToken)
+        public async Task<BasketDto> Handle(BuyBasketCommand request, CancellationToken cancellationToken)
         {
-            if (_paymentService.PaymentSuccess(request))
+            var basketRepo = _context.GetRepository<Basket>();
+            request.UserId = Guid.Parse(_httpContextAccessor.HttpContext.User.FindFirst("userId").Value);
+            var basket = await basketRepo.FindAsync(b => b.UserId == request.UserId && b.Id == request.BasketId);
+            if (basket == null)
             {
-                var basketQueryRepo = _unitOfWork.GetQueryRepository<Basket>();
-                var basket = await basketQueryRepo.GetAsync(b => b.UserId == request.UserId, b => b.BasketItems);
-                if (basket != null) { throw new Exception(Messages.BasketNotFound); }
-                if (basket.BasketItems.Count==0) { throw new Exception(Messages.BasketItemsFound); }
-
-                return default;
-
+                //_logger.LogInformation(Messages.BasketNotFound, true, request);
+                throw new CustomBusinessException(Messages.BasketNotFound);
             }
-            return default;
+            //await basketRepo.UpdateAsync(a=>a.Set(b=>b.IsOrdered,true),b=>b.Id==request.BasketId);
+            var @event = new BasketBuyStartedIntegrationEvent()
+            {
+                CardHolderName = request.CardHolderName,
+                CardNumber = request.CardNumber,
+                CardSecurityNumber = request.CardSecurityNumber,
+                FullAddress = request.FullAddress,
+                BasketId = request.BasketId
+            };
+            _eventBus.Publish(@event);
+            return basket.Map();
         }
     }
 }

@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.1" />
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="FluentValidation" Version="11.5.1" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.5.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
@@ -17,10 +17,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Core\ECommerceLP.Application\ECommerceLP.Application.csproj" />
-    <ProjectReference Include="..\..\..\Core\ECommerceLP.Common\ECommerceLP.Common.csproj" />
+    <ProjectReference Include="..\..\..\Core\CQRS\src\ECommerceLP.Core.CQRS.Abstraction\ECommerceLP.Core.CQRS.Abstraction.csproj" />
+    <ProjectReference Include="..\..\..\Core\UnitOfWork\src\ECommerceLP.Core.UnitOfWork.Abstraction\ECommerceLP.Core.UnitOfWork.Abstraction.csproj" />
     <ProjectReference Include="..\Catalogs.Common\Catalogs.Common.csproj" />
     <ProjectReference Include="..\Catalogs.Domain\Catalogs.Domain.csproj" />
+    <ProjectReference Include="..\Catalogs.Persistence\Catalogs.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

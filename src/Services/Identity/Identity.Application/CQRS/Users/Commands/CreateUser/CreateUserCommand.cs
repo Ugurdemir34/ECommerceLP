@@ -1,7 +1,7 @@
-﻿using ECommerceLP.Application.Interfaces.Abstract;
-using Identity.Application.Requests.User;
+﻿using ECommerceLP.Core.CQRS.Abstraction.Command;
 using Identity.Common.Dtos;
 using Identity.Common.Enums;
+using Identity.Common.Requests;
 using MediatR;
 using System;
 using System.Collections.Generic;

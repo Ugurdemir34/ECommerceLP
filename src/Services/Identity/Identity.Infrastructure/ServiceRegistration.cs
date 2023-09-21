@@ -13,7 +13,7 @@ namespace Identity.Infrastructure
     {
         public static void AddIdentityInfrastructure(this IServiceCollection services)
         {
-            services.AddScoped<IAuthentication, AuthenticationService>();
+            services.AddScoped<ITokenHelper, TokenHelper>();
         }
     }
 }

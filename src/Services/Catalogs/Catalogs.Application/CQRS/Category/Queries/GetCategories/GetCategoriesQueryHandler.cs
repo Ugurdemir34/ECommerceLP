@@ -1,25 +1,18 @@
 ﻿using AutoMapper;
 using Catalogs.Common.Dtos;
-using Catalogs.Domain.Aggregate.CategoryAggregate;
-using ECommerceLP.Application.Interfaces.Abstract;
-using ECommerceLP.Common.Collections.Abstract;
-using ECommerceLP.Common.Collections.Concrete;
-using ECommerceLP.Common.Collections.Extensions;
-using ECommerceLP.Infrastructure.UnitOfWork;
-using StackExchange.Redis;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.Eventing.Reader;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Catalogs.Persistence.Context;
+using ECommerceLP.Core.Abstraction.Collections;
+using ECommerceLP.Core.CQRS.Abstraction;
+using ECommerceLP.Core.CQRS.Abstraction.Query;
+using ECommerceLP.Core.UnitOfWork.Abstraction;
+
 namespace Catalogs.Application.CQRS.Category.Queries.GetCategories
 {
-    public class GetCategoriesQueryHandler : IQueryHandler<GetCategoriesQuery, PagedList<CategoryDto>>,IQueryCacheable
+    public class GetCategoriesQueryHandler : IQueryHandler<GetCategoriesQuery, PagedList<CategoryDto>>, IQueryCacheable
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IUnitOfWork<CatalogContext> _unitOfWork;
         private IMapper _mapper;
-        public GetCategoriesQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
+        public GetCategoriesQueryHandler(IUnitOfWork<CatalogContext> unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
@@ -31,6 +24,6 @@ namespace Catalogs.Application.CQRS.Category.Queries.GetCategories
             var result = _mapper.Map<PagedList<CategoryDto>>(list);
             return result;
         }
-        
+
     }
 }

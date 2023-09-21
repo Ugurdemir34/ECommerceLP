@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="Consul" Version="1.6.10.9" />
     <PackageReference Include="MediatR" Version="12.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.3">
@@ -26,9 +27,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\BuildingBlocks\EventBus.Factory\EventBus.Factory.csproj" />
-    <ProjectReference Include="..\..\..\Core\ECommerceLP.Api\ECommerceLP.Api.csproj" />
-    <ProjectReference Include="..\..\..\Core\ECommerceLP.Application\ECommerceLP.Application.csproj" />
-    <ProjectReference Include="..\..\..\Infrastructure\ECommerceLP.Infrastructure\ECommerceLP.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\..\Core\Api\src\ECommerceLP.Core.Api\ECommerceLP.Core.Api.csproj" />
+    <ProjectReference Include="..\..\..\Core\CQRS\src\ECommerceLP.Core.CQRS.Abstraction\ECommerceLP.Core.CQRS.Abstraction.csproj" />
+    <ProjectReference Include="..\..\..\Core\CQRS\src\ECommerceLP.Core.CQRS\ECommerceLP.Core.CQRS.csproj" />
+    <ProjectReference Include="..\..\..\Core\Logging\src\ECommerceLP.Core.Serilog\ECommerceLP.Core.Serilog.csproj" />
+    <ProjectReference Include="..\..\..\Core\ServiceDiscovery\src\ECommerceLP.Core.ServiceDiscovery.Abstraction\ECommerceLP.Core.ServiceDiscovery.Abstraction.csproj" />
+    <ProjectReference Include="..\..\..\Core\ServiceDiscovery\src\ECommerceLP.Core.ServiceDiscovery\ECommerceLP.Core.ServiceDiscovery.csproj" />
+    <ProjectReference Include="..\..\..\Core\UnitOfWork\src\ECommerceLP.Core.UnitOfWork\ECommerceLP.Core.UnitOfWork.csproj" />
     <ProjectReference Include="..\Orders.Application\Orders.Application.csproj" />
     <ProjectReference Include="..\Orders.Common\Orders.Common.csproj" />
     <ProjectReference Include="..\Orders.Persistence\Orders.Persistence.csproj" />

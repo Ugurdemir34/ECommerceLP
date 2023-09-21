@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Core\ECommerceLP.Domain\ECommerceLP.Domain.csproj" />
+    <ProjectReference Include="..\..\..\Core\DDD\src\ECommerceLP.Core.DDD.Abstraction\ECommerceLP.Core.DDD.Abstraction.csproj" />
   </ItemGroup>
 
 </Project>

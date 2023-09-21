@@ -1,6 +1,7 @@
-﻿using ECommerceLP.Application.Interfaces.Abstract;
-using ECommerceLP.Infrastructure.UnitOfWork;
+﻿using ECommerceLP.Core.CQRS.Abstraction.Command;
+using ECommerceLP.Core.UnitOfWork.Abstraction;
 using Orders.Domain.Aggregate.OrderAggregates;
+using Orders.Persistence.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,8 @@ namespace Orders.Application.CQRS.Orders.Commands.DeleteOrder
 {
     public class DeleteOrderCommandHandler : ICommandHandler<DeleteOrderCommand, bool>
     {
-        private readonly IUnitOfWork _unitOfWork;
-        public DeleteOrderCommandHandler(IUnitOfWork unitOfWork)
+        private readonly IUnitOfWork<OrderContext> _unitOfWork;
+        public DeleteOrderCommandHandler(IUnitOfWork<OrderContext> unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }

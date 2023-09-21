@@ -1,63 +1,79 @@
 version: '3.8'
 
 services:
-  db:
-        image: "mcr.microsoft.com/mssql/server:2022-latest"
-        ports:
-          - "1433:1433"
+  api.gateway:
+     image: apigateway:latest
+     build:
+      context: .
+      dockerfile: src\ApiGateways\WebApiGateway\Web.ApiGateway\Dockerfile  
 
-        environment:
-            SA_PASSWORD: "Password123."
-            ACCEPT_EULA: "Y"
- 
-  order.api:
-    #image: catalog-api
-    #container_name: ms-catalog-api
+  bff:
+     image: apigateway:latest
+     build:
+      context: .
+      dockerfile: src\ApiGateways\WebApiGateway\Web.ApiGateway\Dockerfile
+
+  orderapi:
+    image: orderapi
     build:
       context: .
       dockerfile: src\Services\Orders\Orders.API\Dockerfile
-    ports:
-      - "8181:81"
-    depends_on:
-      - db
+    container_name: orderapi
 
-
-  catalog.api:
-    #image: catalog-api
-    #container_name: ms-catalog-api
+  catalogapi:
+    image: catalogapi
     build:
       context: .
       dockerfile: src\Services\Catalogs\Catalogs.API\Dockerfile
-    ports:
-      - "8282:85"
-    depends_on:
-      - db
-    #restart: always
+    container_name: catalogapi
 
+  identityapi:
+    image: identityapi
+    build:
+      context: .
+      dockerfile: src\Services\Identity\Identity.API\Dockerfile
+    container_name: identityapi
+ 
+  basketapi:
+    image: basketapi
+    build:
+      context: .
+      dockerfile: src\Services\Baskets\Baskets.API\Dockerfile
+    container_name: basketapi
+
+  productapi:
+    image: productapi
+    build:
+      context: .
+      dockerfile: src\Services\Products\Products.API\Dockerfile
+    container_name: productapi
+
+  notificationservice:
+    image: notificationservice
+    build:
+       context: .
+       dockerfile: src\Services\Notification\NotificationService\Dockerfile
+    container_name: notificationservice
+  
+  paymentservice:
+    image: paymentservice
+    build:
+       context: .
+       dockerfile: src\Services\Payments\PaymentService\Dockerfile
+    container_name: paymentservice
+
+  db:
+    image: mcr.microsoft.com/mssql/server:2017-latest  
+
+  redis:
+    image: redis:alpine
 
   rabbitmq:
-    image: rabbitmq
-    container_name: 'rabbitmq'
-    ports:
-      - "15672:15672"
-      - "5672:5672"
-    environment:
-      - RABBITMQ_DEFAULT_USER=guest
-      - RABBITMQ_DEFAULT_PASS=guest
-    volumes:
-        - "/rabbitmq/:/var/lib/rabbitmq/"
-    restart: always
-
-  #redis:
-  #  container_name: "redis"
-  #  image: redis:alpine
-  #  ports:
-  #    - "6379:6379"
-  #  command: redis-server /usr/local/etc/redis/redis.conf --requirepass asdfg12345
-      
-  #  volumes:
-  #     -  /redis.conf:/usr/local/etc/redis/redis.conf
-  #  restart: always
-
-
+    image: rabbitmq:3-management 
+    
+  consul:
+     image: consul:1.15.4
+     command: consul agent -dev -log-level=warn -ui -client=0.0.0.0
+     hostname: consul
+     container_name: consul
    

@@ -1,11 +1,6 @@
 ﻿using Catalogs.Application.Requests.Category;
 using Catalogs.Common.Dtos;
-using ECommerceLP.Application.Interfaces.Abstract;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ECommerceLP.Core.CQRS.Abstraction.Query;
 
 namespace Catalogs.Application.CQRS.Category.Queries.GetCategoryById
 {

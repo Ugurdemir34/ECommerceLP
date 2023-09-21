@@ -11,8 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Core\ECommerceLP.Application\ECommerceLP.Application.csproj" />
-    <ProjectReference Include="..\..\..\Infrastructure\ECommerceLP.Infrastructure\ECommerceLP.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\..\Core\Data\src\ECommerceLP.Core.Mongo\ECommerceLP.Core.Mongo.csproj" />
+    <ProjectReference Include="..\..\..\Core\UnitOfWork\src\ECommerceLP.Core.UnitOfWork.Abstraction\ECommerceLP.Core.UnitOfWork.Abstraction.csproj" />
     <ProjectReference Include="..\Baskets.Domain\Baskets.Domain.csproj" />
   </ItemGroup>
 

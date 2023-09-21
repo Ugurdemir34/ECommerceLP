@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "ECommerceLP.Core.Cache.Abstraction": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:64616;http://localhost:64619"
+    }
+  }
+}

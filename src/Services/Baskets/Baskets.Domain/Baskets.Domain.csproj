@@ -7,7 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Core\ECommerceLP.Domain\ECommerceLP.Domain.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\EventBus.Base\EventBus.Base.csproj" />
+    <ProjectReference Include="..\..\..\Core\Data\src\ECommerceLP.Core.Mongo.Abstractions\ECommerceLP.Core.Mongo.Abstractions.csproj" />
+    <ProjectReference Include="..\..\..\Core\DDD\src\ECommerceLP.Core.DDD.Abstraction\ECommerceLP.Core.DDD.Abstraction.csproj" />
   </ItemGroup>
 
 </Project>

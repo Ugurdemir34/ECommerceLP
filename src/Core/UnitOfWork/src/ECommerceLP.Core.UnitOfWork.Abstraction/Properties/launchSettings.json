@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "ECommerceLP.Core.UnitOfWork.Abstraction": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:64608;http://localhost:64609"
+    }
+  }
+}

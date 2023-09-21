@@ -1,8 +1,4 @@
-﻿using ECommerceLP.Application.Services;
-using ECommerceLP.Application.Settings;
-using ECommerceLP.Common.Mail.Models;
-using ECommerceLP.Infrastructure.Mail;
-using EventBus.Base;
+﻿using EventBus.Base;
 using EventBus.Base.Abstraction;
 using EventBus.Factory;
 using Microsoft.Extensions.Configuration;
@@ -18,35 +14,33 @@ namespace NotificationService
 {
     public class Configuration
     {
-        private const string SettingsFileName = "appsettings.json";
-        public static void ConfigureServices(ServiceCollection serviceCollection)
+        public static void ConfigureServices(ServiceCollection serviceCollection, IConfiguration configuration)
         {
-            serviceCollection.AddOptions();
-            serviceCollection.AddScoped<IMailService, MailService>();
             serviceCollection.AddTransient<OrderConfirmIntegrationEventHandler>();
             serviceCollection.AddTransient<OrderShippedIntegrationEventHandler>();
+            serviceCollection.AddTransient<PaymentCompletedEventHandler>();
             serviceCollection.AddSingleton<IEventBus>(sp =>
             {
-                EventBusConfig config = new()
-                {
-                    ConnectionRetryCount = 5,
-                    EventNameSuffix = "IntegrationEvent",
-                    SubscriberClientAppName = "NotificationService",
-                    EventBusType = EventBusType.RabbitMQ
-                };
-                return EventBusFactory.Create(config, sp);
+                //EventBusConfig config = new()
+                //{
+                //    ConnectionRetryCount = 5,
+                //    EventNameSuffix = "IntegrationEvent",
+                //    SubscriberClientAppName = "NotificationService",
+                //    EventBusType = EventBusType.RabbitMQ,
+                //    Host=
+                //};
+                EventBusConfig econfig = configuration.GetSection("EventBusConfig").Get<EventBusConfig>();
+                return EventBusFactory.Create(econfig, sp);
             });
         }
-        public static void ConfigureSettings(ServiceCollection serviceCollection)
+        public static IConfiguration ConfigureSettings(ServiceCollection serviceCollection)
         {
+            var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
             var builder = new ConfigurationBuilder()
-                          .SetBasePath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "../../.."))
-                          .AddJsonFile(SettingsFileName, optional: false);
-
+                         .AddJsonFile($"appsettings.{env}.json", optional: true)
+                         .AddEnvironmentVariables();
             IConfiguration config = builder.Build();
-            serviceCollection.AddSmtpMail(config);
-
-            var mailSettings = config.GetSection("MailSettings").Get<SmtpSettings>();
+            return config;
         }
     }
 }

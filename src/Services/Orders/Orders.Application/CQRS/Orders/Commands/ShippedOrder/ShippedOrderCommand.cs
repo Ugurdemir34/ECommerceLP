@@ -1,4 +1,4 @@
-﻿using ECommerceLP.Application.Interfaces.Abstract;
+﻿using ECommerceLP.Core.CQRS.Abstraction.Command;
 using Orders.Application.Requests.Order;
 using System;
 using System.Collections.Generic;

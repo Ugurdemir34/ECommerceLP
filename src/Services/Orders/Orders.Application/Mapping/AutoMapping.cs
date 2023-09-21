@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Identity.Domain.Aggregate.UserAggregate.Entities;
 using Orders.Application.CQRS.Orders.Commands.CreateOrder;
 using Orders.Common.Dtos;
 using Orders.Domain.Aggregate.OrderAggregates;

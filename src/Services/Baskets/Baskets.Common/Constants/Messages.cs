@@ -11,5 +11,6 @@ namespace Baskets.Common.Constants
         public static string BasketAlreadyExists = "The basket already exists";
         public static string BasketNotFound = "Basket not found";
         public static string BasketItemsFound = "Basket Items not found";
+        public static string YouDontHavePermission = "You do not have permission !";
     }
 }
