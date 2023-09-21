@@ -1,22 +1,32 @@
-﻿using Catalogs.Application.CQRS.Category.Command.CreateCategory;
-using Catalogs.Application.CQRS.Category.Command.DeleteCategory;
-using Catalogs.Application.CQRS.Category.Queries.GetCategories;
+﻿using Baskets.Common.Dtos;
+using Bff.Application.Baskets.Command.BuyBasket;
+using Bff.Application.Baskets.Command.CreateBasket;
+using Bff.Application.Catalog.Command.CreateCategory;
+using Bff.Application.Catalog.Command.DeleteCategory;
+using Bff.Application.Catalog.Queries.GetCategories;
+using Bff.Application.Identity.Command.CreateUser;
+using Bff.Application.Identity.Command.LoginUser;
+using Bff.Core.Requests.Baskets;
+using Bff.Core.Requests.Category;
+using Bff.Core.Requests.Identity;
 using Catalogs.Application.CQRS.Category.Queries.GetCategoryById;
-using Catalogs.Application.Requests.Category;
 using Catalogs.Common.Dtos;
 using ECommerceLP.Core.Abstraction.Collections;
 using ECommerceLP.Core.Abstraction.Messaging.Response;
-using ECommerceLP.Core.Api.Controllers;
+using ECommerceLP.Core.Api.BFF.Controllers;
 using ECommerceLP.Core.CQRS.Abstraction;
+using Identity.Common.Dtos;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Catalogs.API.Controllers
+namespace Bff.Api.Controllers.Catalogs
 {
-    public class CatalogsController : BaseApi
+    public class CatalogsController : BaseApiBff
     {
         #region Variables
         private readonly IProcessor _processor;
+
         #endregion
         #region Constructor
         public CatalogsController(IProcessor processor)
@@ -26,6 +36,8 @@ namespace Catalogs.API.Controllers
         #endregion
         #region GetCategoriesAsync
         [HttpPost("getcategories")]
+        //[Route("GetCategories")]
+        //[ProducesResponseType(typeof(PagedList<CategoryDto>), StatusCodes.Status200OK)]
         public async Task<Response<PagedList<CategoryDto>>> GetCategories([FromBody] CategoryRequest request, CancellationToken cancellationToken)
         {
             var query = new GetCategoriesQuery(request);
@@ -35,7 +47,7 @@ namespace Catalogs.API.Controllers
         #endregion
         #region GetCategoryById
         [Authorize]
-        [HttpPost]
+        [HttpGet]
         [Route("GetCategoryById")]
         [ProducesResponseType(typeof(CategoryDto), StatusCodes.Status200OK)]
         public async Task<Response<CategoryDto>> GetCategoryById([FromBody] CategoryByIdRequest request, CancellationToken cancellationToken)

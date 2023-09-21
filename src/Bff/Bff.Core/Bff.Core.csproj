@@ -9,6 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Services\Baskets\Baskets.Common\Baskets.Common.csproj" />
     <ProjectReference Include="..\..\Services\Identity\Identity.Common\Identity.Common.csproj" />
+    <ProjectReference Include="..\..\Services\Orders\Orders.Common\Orders.Common.csproj" />
   </ItemGroup>
 
 </Project>

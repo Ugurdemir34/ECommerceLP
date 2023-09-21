@@ -1,6 +1,8 @@
 ﻿using Baskets.Common.Dtos;
+using Bff.Application.Baskets.Command.AddBasketItem;
 using Bff.Application.Baskets.Command.BuyBasket;
 using Bff.Application.Baskets.Command.CreateBasket;
+using Bff.Application.Baskets.Command.DeleteBasketItem;
 using Bff.Application.Identity.Command.CreateUser;
 using Bff.Application.Identity.Command.LoginUser;
 using Bff.Core.Requests.Baskets;
@@ -15,14 +17,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Bff.Api.Controllers.Baskets
 {
-    public class BasketController : BaseApiBff
+    public class BasketItemController : BaseApiBff
     {
         #region Variables
         private readonly IProcessor _processor;
 
         #endregion
         #region Constructor
-        public BasketController(IProcessor processor)
+        public BasketItemController(IProcessor processor)
         {
             _processor = processor;
         }
@@ -31,19 +33,19 @@ namespace Bff.Api.Controllers.Baskets
         [HttpPost]
         [Route("Create")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<Response<BasketDto>> Create(CreateBasketRequest request, CancellationToken cancellationToken)
+        public async Task<Response<BasketItemDto>> Create(AddBasketItemRequest request, CancellationToken cancellationToken)
         {
-            var command = new CreateBasketCommand(request);
+            var command = new AddBasketItemCommand(request);
             var result = await _processor.ProcessAsync(command, cancellationToken);
             return this.ProduceResponse(result);
         }
         [HttpPost]
-        [Route("Checkout")]
+        [Route("Delete")]
         [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<Response<BasketDto>> Checkout(BuyBusketRequest request, CancellationToken cancellationToken)
+        public async Task<Response<bool>> Delete(DeleteBasketItemRequest request, CancellationToken cancellationToken)
         {
-            var command = new BuyBasketCommand(request);
+            var command = new DeleteBasketItemCommand(request);
             var result = await _processor.ProcessAsync(command, cancellationToken);
             return this.ProduceResponse(result);
         }
