@@ -7,6 +7,12 @@ services:
       context: .
       dockerfile: src\ApiGateways\WebApiGateway\Web.ApiGateway\Dockerfile  
 
+  bff:
+     image: apigateway:latest
+     build:
+      context: .
+      dockerfile: src\ApiGateways\WebApiGateway\Web.ApiGateway\Dockerfile
+
   orderapi:
     image: orderapi
     build:

@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\Abstraction\src\ECommerceLP.Core.Abstraction\ECommerceLP.Core.Abstraction.csproj" />
+    <ProjectReference Include="..\..\Core\CQRS\src\ECommerceLP.Core.CQRS.Abstraction\ECommerceLP.Core.CQRS.Abstraction.csproj" />
+    <ProjectReference Include="..\..\Services\Baskets\Baskets.Common\Baskets.Common.csproj" />
+    <ProjectReference Include="..\..\Services\Catalogs\Catalogs.Common\Catalogs.Common.csproj" />
+    <ProjectReference Include="..\..\Services\Identity\Identity.Common\Identity.Common.csproj" />
+    <ProjectReference Include="..\..\Services\Orders\Orders.Common\Orders.Common.csproj" />
+    <ProjectReference Include="..\..\Services\Orders\Orders.Domain\Orders.Domain\Orders.Domain.csproj" />
+    <ProjectReference Include="..\Bff.Core\Bff.Core.csproj" />
+  </ItemGroup>
+
+</Project>

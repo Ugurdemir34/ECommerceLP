@@ -20,5 +20,6 @@ namespace ECommerceLP.Core.IOC.Abstraction
         public IEnumerable<Assembly> DomainAssemblies { get; }
 
         public IEnumerable<Assembly> RepositoryAssemblies { get; }
+        public IEnumerable<Assembly> CommonAssemblies { get; }
     }
 }

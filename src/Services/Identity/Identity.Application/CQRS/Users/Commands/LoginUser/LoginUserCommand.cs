@@ -1,6 +1,6 @@
 ﻿using ECommerceLP.Core.CQRS.Abstraction.Command;
-using Identity.Application.Requests.User;
 using Identity.Common.Dtos;
+using Identity.Common.Requests;
 
 namespace Identity.Application.CQRS.Users.Commands.LoginUser
 {

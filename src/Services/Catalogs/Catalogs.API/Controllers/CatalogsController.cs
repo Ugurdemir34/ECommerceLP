@@ -25,9 +25,7 @@ namespace Catalogs.API.Controllers
         }
         #endregion
         #region GetCategoriesAsync
-        [HttpGet("getcategories")]
-        //[Route("GetCategories")]
-        //[ProducesResponseType(typeof(PagedList<CategoryDto>), StatusCodes.Status200OK)]
+        [HttpPost("getcategories")]
         public async Task<Response<PagedList<CategoryDto>>> GetCategories([FromBody] CategoryRequest request, CancellationToken cancellationToken)
         {
             var query = new GetCategoriesQuery(request);
@@ -37,7 +35,7 @@ namespace Catalogs.API.Controllers
         #endregion
         #region GetCategoryById
         [Authorize]
-        [HttpGet]
+        [HttpPost]
         [Route("GetCategoryById")]
         [ProducesResponseType(typeof(CategoryDto), StatusCodes.Status200OK)]
         public async Task<Response<CategoryDto>> GetCategoryById([FromBody] CategoryByIdRequest request, CancellationToken cancellationToken)

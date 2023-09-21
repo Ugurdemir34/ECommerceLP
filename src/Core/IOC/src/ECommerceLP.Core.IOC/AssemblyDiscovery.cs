@@ -21,6 +21,7 @@ namespace ECommerceLP.Core.IOC
         public IEnumerable<Assembly> CoreAssemblies { get; }
 
         public IEnumerable<Assembly> DomainAssemblies { get; }
+        public IEnumerable<Assembly> CommonAssemblies { get; }
 
         public IEnumerable<Assembly> RepositoryAssemblies { get; }
         private AssemblyDiscovery()
@@ -38,6 +39,7 @@ namespace ECommerceLP.Core.IOC
             this.CoreAssemblies = moduleAssemblies.Where(x => x.FullName.Contains("Core"));
             this.DomainAssemblies = moduleAssemblies.Where(x => x.FullName.Contains("Domain"));
             this.RepositoryAssemblies = moduleAssemblies.Where(x => x.FullName.Contains("Persistence"));
+            this.CommonAssemblies = moduleAssemblies.Where(x => x.FullName.Contains("Common"));
         }
     }
 }

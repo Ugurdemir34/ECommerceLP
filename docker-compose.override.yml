@@ -140,6 +140,19 @@ services:
         #     - ASPNETCORE_Kestrel__Certificates__Default__Path=/etc/ssl/certs/certificate.crt
         depends_on:
             - consul
+    bff:
+        container_name: bff
+        restart: always
+        ports: 
+            - "8050:80"
+        environment:
+           - ASPNETCORE_ENVIRONMENT=Production
+        #volumes:
+        #    - ./path/to/certificate.crt:/etc/ssl/certs/certificate.crt:ro
+        #environment:
+        #     - ASPNETCORE_Kestrel__Certificates__Default__Path=/etc/ssl/certs/certificate.crt
+        depends_on:
+            - consul
     consul:
         ports:
              - "8500:8500"

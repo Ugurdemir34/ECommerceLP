@@ -45,14 +45,14 @@
       "DownstreamScheme": "http",
       "ServiceName": "catalogapi",
       "UpstreamPathTemplate": "/api/catalogs/getcategories",
-      "UpstreamHttpMethod": [ "Get" ]
+      "UpstreamHttpMethod": [ "POST" ]
     },
     {
       "DownstreamPathTemplate": "/api/Catalogs/GetCategoryById",
       "DownstreamScheme": "http",
       "ServiceName": "catalogapi",
       "UpstreamPathTemplate": "/api/Catalogs/GetCategoryById",
-      "UpstreamHttpMethod": [ "Get" ]
+      "UpstreamHttpMethod": [ "POST" ]
     },
     {
       "DownstreamPathTemplate": "/api/Catalogs/Create",
@@ -68,13 +68,13 @@
       "UpstreamPathTemplate": "/api/Catalogs/Delete",
       "UpstreamHttpMethod": [ "Delete" ]
     },
-    {
-      "DownstreamPathTemplate": "/api/Catalogs/api/catalogs/getgetcategory",
-      "DownstreamScheme": "http",
-      "ServiceName": "catalogapi",
-      "UpstreamPathTemplate": "/api/Catalogs/api/catalogs/getgetcategory",
-      "UpstreamHttpMethod": [ "POST" ]
-    },
+    //{
+    //  "DownstreamPathTemplate": "/api/Catalogs/api/catalogs/getgetcategory",
+    //  "DownstreamScheme": "http",
+    //  "ServiceName": "catalogapi",
+    //  "UpstreamPathTemplate": "/api/Catalogs/api/catalogs/getgetcategory",
+    //  "UpstreamHttpMethod": [ "POST" ]
+    //},
     {
       "DownstreamPathTemplate": "/api/Auth/Login",
       "DownstreamScheme": "http",
